@@ -55,8 +55,8 @@ body::before {
     content: '';
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: url('../assets/bg.jpg') center/cover no-repeat;
-    filter: blur(8px) brightness(0.4);
+    background: url('../assets/bg.webp') center/cover no-repeat;
+    filter: blur(6px) brightness(0.35);
     transform: scale(1.05);
     z-index: -1;
 }
