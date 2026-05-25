@@ -1,0 +1,132 @@
+{
+  "project": "Star Citizen Loadout Tool — Wissensbasis",
+  "version": "2.0.0",
+  "patch": "4.8.0-LIVE",
+  "build": "4.8.0-LIVE.11875683",
+  "patch_release_date": "2026-05-14",
+  "data_collection_date": "2026-05-24",
+  "encoding": "UTF-8 (no BOM)",
+  "data_source": {
+    "primary": "api.star-citizen.wiki (v2 API, Game-File-Extraction)",
+    "note": "Complete rebuild from SINGLE source. All values are raw API values without transformation.",
+    "secondary_prices": "UEX Corp (uexcorp.space) — embedded in API responses as uex_prices",
+    "excluded": [
+      "YouTube-Videos",
+      "Reddit-Posts",
+      "Streamer-Meinungen",
+      "Subjektive Tier-Lists",
+      "Manual data entry",
+      "Multiple source mixing"
+    ]
+  },
+  "files": {
+    "ships.json": {
+      "description": "Alle Vehicles (288 total, davon 262 mit Bewaffnung oder Combat-Rolle)",
+      "entry_count": 288,
+      "note": "Vollständiger Abzug aller Vehicles inkl. Nicht-Kampfschiffe. Armor als Damage-Multiplikatoren (z.B. 0.75 = 75% Schaden geht durch)."
+    },
+    "weapons.json": {
+      "description": "Alle Ship Weapons (WeaponGun) S1-S7 mit vollständigen Combat-Stats",
+      "entry_count": 168,
+      "note": "Jede Waffe mit Detail-API-Abruf. DPS, Alpha, Penetration (base_distance), Projectile Speed, RPM, Heat, Ammo."
+    },
+    "shields.json": {
+      "description": "Alle Shield-Generatoren S1-S3",
+      "entry_count": 67,
+      "note": "HP, Regen, Absorption, Resistance, Distortion Shutdown."
+    },
+    "powerplants.json": {
+      "description": "Alle Powerplants S1-S3",
+      "entry_count": 78,
+      "note": "Power Output, EM Signatures, Thermal Management."
+    },
+    "coolers.json": {
+      "description": "Alle Cooler S1-S3",
+      "entry_count": 74,
+      "note": "Cooling Output, Power Draw, IR/EM Signatures."
+    },
+    "quantum-drives.json": {
+      "description": "Alle Quantum Drives S1-S4",
+      "entry_count": 57,
+      "note": "Drive Speed, Spool Time, Fuel Cost, Calibration."
+    },
+    "missiles.json": {
+      "description": "Alle Ship Missiles",
+      "entry_count": 22,
+      "note": "Damage, Tracking, Lock Time/Range, Speed, Explosion Radius."
+    },
+    "meta.json": {
+      "description": "Diese Datei — Metadaten über den Datensatz"
+    },
+    "patch-info.json": {
+      "description": "Patch-Version und Build-Informationen"
+    }
+  },
+  "counts": {
+    "ships": 288,
+    "weapons": 168,
+    "shields": 67,
+    "powerplants": 78,
+    "coolers": 74,
+    "quantum_drives": 57,
+    "missiles": 22,
+    "total_items": 754
+  },
+  "validation": {
+    "all_json_valid": true,
+    "no_duplicate_uuids": true,
+    "single_version_confirmed": "4.8.0-LIVE.11875683",
+    "spot_checks_passed": {
+      "gladius": {
+        "hull_health": "6110 ✓",
+        "shield_hp": "6336 ✓",
+        "armor_health": "3300 ✓",
+        "armor_physical_mult": "0.75 ✓",
+        "armor_energy_mult": "0.6 ✓",
+        "speed_scm": "226 ✓",
+        "pilot_dps": "1597.9 ✓"
+      },
+      "avenger_titan": {
+        "hull_health": "11900 ✓",
+        "shield_hp": "4320 ✓",
+        "armor_physical_mult": "0.8 ✓",
+        "speed_scm": "262 ✓",
+        "pilot_dps": "2359.6 ✓"
+      },
+      "f7c_hornet_mk2": {
+        "hull_health": "13153 ✓",
+        "shield_hp": "6336 ✓",
+        "armor_health": "6600 ✓",
+        "speed_scm": "220 ✓",
+        "pilot_dps": "2532 ✓"
+      },
+      "cf337_panther": {
+        "damage_per_shot": "43.7 ✓",
+        "rpm": "750 ✓",
+        "burst_dps": "545.6 ✓",
+        "range": "1924 ✓",
+        "penetration_base_distance": "0.75 ✓"
+      },
+      "mantis_gt220": {
+        "damage_per_shot": "19 ✓",
+        "rpm": "1600 ✓",
+        "burst_dps": "506.7 ✓",
+        "ammo_capacity": "4314 ✓",
+        "penetration_base_distance": "1.65 ✓"
+      },
+      "10series_greatsword": {
+        "damage_per_shot": "73 ✓",
+        "rpm": "250 ✓",
+        "burst_dps": "304.1 ✓",
+        "penetration_base_distance": "2.64 ✓"
+      }
+    }
+  },
+  "armor_model_note": "Armor damage values are stored as MULTIPLIERS, not percentages. Example: physical=0.75 means 75% of physical damage passes through (25% reduction). energy=0.6 means 60% of energy damage passes through (40% reduction). This is the raw API representation.",
+  "previous_version": {
+    "version": "1.0.0",
+    "ships": 53,
+    "weapons": 110,
+    "note": "Replaced by complete single-source rebuild"
+  }
+}

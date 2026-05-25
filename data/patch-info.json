@@ -1,0 +1,31 @@
+{
+  "game": "Star Citizen",
+  "patch_version": "4.8.0-LIVE",
+  "build_number": "4.8.0-LIVE.11875683",
+  "release_date": "2026-05-14",
+  "data_collection_date": "2026-05-24",
+  "data_source": {
+    "name": "Star Citizen Wiki API",
+    "url": "https://api.star-citizen.wiki/api/v2/",
+    "type": "Game-File-Extraction API (single source of truth)",
+    "version_confirmed": "4.8.0-LIVE.11875683",
+    "note": "Complete rebuild from this single source. No other sources mixed in. UEX price data is embedded in the API responses."
+  },
+  "key_changes_in_48": [
+    "Damage Deflection Threshold system (armor meta overhaul)",
+    "Drake Ironclad variants",
+    "Tactical Strike Group missions",
+    "G-Force tolerances / Flight Suit system",
+    "Refueling system rebuild",
+    "Weapon velocity and DPS rebalancing"
+  ],
+  "data_quality": {
+    "total_items": 754,
+    "all_versions_match": true,
+    "version_seen": "4.8.0-LIVE.11875683",
+    "json_valid": true,
+    "no_duplicate_uuids": true,
+    "spot_check_validation": "3 ships + 3 weapons verified against live API — all values match exactly"
+  },
+  "notes": "v2.0 — Complete single-source rebuild replacing v1.0 multi-source data. Armor stored as damage multipliers (not percentages). Penetration stored as base_distance (raw API value)."
+}

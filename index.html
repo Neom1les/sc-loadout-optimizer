@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SC Loadout Optimizer — Alpha 4.8.0</title>
+    <link rel="stylesheet" href="css/terminal.css?v=18">
+    <link rel="stylesheet" href="css/layout.css?v=18">
+    <link rel="stylesheet" href="css/components.css?v=18">
+</head>
+<body>
+
+<div class="loading-screen" id="loadingScreen">
+    <div class="loading-text cursor-blink">INITIALIZING SHIP DATABASE</div>
+    <div class="loading-bar"></div>
+</div>
+
+<div class="scanline-overlay"></div>
+<div class="crt-vignette"></div>
+
+<div class="app-container" id="appContainer" style="display:none;">
+
+    <header class="app-header">
+        <div>
+            <div class="app-title">SC Loadout Optimizer</div>
+            <div class="app-patch" id="patchInfo">LOADING...</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;">
+            <button class="btn-save" id="btnSaveLoadout" disabled>SAVE LOADOUT</button>
+        </div>
+    </header>
+
+    <section class="config-section">
+        <div class="config-left">
+            <div class="panel" id="shipSelectPanel">
+                <div class="panel-header">Ship Selection</div>
+                <input type="text" class="search-input" id="shipSearch" placeholder="Search ships...">
+                <div class="ship-list" id="shipList">
+                    <div class="empty-state"><p>Loading ships...</p></div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">Combat Profile</div>
+                <div class="combat-profile">
+                    <div class="checkbox-group">
+                        <label class="sc-checkbox">
+                            <input type="checkbox" id="cbPvE" checked>
+                            <span>PvE</span>
+                        </label>
+                        <label class="sc-checkbox">
+                            <input type="checkbox" id="cbPvP">
+                            <span>PvP</span>
+                        </label>
+                    </div>
+                </div>
+                <div style="margin-top:14px;">
+                    <button class="btn-optimize" id="btnOptimize" disabled>
+                        &gt;&gt;&gt; Optimize Loadout &lt;&lt;&lt;
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel" id="shipPreviewPanel">
+            <div class="panel-header">Ship Overview</div>
+            <div id="shipPreview">
+                <div class="empty-state">
+                    <h3>Select a ship</h3>
+                    <p>Choose a combat ship from the list to view its stats and optimize its loadout.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="results-section" id="resultsSection" style="display:none;">
+
+        <div class="panel fade-in" id="weaponsPanel">
+            <div class="panel-header">Weapons Loadout</div>
+            <div id="weaponsResult"></div>
+        </div>
+
+        <div class="two-col">
+            <div class="panel fade-in" id="componentsPanel">
+                <div class="panel-header">Components</div>
+                <div id="componentsResult"></div>
+            </div>
+
+            <div class="panel fade-in" id="statsPanel">
+                <div class="panel-header">Loadout Stats</div>
+                <div id="statsResult"></div>
+            </div>
+        </div>
+
+        <div class="panel fade-in" id="shoppingPanel">
+            <div class="panel-header">Shopping List</div>
+            <div id="shoppingResult"></div>
+        </div>
+
+    </section>
+
+    <section class="panel" style="margin-top:16px;" id="matchupSection">
+        <div class="panel-header">Damage Matchup Analysis</div>
+        <div style="display:grid;grid-template-columns:280px 1fr;gap:16px;">
+            <div>
+                <div style="font-size:0.8rem;color:var(--text-secondary);margin-bottom:6px;">Select target ship:</div>
+                <input type="text" class="search-input" id="targetSearch" placeholder="Search target...">
+                <div class="ship-list" id="targetList" style="max-height:250px;">
+                    <div class="empty-state"><p>Optimize loadout first</p></div>
+                </div>
+            </div>
+            <div id="matchupResult">
+                <div class="empty-state">
+                    <h3>Select a target</h3>
+                    <p>Choose an enemy ship to see damage calculations, TTK, and armor effectiveness.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="panel" style="margin-top:16px;" id="savedSection">
+        <div class="panel-header">Saved Loadouts</div>
+        <div class="saved-loadouts" id="savedLoadouts">
+            <div class="add-loadout-chip" id="btnNewLoadout">+ New Loadout</div>
+        </div>
+    </section>
+
+</div>
+
+<script type="module" src="js/data-loader.js?v=18"></script>
+<script type="module" src="js/ship-selector.js?v=18"></script>
+<script type="module" src="js/optimizer.js?v=18"></script>
+<script type="module" src="js/stats-calculator.js?v=18"></script>
+<script type="module" src="js/shop-finder.js?v=18"></script>
+<script type="module" src="js/loadout-renderer.js?v=18"></script>
+<script type="module" src="js/storage.js?v=18"></script>
+<script type="module" src="js/matchup.js?v=18"></script>
+<script type="module" src="js/app.js?v=18"></script>
+</body>
+</html>
