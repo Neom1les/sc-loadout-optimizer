@@ -376,7 +376,7 @@ function renderShoppingList(loadout, container) {
             const checkedStyle = isChecked ? 'text-decoration:line-through;opacity:0.5;' : '';
 
             html += `<div class="shopping-item-row" style="display:flex;align-items:center;gap:8px;font-size:0.85rem;padding:3px 0;${checkedStyle}" data-item-key="${itemKey}">
-                <input type="checkbox" class="shopping-check" data-item-key="${itemKey}" ${isChecked ? 'checked' : ''}
+                <input type="checkbox" class="shopping-check" data-item-key="${itemKey}" data-line-total="${lineTotal}" ${isChecked ? 'checked' : ''}
                     style="accent-color:var(--status-ok);cursor:pointer;width:14px;height:14px;flex-shrink:0;">
                 <span style="flex:1;">${item.name}${item.qty > 1 ? ` x${item.qty}` : ''}</span>
                 <span class="stat-value">${formatPrice(lineTotal)}</span>
@@ -391,11 +391,22 @@ function renderShoppingList(loadout, container) {
 
     const locationCount = Object.keys(locationGroups).length;
 
-    html += `<div style="display:flex;justify-content:space-between;padding:10px 0;font-size:1rem;">
-        <span style="font-family:var(--font-heading);letter-spacing:0.1em;">TOTAL</span>
-        <span class="stat-value dps-number">${formatPrice(grandTotal)}</span>
+    // Sum already-purchased (checked) items so they leave the open total
+    let spentTotal = 0;
+    for (const item of allShopItems) {
+        if (checkedItems[item.name]) spentTotal += (item.price || 0) * item.qty;
+    }
+    const remainingTotal = grandTotal - spentTotal;
+
+    html += `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;font-size:0.9rem;color:var(--status-ok);">
+        <span style="font-family:var(--font-heading);letter-spacing:0.1em;">SPENT</span>
+        <span class="stat-value" id="shoppingSpent">${formatPrice(spentTotal)}</span>
     </div>
-    <div style="font-size:0.75rem;color:var(--text-dim);">${locationCount} location(s) to visit</div>`;
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;font-size:1rem;border-top:1px solid var(--border-panel);">
+        <span style="font-family:var(--font-heading);letter-spacing:0.1em;">TOTAL REMAINING</span>
+        <span class="stat-value dps-number" id="shoppingRemaining">${formatPrice(remainingTotal)}</span>
+    </div>
+    <div style="font-size:0.75rem;color:var(--text-dim);">Full loadout: ${formatPrice(grandTotal)} • ${locationCount} location(s) to visit</div>`;
 
     container.innerHTML = html;
 
@@ -409,6 +420,25 @@ function renderShoppingList(loadout, container) {
         });
     }
 
+    // Recompute purchased count, spent and remaining total from the live checkboxes
+    function updateShoppingProgress() {
+        const checked = getCheckedItems();
+        let cnt = 0;
+        let spent = 0;
+        container.querySelectorAll('.shopping-check').forEach(c => {
+            if (checked[c.dataset.itemKey]) {
+                cnt++;
+                spent += parseFloat(c.dataset.lineTotal) || 0;
+            }
+        });
+        const cntEl = container.querySelector('#shoppingCheckedCount');
+        if (cntEl) cntEl.textContent = cnt;
+        const spentEl = container.querySelector('#shoppingSpent');
+        if (spentEl) spentEl.textContent = formatPrice(spent);
+        const remEl = container.querySelector('#shoppingRemaining');
+        if (remEl) remEl.textContent = formatPrice(grandTotal - spent);
+    }
+
     // ---- Bind checkboxes (Feature 2) ----
     container.querySelectorAll('.shopping-check').forEach(cb => {
         cb.addEventListener('change', () => {
@@ -420,12 +450,8 @@ function renderShoppingList(loadout, container) {
                 row.style.textDecoration = cb.checked ? 'line-through' : 'none';
                 row.style.opacity = cb.checked ? '0.5' : '1';
             }
-            // Update counter
-            const checked = getCheckedItems();
-            let cnt = 0;
-            container.querySelectorAll('.shopping-check').forEach(c => { if (checked[c.dataset.itemKey]) cnt++; });
-            const cntEl = container.querySelector('#shoppingCheckedCount');
-            if (cntEl) cntEl.textContent = cnt;
+            // Update counter, spent and remaining total
+            updateShoppingProgress();
         });
     });
 
