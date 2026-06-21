@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SC Optimizer — Earnings Finder & Patch Hub · Konzeptplan</title>
+<style>
+  :root{
+    --bg:#070d10; --bg2:#0a1418; --surface:#0e1a1f; --surface2:#122027; --line:rgba(61,255,242,.14); --line2:rgba(61,255,242,.28);
+    --teal:#3dfff2; --teal-dim:#5fb8b2; --teal-deep:#1b6b66; --ink:#d6f5f2; --dim:#7fa8a4; --faint:#4d6b68;
+    --amber:#ffb347; --gold:#ffd166; --crit:#ff5c6c; --green:#5fe39a; --violet:#b98cff;
+    --mono:"Cascadia Code",ui-monospace,"Source Code Pro",Consolas,monospace;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;
+    background-image:radial-gradient(60% 50% at 85% -5%,rgba(61,255,242,.06),transparent 60%);background-attachment:fixed}
+  .wrap{max-width:1020px;margin:0 auto;padding:clamp(1.1rem,4vw,3.4rem)}
+  h1,h2,h3{line-height:1.12;letter-spacing:.01em}
+  h1{font-size:clamp(1.9rem,5vw,3rem);text-transform:uppercase;letter-spacing:.04em}
+  h2{font-size:clamp(1.35rem,3vw,1.95rem);text-transform:uppercase}
+  h3{font-size:1.06rem;margin-bottom:.3rem}
+  .mono{font-family:var(--mono)} .teal{color:var(--teal)} .amber{color:var(--amber)} .dim{color:var(--dim)} .muted{color:var(--dim)}
+  .kick{font-family:var(--mono);font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--teal)}
+  a{color:var(--teal)}
+  header.top{border-bottom:1px solid var(--line);padding-bottom:1.6rem;margin-bottom:2.4rem}
+  .badge{display:inline-flex;gap:.5rem;align-items:center;font-family:var(--mono);font-size:.68rem;letter-spacing:.2em;color:var(--faint);text-transform:uppercase;margin-bottom:.9rem}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 9px var(--teal)}
+  .lead{font-size:clamp(1.02rem,1.6vw,1.2rem);max-width:70ch;color:var(--ink)}
+  section{margin:2.6rem 0}
+  .sh{display:flex;align-items:baseline;gap:.9rem;border-left:3px solid var(--teal);padding-left:.9rem;margin-bottom:1.1rem}
+  .sh .no{font-family:var(--mono);color:var(--faint);font-size:.85rem}
+  p{margin:.55rem 0;max-width:76ch} ul,ol{margin:.5rem 0 .5rem 1.25rem} li{margin:.3rem 0;max-width:74ch}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:1.1rem 1.25rem}
+  .grid{display:grid;gap:1rem} .g2{grid-template-columns:1fr 1fr}
+  @media(max-width:780px){.g2{grid-template-columns:1fr}}
+  table{width:100%;border-collapse:collapse;margin:.7rem 0;font-size:.9rem;display:block;overflow-x:auto}
+  th,td{text-align:left;padding:.55rem .7rem;border-bottom:1px solid var(--line);vertical-align:top;white-space:nowrap}
+  td:last-child,th:last-child{white-space:normal}
+  th{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+  code{font-family:var(--mono);font-size:.86em;background:var(--surface2);padding:.08em .4em;border-radius:4px;border:1px solid var(--line)}
+  pre{background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:.9rem 1rem;overflow-x:auto;font-family:var(--mono);font-size:.8rem;color:var(--teal-dim);margin:.7rem 0}
+  .pill{display:inline-block;font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;padding:.18em .55em;border-radius:3px;border:1px solid var(--line2);color:var(--dim)}
+  .pill.new{border-color:var(--green);color:var(--green);background:rgba(95,227,154,.08)}
+  .pill.mvp{background:var(--teal);color:#04201e;font-weight:700;border:0}
+  .pill.v2{border-color:var(--violet);color:var(--violet)}
+  .mock{border:1px solid var(--line2);border-radius:10px;overflow:hidden;margin:1rem 0;background:var(--bg2)}
+  .mock .bar{display:flex;gap:.4rem;padding:.5rem .8rem;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.72rem}
+  .tab{padding:.3rem .7rem;border-radius:5px;color:var(--dim);border:1px solid var(--line)}
+  .tab.on{background:var(--teal);color:#04201e;border-color:var(--teal);font-weight:700}
+  .mock .body{padding:1rem}
+  .ctrlrow{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.8rem}
+  .ctrl{font-family:var(--mono);font-size:.72rem;padding:.35rem .65rem;border:1px solid var(--line2);border-radius:6px;color:var(--ink);background:var(--surface)}
+  .ctrl.sel{border-color:var(--teal);color:var(--teal)}
+  .acard{border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:8px;padding:.7rem .85rem;margin:.5rem 0;background:var(--surface)}
+  .acard .h{display:flex;justify-content:space-between;gap:1rem;align-items:baseline;flex-wrap:wrap}
+  .acard .n{font-weight:700;color:var(--ink)} .acard .sc{font-family:var(--mono);color:var(--gold);font-size:.85rem}
+  .acard .meta{font-family:var(--mono);font-size:.72rem;color:var(--dim);margin-top:.3rem;display:flex;gap:.8rem;flex-wrap:wrap}
+  .rec{border-left:3px solid var(--green);background:rgba(95,227,154,.06);padding:.7rem 1rem;border-radius:0 8px 8px 0;margin:.7rem 0}
+  .rec b{color:var(--green)}
+  .warn{border-left:3px solid var(--amber);background:rgba(255,179,71,.06);padding:.7rem 1rem;border-radius:0 8px 8px 0;margin:.7rem 0}
+  .warn b{color:var(--amber)}
+  .q{background:linear-gradient(180deg,rgba(61,255,242,.05),transparent);border:1px solid var(--line2);border-radius:10px;padding:.9rem 1.15rem;margin:.7rem 0}
+  .q b{color:var(--teal)}
+  .phase{border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:1rem 0}
+  .phase .ph{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.8rem 1.1rem;background:var(--surface2);border-bottom:1px solid var(--line)}
+  .phase .pb{padding:.9rem 1.1rem}
+  .stat{display:flex;gap:1.2rem;flex-wrap:wrap;margin:1rem 0}
+  .stat .s{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:.6rem .9rem;min-width:120px}
+  .stat .v{font-size:1.3rem;font-weight:800;color:var(--teal)} .stat .l{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+  .foot{margin-top:3rem;border-top:1px solid var(--line);padding-top:1.4rem;color:var(--faint);font-size:.82rem}
+  .scanline{position:fixed;inset:0;pointer-events:none;opacity:.18;mix-blend-mode:multiply;background:repeating-linear-gradient(to bottom,transparent 0 2px,rgba(0,0,0,.5) 2px 3px);z-index:99}
+</style>
+</head>
+<body>
+<div class="scanline"></div>
+<div class="wrap">
+
+<header class="top">
+  <div class="badge"><span class="dot"></span> SC LOADOUT OPTIMIZER · FEATURE CONCEPT</div>
+  <h1>Earnings Finder<br>&amp; <span class="teal">Patch Hub</span></h1>
+  <p class="lead" style="margin-top:1rem">Zwei neue Reiter für den SC Optimizer: ein <b>Earnings &amp; Activity Finder</b>, der je nach Ziel (schnell aUEC · Reputation · Mix · „interessante" Aktivitäten) die besten Missionen/Tätigkeiten rankt — und ein <b>Patch Hub</b>, der neue Patch-Features mit Step-by-Step-Guides erklärt (z.&nbsp;B. die Hathor Orbital Laser Platforms).</p>
+  <div class="stat">
+    <div class="s"><div class="v">2</div><div class="l">neue Reiter</div></div>
+    <div class="s"><div class="v">4</div><div class="l">Ziel-Modi</div></div>
+    <div class="s"><div class="v">3</div><div class="l">neue Daten-Files</div></div>
+    <div class="s"><div class="v">0</div><div class="l">Build-Steps</div></div>
+  </div>
+  <p class="dim" style="font-size:.84rem;margin-top:.8rem">Auf Basis: Analyse des bestehenden Optimizers (ES-Module, <code>data/*.json</code>, Terminal-UI) + SC-Domänen-Recherche Stand <b>Alpha 4.8</b> (Mai/Juni 2026).</p>
+</header>
+
+<!-- 01 -->
+<section>
+  <div class="sh"><span class="no">01</span><h2>Ausgangslage &amp; Leitidee</h2></div>
+  <p>Der Optimizer ist heute ein <b>Single-Purpose-Tool</b> (Schiffs-Loadout). Es gibt noch <b>keine Reiter-Navigation</b> — alles liegt auf einer Seite. Die beiden neuen Bereiche machen daraus einen <b>kompletten SC-Karriere-Begleiter</b>: „Was soll ich spielen, um mein Ziel zu erreichen?" (Earnings Finder) → „Womit fliege ich das optimal?" (Loadout-Optimizer) → „Wie spiele ich das neue Feature?" (Patch Hub).</p>
+  <div class="rec"><b>Leitidee:</b> Der Earnings Finder beantwortet <i>„welche Aktivität"</i>, der bestehende Optimizer <i>„welches Schiff/Loadout"</i>, der Patch Hub <i>„wie genau spielt man es"</i>. Drei Reiter, ein durchgängiger Flow — mit Querverlinkung zwischen ihnen.</p>
+  <div class="warn"><b>Kern-Realität (prägt das ganze Konzept):</b> Es gibt <u>keine offizielle CIG-API für „aUEC pro Stunde"</u>. Diese Werte sind <b>community-ermittelt</b> (Guides wie ggwtb, mmopixel, RSI Community Hub, SC-Wiki, YouTube) und <b>ändern sich mit jedem Patch / Wipe</b>. Das Tool muss diese Daten daher <b>kuratiert, patch-versioniert und mit Konfidenz-Kennzeichnung</b> führen — nicht so tun, als wären sie exakt. Das ist der wichtigste konzeptionelle Punkt (siehe §6 Datenpflege).</p>
+</section>
+
+<!-- 02 -->
+<section>
+  <div class="sh"><span class="no">02</span><h2>Architektur-Integration</h2></div>
+  <p>Der Optimizer bleibt rein statisch (ES-Module, kein Build, Start via <code>python http.server</code>, GitHub Pages). Die neuen Reiter fügen sich nahtlos ein:</p>
+  <ul>
+    <li><b>Top-Level-Reiter-Navigation</b> einführen (im <code>app-header</code>): <span class="mono">[ Loadout Optimizer ] [ Earnings Finder ] [ Patch Hub ]</span>. Der gesamte heutige Inhalt wird zum ersten Reiter — <b>null Funktionsverlust</b>. Tab-State per Hash-Route (<code>#optimizer</code> / <code>#earnings</code> / <code>#patch</code>) + localStorage „last tab".</li>
+    <li><b>Neue ES-Module</b> analog zum Bestand: <code>js/earnings-finder.js</code>, <code>js/patch-hub.js</code>, geladen über denselben <code>data-loader.js</code> (fetch + cache).</li>
+    <li><b>Neue Daten-Files</b> in <code>data/</code>: <code>activities.json</code>, <code>guides.json</code>, <code>factions.json</code> — gleiches <code>{ "data": [...] }</code>-Pattern wie <code>ships.json</code>.</li>
+    <li><b>Design-System wiederverwenden</b>: dieselben CSS-Variablen (<code>--sc-teal</code>, Terminal/CRT-Look, <code>.panel</code>, <code>.ship-list</code>-Muster) → konsistente Optik.</li>
+    <li><b>Querverlinkung</b>: Eine Activity-Karte hat „⟶ Optimize a ship for this" (springt in den Loadout-Reiter mit vorausgewähltem Schiff/Profil) und „⟶ How to play" (springt in den passenden Patch-Hub-Guide).</li>
+  </ul>
+  <pre>js/
+  app.js            ← + Tab-Router, lädt aktiven Reiter
+  earnings-finder.js  (neu)  goal-state, scoring, render
+  patch-hub.js        (neu)  patch timeline, guide detail
+data/
+  activities.json     (neu)  kuratierte Aktivitäten + Metriken
+  guides.json         (neu)  Patch-Features + Step-by-Step
+  factions.json       (neu)  Reputations-Fraktionen
+  patch-info.json     ← erweitern: Patch-Liste/Changelog</pre>
+</section>
+
+<!-- 03 -->
+<section>
+  <div class="sh"><span class="no">03</span><h2>Reiter 1 — Earnings &amp; Activity Finder</h2></div>
+  <p>Oben stellt man sein <b>Ziel</b> + <b>Rahmenbedingungen</b> ein; darunter erscheint ein <b>gerankte Liste</b> der besten Aktivitäten mit transparenter Begründung.</p>
+
+  <h3 class="teal" style="margin-top:1.2rem">A · Ziel-Modi (das „was will ich")</h3>
+  <table>
+    <tr><th>Modus</th><th>Bedeutung</th><th>Ranking nach</th></tr>
+    <tr><td>💰 <b>Max aUEC</b></td><td>Schnellstes Geld</td><td>aUEC/Stunde (gewichtet mit Konfidenz)</td></tr>
+    <tr><td>🎖️ <b>Reputation</b></td><td>Rep einer wählbaren Fraktion fahren</td><td>Rep-Gain/Stunde für die gewählte Fraktion</td></tr>
+    <tr><td>⚖️ <b>Mix</b></td><td>Geld &amp; Rep zugleich</td><td>Slider Geld↔Rep → gewichteter Score</td></tr>
+    <tr><td>✨ <b>Experience / Fun</b></td><td>Coole Events &amp; Erlebnisse, Payout zweitrangig</td><td>„interest"-Score (Tags: event, unique, scenic, story)</td></tr>
+  </table>
+
+  <h3 class="teal" style="margin-top:1.2rem">B · Filter (das „wie ich spielen will")</h3>
+  <ul>
+    <li><b>Zeitbudget</b>: &lt;30 min · 1 h · ganze Session — beeinflusst Setup-/Reisezeit-Gewichtung</li>
+    <li><b>Solo / Crew</b>: Single-Seat vs. Multicrew (z.&nbsp;B. Salvage-Reclaimer, TSG)</li>
+    <li><b>Risiko / Legalität</b>: Lawful ↔ Unlawful, PvP-Risiko, Crimestat</li>
+    <li><b>Spielstil</b>: Combat · Salvage · Mining · Hauling · Bounty · Medical · Exploration</li>
+    <li><b>„Nur was ich fliegen kann"</b>: optionaler Abgleich mit besessenen Schiffen (reuse der Loadout-/Saved-Daten) → blendet rep-/schiff-gegatete Aktivitäten aus</li>
+  </ul>
+
+  <h3 class="teal" style="margin-top:1.2rem">C · Ergebnis — Activity Cards (Mockup)</h3>
+  <div class="mock">
+    <div class="bar"><span class="tab">Loadout Optimizer</span><span class="tab on">Earnings Finder</span><span class="tab">Patch Hub</span></div>
+    <div class="body">
+      <div class="ctrlrow"><span class="ctrl sel">💰 Max aUEC</span><span class="ctrl">🎖️ Reputation</span><span class="ctrl">⚖️ Mix</span><span class="ctrl">✨ Fun</span></div>
+      <div class="ctrlrow"><span class="ctrl">⏱ 1 h</span><span class="ctrl">Solo</span><span class="ctrl">Lawful</span><span class="ctrl">Salvage ✓</span><span class="ctrl">Combat ✓</span></div>
+      <div class="acard"><div class="h"><span class="n">Adagio Holdings — High-Value Salvage (C2/M2/890J)</span><span class="sc">★ 96 · ~3–5M/h</span></div>
+        <div class="meta"><span>aUEC/h: 3.0–5.0M (est.)</span><span>Rep: Adagio ▲▲</span><span>Risk: ●●○○○</span><span>Crew: 1–2</span><span class="amber">⚿ Senior Contractor</span></div></div>
+      <div class="acard"><div class="h"><span class="n">Gilly's Flight School — Combat Scenario 7</span><span class="sc">★ 88 · ~1M/h</span></div>
+        <div class="meta"><span>aUEC/h: ~1.0M</span><span>Rep: —</span><span>Risk: ●●●○○</span><span>Crew: 1</span><span>Setup: low</span></div></div>
+      <div class="acard"><div class="h"><span class="n">Contract Hauling — Hurston Loop</span><span class="sc">★ 79 · 0.6–1.5M/h</span></div>
+        <div class="meta"><span>aUEC/h: 0.6–1.5M</span><span>Rep: Covalex ▲</span><span>Risk: ●●○○○</span><span>Crew: 1</span></div></div>
+      <div class="dim mono" style="font-size:.7rem;margin-top:.5rem">Each card → [ ⟶ Optimize ship ] · [ ⟶ How to play ] · [ details ]</div>
+    </div>
+  </div>
+
+  <h3 class="teal" style="margin-top:1.2rem">D · Scoring-Logik (transparent)</h3>
+  <p>Jede Aktivität wird pro Modus normalisiert &amp; gewichtet gescort — die Faktoren sind im UI einsehbar (kein „Black Box"-Ranking):</p>
+  <pre>score = wMoney · norm(auecPerHour)
+      + wRep   · norm(repPerHour[selectedFaction])
+      + wFun   · interestScore
+      − riskPenalty · (risk · (1 − riskTolerance))
+      − gateLockout            // rep/ship nicht erfüllt → ans Ende + „locked"-Badge
+      × confidence             // estimated < verified
+// Modus setzt die Gewichte: MaxaUEC → wMoney=1; Reputation → wRep=1;
+// Mix → Slider; Fun → wFun=1
+</pre>
+  <p class="dim" style="font-size:.85rem">Gegatete Aktivitäten (z.&nbsp;B. Adagio braucht Senior Contractor) werden nicht versteckt, sondern als <span class="pill" style="border-color:var(--amber);color:var(--amber)">locked</span> markiert mit Hinweis „so schaltest du es frei" → Brücke zum Reputation-Modus.</p>
+</section>
+
+<!-- 04 -->
+<section>
+  <div class="sh"><span class="no">04</span><h2>Reiter 2 — Patch Hub &amp; Guides</h2></div>
+  <p>Zeigt pro Patch, <b>was neu/geändert</b> ist, und liefert <b>Step-by-Step-Guides</b> für komplexe Features. Beantwortet „Was kann ich seit dem letzten Patch Neues spielen — und wie genau?".</p>
+  <h3 class="teal" style="margin-top:1rem">Aufbau</h3>
+  <ul>
+    <li><b>Patch-Timeline</b> oben (4.8 · 4.8.1 · …) + <b>Feature-Karten</b> mit <span class="pill new">NEW</span>/<span class="pill">CHANGED</span>-Badge, Kategorie-Filter (Gameplay-Loop · Event · Mechanik · Schiff).</li>
+    <li><b>Guide-Detail</b> (Klick auf Feature): nummerierte Schritte, Voraussetzungen, Belohnung, Tipps, Schwierigkeit, Zeitaufwand, externe Links (RSI Community Hub / Wiki / Video).</li>
+  </ul>
+  <h3 class="teal" style="margin-top:1rem">Paradebeispiel-Guide: <span class="amber">Hathor Orbital Laser Platform</span></h3>
+  <div class="card">
+    <div class="meta dim mono" style="font-size:.72rem;margin-bottom:.4rem">Kategorie: Event/Loop · Schwierigkeit: ●●●○ · ~45–90 min · Crew 2–4 empfohlen</div>
+    <ol>
+      <li><b>Mission annehmen</b> beim Mission-Giver (Wicko).</li>
+      <li><b>Boden-Satelliten ausrichten</b> auf den Monden <span class="mono">Dayar</span> &amp; <span class="mono">Abedine</span>.</li>
+      <li><b>Comp-Boards einsammeln</b> und zur Plattform bringen.</li>
+      <li><b>Orbital-Laser mit Energie versorgen</b> / aktivieren (Align-and-Fire).</li>
+      <li><b>Carite abbauen</b> aus dem gespaltenen Felsen.</li>
+      <li><b>Belohnung abholen</b> → koppelt zurück an den Earnings Finder (aUEC + Rep).</li>
+    </ol>
+    <p class="dim" style="font-size:.82rem;margin-top:.4rem">Quelle/Verweis pro Guide hinterlegt (RSI Community Hub „Hathor Laser One-Page Guide", Wiki). So bleibt jeder Guide nachprüfbar.</p>
+  </div>
+  <p style="margin-top:.8rem">Weitere 4.8-Kandidaten für Guides: <b>Tactical Strike Groups</b> (Multi-Ship-Coop), <b>Refueling-System</b> (Starlite), <b>G-Force/Flight-Suits</b>, <b>Ship-Combat V3</b>, <b>Post-Wipe-Progression</b>.</p>
+</section>
+
+<!-- 05 -->
+<section>
+  <div class="sh"><span class="no">05</span><h2>Datenmodell</h2></div>
+  <div class="grid g2">
+    <div class="card"><h3 class="teal"><code>activities.json</code></h3><pre style="font-size:.72rem">{
+ id, name, category,        // salvage/combat/…
+ lawful: true,
+ modes: {
+   money:{ perHourMin, perHourMax,
+           confidence },     // verified|est|stale
+   rep:{ faction, perHour, gatedTier }
+ },
+ risk: 1-5, group:{solo,crew},
+ setupMinutes,
+ requirements:{ ships[], gear[],
+   repGate:{faction,tier} },
+ tags:[event,fun,grind,beginner],
+ patch:"4.8", guideId, sources[]
+}</pre></div>
+    <div class="card"><h3 class="teal"><code>guides.json</code> + <code>factions.json</code></h3><pre style="font-size:.72rem">// guides.json
+{ id, patch, name, category,
+  status:"new"|"changed",
+  summary, difficulty, timeMinutes,
+  requirements, rewards,
+  steps:[{title, detail}],
+  tips:[], links:[], relatedActivityId }
+
+// factions.json
+{ id, name, type,            // hauling/bounty/…
+  unlocks:[], opposedBy:[],  // rep trade-offs
+  tiers:[] }</pre></div>
+  </div>
+  <p class="dim" style="font-size:.85rem">Template (Katalog) und Laufzeit/Filter sind getrennt — wie schon bei <code>ships.json</code>. Konfidenz-Flag pro Geld-Datenpunkt ist Pflicht.</p>
+</section>
+
+<!-- 06 -->
+<section>
+  <div class="sh"><span class="no">06</span><h2>Datenpflege — der kritische Teil</h2></div>
+  <p>Ohne Pflege veralten die aUEC/h-Zahlen mit dem nächsten Patch sofort. Drei Bausteine:</p>
+  <ul>
+    <li><b>Patch-Versionierung &amp; Konfidenz:</b> jede Zahl trägt <code>patch</code> + <code>confidence</code> (verified/estimated/stale). UI zeigt „<span class="mono">Stand: Patch 4.8.1 · est.</span>" + Community-Disclaimer. Stale-Einträge werden optisch gedämpft.</li>
+    <li><b>Kuratierte Quelle:</b> Werte aus Community-Guides (ggwtb, mmopixel, RSI Community Hub, SC-Wiki, YouTube) — manuell verifiziert, nie als exakt verkauft (Ranges + „est.").</li>
+    <li><b>Optionale KI-Update-Pipeline</b> <span class="pill v2">v2</span>: ein Recherche-Agent (analog deiner BIT-Portal-Maintenance-Pipeline) zieht pro Patch die aktuellen Methoden, schlägt <code>activities.json</code>-Deltas als PR vor — du bestätigst. Hält das Tool ohne manuellen Dauer-Aufwand aktuell.</li>
+  </ul>
+  <div class="warn"><b>Disclaimer im UI:</b> „Community-ermittelte Richtwerte, kein offizieller CIG-Wert — variiert je Skill, Server, Patch." Schützt Glaubwürdigkeit.</p></div>
+</section>
+
+<!-- 07 -->
+<section>
+  <div class="sh"><span class="no">07</span><h2>Umsetzung in Stufen</h2></div>
+  <div class="phase"><div class="ph"><h3><span class="pill mvp">MVP</span> &nbsp;Beide Reiter funktional</h3><span class="dim mono">data-driven, kuratiert</span></div>
+    <div class="pb"><ul>
+      <li>Tab-Navigation + Hash-Router; bestehender Optimizer wird Reiter 1 (kein Funktionsverlust)</li>
+      <li>Earnings Finder: 4 Ziel-Modi, Kern-Filter, Scoring, Activity Cards — geseedet mit ~15–25 kuratierten 4.8-Aktivitäten</li>
+      <li>Patch Hub: 4.8-Feature-Liste + 3–5 vollständige Guides (inkl. Hathor) aus <code>guides.json</code></li>
+      <li><code>activities.json</code> / <code>guides.json</code> / <code>factions.json</code> + Konfidenz/Patch-Stand-Anzeige</li>
+    </ul></div></div>
+  <div class="phase"><div class="ph"><h3><span class="pill v2">v2</span> &nbsp;Verzahnung &amp; Komfort</h3><span class="dim mono">Synergie</span></div>
+    <div class="pb"><ul>
+      <li>Querverlinkung: Activity → Loadout-Optimizer (Schiff vorwählen) &amp; → Patch-Hub-Guide</li>
+      <li>„Nur was ich fliegen kann"-Filter (Abgleich mit Saved Loadouts/Schiffen)</li>
+      <li>Reputation-Modus mit Fraktions-Trade-offs (rauf bei A = runter bei B) + Gate-Aufschluss-Pfade</li>
+      <li>Fun-Modus mit dynamischen Events; „Post-Wipe-Roadmap"-Preset</li>
+    </ul></div></div>
+  <div class="phase"><div class="ph"><h3><span class="pill v2">v3</span> &nbsp;Automatisierung</h3><span class="dim mono">optional</span></div>
+    <div class="pb"><ul>
+      <li>KI-Update-Pipeline für <code>activities.json</code>/<code>guides.json</code> pro Patch (PR-Vorschläge)</li>
+      <li>Community-Feedback (z.&nbsp;B. „Wert stimmt nicht mehr"-Flag), aUEC/h-Rechner (Eingabe Runs/Zeit)</li>
+    </ul></div></div>
+</section>
+
+<!-- 08 -->
+<section>
+  <div class="sh"><span class="no">08</span><h2>Offene Entscheidungen</h2></div>
+  <div class="q"><b>1 · Daten-Tiefe zum Start:</b> Wie viele Aktivitäten + Guides im MVP (z.&nbsp;B. Top 20 Aktivitäten / 5 Guides) — und kurate ich sie autonom aus den Community-Quellen, oder lieferst du eine Prioliste?</div>
+  <div class="q"><b>2 · Fun/„interessant" definieren:</b> Welche Tags zählen als „cool" (Events, Story-Missionen, Scenic, Easter-Eggs)? Gibt es konkrete Beispiele, die rein sollen?</div>
+  <div class="q"><b>3 · KI-Update-Pipeline:</b> direkt mit einplanen (v3) oder erst manuell pflegen und später automatisieren?</div>
+  <div class="q"><b>4 · Scope MVP:</b> beide Reiter zusammen, oder erst der Earnings Finder, dann der Patch Hub?</div>
+  <div class="q"><b>5 · Sprache:</b> wie beim Optimizer komplett <b>Englisch</b> (für die Community), richtig?</div>
+</section>
+
+<section>
+  <div class="sh"><span class="no">09</span><h2>Nächster Schritt</h2></div>
+  <p>Sag mir kurz deine Antworten (oder „nimm sinnvolle Defaults") — dann baue ich den <b>MVP</b>: Tab-Navigation, Earnings Finder mit den 4 Modi + kuratierten 4.8-Aktivitäten und den Patch Hub mit den ersten Guides (inkl. Hathor). Iterativ, jeweils im lokalen Server / Pages vorzeigbar.</p>
+</section>
+
+<div class="foot">
+  SC Optimizer — Earnings Finder &amp; Patch Hub · Konzeptplan · Stand Alpha 4.8 (2026).<br>
+  aUEC/h-Werte sind community-ermittelte Richtwerte, kein offizieller CIG-Wert. Unofficial Star Citizen project.
+</div>
+</div>
+</body>
+</html>

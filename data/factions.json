@@ -1,0 +1,312 @@
+{
+  "data": [
+    {
+      "id": "adagio-holdings",
+      "name": "Adagio Holdings",
+      "type": "salvage contractor / leasing corporation",
+      "howToRaise": "Run Adagio salvage contracts: small-fee 5,000 aUEC missions (+100 rep), standard 10,000 aUEC missions (+150 rep), and turn-in missions (~+150 rep). Each contract before Senior also costs 10K-20K aUEC in fees. The intro 'Adagio Holdings in Need of Salvagers' is a rank-0, once-only mission (+100 rep, 48-min cooldown, any salvage ship).",
+      "unlocks": "Tiered salvage contracts. Senior Contractor unlocks the 100,000 aUEC-fee missions (+200 rep each) that spawn large-hull wrecks: C2, M2, A2 Hercules and 890 Jump - the source of the Titanium cargo farm and bulk RMC. Higher tiers (Veteran, Head Contractor, Elite Contractor) may later gate blueprints/modules/crafting.",
+      "opposedBy": "Mostly self-contained; the trade-off is the heavy aUEC fee sink, not a rival faction. Criminal salvage (e.g. unlawful claim-jumping) can sour lawful standing.",
+      "sources": [
+        "https://ggwtb.com/blog/star-citizen-4-8-salvage-guide-best-rmc-farming--adagio-rep--and-ships-to-use",
+        "https://api.star-citizen.wiki/missions/e07b3007-6bc1-4b50-ac08-c5b31e345efd",
+        "https://www.mmopixel.com/news/star-citizen-4-8-salvage-farming-guide-make-3m-auec-per-hour-with-adagio-contracts",
+        "https://starcitizen.tools/Adagio_Holdings"
+      ]
+    },
+    {
+      "id": "wicko-hathor-olp-event-giver",
+      "name": "Wicko (Hathor OLP event giver)",
+      "type": "event NPC / mission giver",
+      "howToRaise": "Complete the Hathor Orbital Laser Platform mission chain: align PAF satellites, power and fire the OLP, and mine carite from the opened caves. Each completed site/objective grants favor.",
+      "unlocks": "Armor sets, Volt-series energy weapons (Volt Parallax rifle, Volt SMG), and exclusive ship rewards earned individually through accumulated favor.",
+      "opposedBy": "none documented",
+      "sources": [
+        "https://www.starzen.space/t/hathor-orbital-laser-full-activation-guide-align-mine-star-citizen-4-1/24935",
+        "https://robertsspaceindustries.com/community-hub/post/hathor-olp-full-guide-kyPBJfUIMEjk9"
+      ]
+    },
+    {
+      "id": "covalex-shipping",
+      "name": "Covalex Shipping",
+      "type": "lawful corporate (hauling contractor)",
+      "howToRaise": "Complete cargo-hauling contracts. Start with the 'Opportunity for Independent Cargo Hauler' intro contract. Fastest method is contract stacking out of Everus Harbor (Hurston) — deliver multiple overlapping contracts to the same destination. Tiers seen: Rookie -> Junior (~4 contracts) -> Member (stacking up to 16) -> Experienced (~26 missions) -> Senior/Master.",
+      "unlocks": "Rank ladder Trainee > Rookie > Junior > Member > Experienced > Senior > Master. Member: hold up to 16 active contracts. Experienced: large Hull-C-class bulk jobs. Master: interstellar hauling missions + military quantum-drive blueprint progression (VK-00, XL-1, TS-2). Higher ranks hide lower-tier contracts from the list.",
+      "opposedBy": "Largely non-conflicting with other corporates, but favoring one hauling contractor over another (Covalex vs Red Wind Linehaul vs Ling Family Hauling) limits cross-access; criminal smuggling lowers lawful corporate standing.",
+      "sources": [
+        "https://docs.sc/topics/careers/missions/hauling/",
+        "https://www.tribality.com/articles/star-citizen-4-8-covalex-cargo-hauling-guide-best-routes-reputation-farming-fast-auec-tips/",
+        "https://ggwtb.com/blog/star-citizen-covalex-cargo-hauling-4-8-fast-reputation-route--best-ships--and-master-unlocks",
+        "https://starcitizen.tools/Hauling"
+      ]
+    },
+    {
+      "id": "red-wind-linehaul",
+      "name": "Red Wind Linehaul",
+      "type": "Hauling/logistics company (Pyro-focused, multi-system)",
+      "howToRaise": "Complete the 'Red Wind Seeking New Haulers' intro contract, then grind Red Wind freight in Pyro. Stack same-destination contracts (Gaslight to Ruin Station at Experienced; ~10-contract stacks at Senior).",
+      "unlocks": "Company ladder with longer routes, larger loads and far higher payouts than Stanton lawful hauling. Experienced surfaces ~795K aUEC stackable contracts; Senior is the patch's top hauling income (7-9M aUEC/hour, 11M+ per ~90 min run).",
+      "opposedBy": "Choosing one hauling employer over another affects access; criminal cargo activity lowers lawful standing.",
+      "sources": [
+        "https://starcitizen.tools/Red_Wind_Linehaul",
+        "https://starcitizen.tools/Red_Wind_Seeking_New_Haulers",
+        "https://ggwtb.com/blog/star-citizen-4-8-1-money-guide-best-auec-methods-for-hauling-and-weapon-salvage",
+        "https://starcitizen.tools/Hauling",
+        "https://expcarry.com/star-citizen-higher-contracts"
+      ]
+    },
+    {
+      "id": "ling-family-hauling",
+      "name": "Ling Family Hauling",
+      "type": "Lawful hauling company (Crusader / Stanton)",
+      "howToRaise": "Complete 'Cargo Hauling Opportunity with Ling Hauling' to become a 'trusted contractor', then keep completing Ling freight around Crusader. Level it on its own track.",
+      "unlocks": "Standard hauling ladder PLUS stealth-component rewards: Zephyr stealth quantum drive, Eclipse stealth power plant, Spectral stealth option - valuable for stealth ship builds and crafting.",
+      "opposedBy": "Cross-contractor access trade-off; criminal activity reduces lawful standing.",
+      "sources": [
+        "https://starcitizen.tools/Ling_Family_Hauling",
+        "https://starcitizen.tools/Cargo_Hauling_Opportunity_with_Ling_Hauling",
+        "https://starcitizen.tools/Hauling",
+        "https://expcarry.com/star-citizen-higher-contracts"
+      ]
+    },
+    {
+      "id": "dead-saints",
+      "name": "Dead Saints",
+      "type": "Outlaw / smuggling faction (Stanton, Pyro, Nyx)",
+      "howToRaise": "Accept 'Rookie Haul' / 'Trial Cargo Haul' from the Unverified contract tab, then run smuggling contracts (cryopods, experimental pharma, dirty cargo). Carrying illegal cargo in monitored space generates CrimeStat.",
+      "unlocks": "Access to higher-paying smuggling/cryopod contracts. Headline run: ~386K aUEC per cryopod mission, ~3.86M aUEC for a 10-mission stack delivered to Sunset Mesa (Pyro II) in 30-40 min.",
+      "opposedBy": "Lawful authorities (Crusader Security / Hurston / microTech) - illegal cargo triggers CrimeStat and interdiction in lawful systems.",
+      "sources": [
+        "https://ggwtb.com/blog/star-citizen-4-8-1-auec-making-guide-dead-saints-hauling-and-atlassium-trading",
+        "https://api.star-citizen.wiki/missions/dead-saints-trial-cargo-haul",
+        "https://www.youtube.com/watch?v=Ot49OJhp9P0"
+      ]
+    },
+    {
+      "id": "bounty-hunters-guild",
+      "name": "Bounty Hunters Guild",
+      "type": "Service union / certification body",
+      "howToRaise": "Complete bounty contracts of increasing risk tier (VLRT, LRT, MRT, HRT, VHRT, ERT). Each higher-difficulty kill grants more rep; ERT gives the most rep and ~100k aUEC. Reaching a rep threshold triggers a certification mission whose completion grants the next license. ~7 progression levels total.",
+      "unlocks": "Tracker certification ladder: Tracker Training Permit (VLRT) > Beginner's Permit (LRT) > Tracker License (MRT) > Journeyman (HRT) > Advanced (VHRT) > Master Tracker License (ERT). Plus PvP certs (Fugitive Recovery, Suspect Apprehension). Pay bonuses at higher Guild ranks (Probationary > Junior > Member > Senior > Veteran > Guild Steward).",
+      "opposedBy": "Criminal/outlaw factions (Vaughn, Nine Tails, Headhunters). Gaining a CrimeStat or completing criminal contracts lowers Guild and security standing; the Guild may refuse to employ players with active criminal reputation.",
+      "sources": [
+        "https://starcitizen.tools/Bounty_Hunters_Guild",
+        "https://starcitizen.tools/Bounty_hunting",
+        "https://testsquadron.com/threads/how-many-bounties-for-each-level.19367/",
+        "https://www.mmopixel.com/news/how-reputation-works-in-star-citizen-4-1-1-and-how-to-maximize-it"
+      ]
+    },
+    {
+      "id": "crusader-security",
+      "name": "Crusader Security",
+      "type": "lawful security (bounty issuer)",
+      "howToRaise": "Take bounty and security contracts in Crusader space (Stanton). Overseen by the Bounty Hunters Guild — completing its bounties raises both Crusader Security and Guild standing in parallel.",
+      "unlocks": "Crusader-jurisdiction bounties (up to your Guild cert tier) and the mercenary contract ladder leading to UGF Alerts. Best starting system for combined merc + bounty grinding.",
+      "opposedBy": "Outlaw factions and CrimeStat. Killing lawful NPCs or running criminal contracts reduces standing.",
+      "sources": [
+        "https://starcitizen.tools/Bounty_hunting",
+        "https://ggwtb.com/blog/star-citizen-4-8-auec-making-guide-fast-combat-loop-and-best-salvage-farming",
+        "https://starcitizen.tools/Bounty_Hunters_Guild",
+        "https://space-vendor.com/blogs/insight/star-citizen-reputation-system-guide-factions-missions-and-rewards",
+        "https://starcitizen.tools/Jumptown",
+        "https://starcitizen.tools/Siege_of_Orison"
+      ]
+    },
+    {
+      "id": "hurston-security",
+      "name": "Hurston Security",
+      "type": "Planetary / corporate security force",
+      "howToRaise": "Complete bounty and security/patrol contracts issued in the Hurston system. Also overseen by the Bounty Hunters Guild, so rep gains feed the Guild ladder.",
+      "unlocks": "Hurston-region bounties by tier, higher payouts, and access/clearance within Hurston Dynamics jurisdiction.",
+      "opposedBy": "Outlaw factions, CrimeStat in Hurston space.",
+      "sources": [
+        "https://starcitizen.tools/Bounty_hunting",
+        "https://starcitizen.tools/Hurston_Bounty_(ERT)",
+        "https://starcitizen.tools/Bounty_Hunters_Guild",
+        "https://space-vendor.com/blogs/insight/star-citizen-reputation-system-guide-factions-missions-and-rewards"
+      ]
+    },
+    {
+      "id": "intersec-defense-solutions",
+      "name": "InterSec Defense Solutions",
+      "type": "Private military contractor (Nyx)",
+      "howToRaise": "Complete the InterSec intro mission in Nyx, then run InterSec Defense Solutions contracts repeatedly until Rank III. Rep was reset by the 4.8 wipe.",
+      "unlocks": "Tactical Strike Group (TSG) operation at Rank III (mobiGlas > Verified Contracts > Mercenary). TSG rewards include Novia Crossbow blueprints, FPS/component blueprints, Grade-A components, unique bomber jacket.",
+      "opposedBy": "Shattered Blade, Vanduul",
+      "sources": [
+        "https://expcarry.com/star-citizen-tactical-strike",
+        "https://starcitizen.tools/Tactical_Strike_Group"
+      ]
+    },
+    {
+      "id": "mercenary-crusader-security-multi-org",
+      "name": "Mercenary (Crusader Security / multi-org)",
+      "type": "Combat contract reputation track",
+      "howToRaise": "Clear security/bunker contracts (start with Security Work Assessment), then defend-site missions, rotating microTech/Hurston/ArcCorp/Crusader to dodge cooldowns. UGF Alerts give the biggest rep boosts.",
+      "unlocks": "UGF Alerts and the final tiers of mercenary contracts; Gilly's Combat Gauntlet scenario chain is the flagship money loop on this track.",
+      "opposedBy": "Outlaw / criminal NPC factions",
+      "sources": [
+        "https://ggwtb.com/blog/star-citizen-4-8-auec-making-guide-fast-combat-loop-and-best-salvage-farming",
+        "https://www.mmopixel.com/news/star-citizen-mercenary-mission-guide"
+      ]
+    },
+    {
+      "id": "northrock-service-group",
+      "name": "Northrock Service Group",
+      "type": "lawful security (bounty issuer)",
+      "howToRaise": "Complete bounty contracts issued by Northrock; one of the three security orgs under the Bounty Hunters Guild umbrella.",
+      "unlocks": "Northrock bounty contracts and associated Guild rep progression.",
+      "opposedBy": "Outlaw factions and CrimeStat.",
+      "sources": [
+        "https://starcitizen.tools/Bounty_hunting",
+        "https://starcitizen.tools/Bounty_Hunters_Guild"
+      ]
+    },
+    {
+      "id": "vaughn",
+      "name": "Vaughn",
+      "type": "criminal / outlaw contractor",
+      "howToRaise": "Complete Vaughn criminal contracts. Early ones are rough; chaining 'Complicated Task' (the money tier — fast refresh, solid rep, fighter-killable targets) accelerates the curve. 'All Things Come To An End' is the key blueprint/loot mission.",
+      "unlocks": "Criminal contracts tied to weapon/armor blueprints (Pulverizer LMG, Tripledown Pistol, Killshot Rifle, Deadrig Shotgun), rare armor (Citadel, Carnifex, Piecemeal, Fortifier/Badami helmets), 8x low-light scopes, and better assassination missions.",
+      "opposedBy": "Bounty Hunters Guild, Crusader/Hurston Security and other lawful factions — raising Vaughn rep and running criminal contracts incurs CrimeStat and lowers lawful standing. This is the core lawful-vs-criminal trade-off.",
+      "sources": [
+        "https://ggwtb.com/blog/star-citizen-4-8-1-vaughn-rep-farm-guide-fast-reputation--blueprints--citadel-armor--and-8x-low-light-scopes",
+        "https://expcarry.com/star-citizen-vaughn-blueprints"
+      ]
+    },
+    {
+      "id": "nine-tails",
+      "name": "Nine Tails",
+      "type": "criminal / pirate organization",
+      "howToRaise": "N/A — antagonist faction; fought during Siege of Orison and at sites like Whistler's Crypt.",
+      "unlocks": "Black-market missions, pirate sanctuary access, contraband discounts, faction-specific rewards.",
+      "opposedBy": "Lawful factions (UEE, security forces, Bounty Hunters Guild) and Citizens for Prosperity. Gaining pirate approval turns lawful and pro-citizen factions hostile.",
+      "sources": [
+        "https://space-vendor.com/blogs/insight/star-citizen-reputation-system-guide-factions-missions-and-rewards",
+        "https://starcitizen.tools/Siege_of_Orison",
+        "https://starcitizen.tools/Whistlers_Crypt"
+      ]
+    },
+    {
+      "id": "headhunters-pyro",
+      "name": "Headhunters (Pyro)",
+      "type": "criminal / outlaw organization (Pyro system)",
+      "howToRaise": "Side with this Pyro faction via its missions; an early allegiance choice in Pyro locks your faction path.",
+      "unlocks": "Pyro outlaw contracts, sanctuary access and faction rewards aligned to that side.",
+      "opposedBy": "Opposing Pyro factions — the early choice locks allegiance and steers all subsequent missions/rewards; siding here turns the rival Pyro faction hostile.",
+      "sources": [
+        "https://space-vendor.com/blogs/insight/star-citizen-reputation-system-guide-factions-missions-and-rewards",
+        "https://www.mmopixel.com/news/star-citizen-4-8-1-new-missions-guide-best-blueprints-to-farm"
+      ]
+    },
+    {
+      "id": "mining-refinery-guild",
+      "name": "Mining / Refinery Guild",
+      "type": "lawful corporate (industry, partial implementation)",
+      "howToRaise": "Complete mining missions/contracts. Reputation rises within the mining guild as contracts are completed. In 4.8 mined material uses 8 static quality bands — bank Band 5-8 for best returns.",
+      "unlocks": "Better-paying mining contracts and more profession gear. Planned perks: reduced ship expedite fees, refinery shop discounts, faster refining times, priority refinery equipment use, loyalty bonuses on ore sales. Refineries at HUR-L1, ARC-L1, MIC-L1.",
+      "opposedBy": "Largely non-conflicting; some mining orgs (e.g. Shubin Mining) still lack full mission/reputation tracks as of 4.8.",
+      "sources": [
+        "https://www.mmopixel.com/news/star-citizen-4-8-complete-mining-guide",
+        "https://ggwtb.com/blog/star-citizen-4-8-industry-mining-bands-crafting--hauling-blueprints--refueling-wipe-prep",
+        "https://space-vendor.com/blogs/insight/star-citizen-reputation-system-guide-factions-missions-and-rewards"
+      ]
+    },
+    {
+      "id": "medical-search-and-rescue",
+      "name": "Medical / Search-and-Rescue",
+      "type": "support service (early implementation)",
+      "howToRaise": "Perform medical rescues — respond to player incapacitation beacons, revive/stabilize and transport to a hospital (~50k aUEC per rescue). Medical careers are slated to gain their own reputation line like bounty hunting.",
+      "unlocks": "Per-rescue payouts now; a dedicated medical reputation track with rescue-role progression is still being built out in 4.x.",
+      "opposedBy": "Non-conflicting support role; no direct rival faction.",
+      "sources": [
+        "https://starcitizen.tools/Medical",
+        "https://space-vendor.com/blogs/insight/star-citizen-reputation-system-guide-factions-missions-and-rewards"
+      ]
+    },
+    {
+      "id": "civilian-defence-force-cdf",
+      "name": "Civilian Defence Force (CDF)",
+      "type": "event/military auxiliary",
+      "howToRaise": "Participate in CDF-coordinated server events — accept the CDF activation contract in mobiGlas, then complete XenoThreat phases and Siege of Orison objectives. Consistency across event runs builds rank.",
+      "unlocks": "Event payouts and account-bound flair including the XenoThreat armor set (ORC-mkX helmet/core/arms/legs, Modified). Higher rank gates the full armor set.",
+      "opposedBy": "XenoThreat, Nine Tails",
+      "sources": [
+        "https://www.mmopixel.com/news/star-citizen-4-8-return-of-xenothreat-guide-how-to-earn-every-event-reward",
+        "https://starcitizen.tools/Overdrive_Initiative",
+        "https://starcitizen.tools/Siege_of_Orison"
+      ]
+    },
+    {
+      "id": "ruto-criminal-network",
+      "name": "Ruto / Criminal Network",
+      "type": "criminal",
+      "howToRaise": "Take the unlawful path in events (accept Jumptown from Ruto with any CrimeStat) and sell contraband at Grim HEX.",
+      "unlocks": "Unlawful Jumptown contraband missions and criminal-side payouts.",
+      "opposedBy": "Crusader Security, UEE",
+      "sources": [
+        "https://starcitizen.tools/Jumptown",
+        "https://robertsspaceindustries.com/en/comm-link/transmission/18464-Jumptown-20"
+      ]
+    },
+    {
+      "id": "foxwell-enforcement",
+      "name": "Foxwell Enforcement",
+      "type": "lawful security contractor",
+      "howToRaise": "Accept and complete lawful Defend Location asteroid-base defense missions (4.8.1).",
+      "unlocks": "Higher-tier Defend Location missions and component-blueprint rewards on the lawful side.",
+      "opposedBy": "Headhunters",
+      "sources": [
+        "https://ggwtb.com/blog/star-citizen-alpha-4-8-1-new-missions--patch--squadron-42-rumors--and-alien-week",
+        "https://www.pcgamer.com/games/mmo/star-citizens-latest-alpha-patch-adds-385-asteroid-defence-missions-but-players-are-reporting-problems-with-broken-hangar-doors-and-exploding-pilots/"
+      ]
+    },
+    {
+      "id": "bit-zeros",
+      "name": "Bit Zeros",
+      "type": "Hacker / criminal-adjacent contract giver",
+      "howToRaise": "Complete Data Heist missions at microTech Underground Facilities. Each completed heist raises standing.",
+      "unlocks": "Higher-difficulty, higher-reward Data Heist variants (riskier servers/objectives, larger aUEC payouts ~30k → 60k+).",
+      "opposedBy": "UGF site owners / facility security",
+      "sources": [
+        "https://starcitizen.tools/Data_Heist"
+      ]
+    },
+    {
+      "id": "wildstar-racing",
+      "name": "Wildstar Racing",
+      "type": "Racing organization",
+      "howToRaise": "Complete PU time-trial missions on Wildstar tracks; better finishing times and repeated runs raise reputation.",
+      "unlocks": "Additional time-trial tracks and larger cumulative aUEC rewards at higher rep tiers.",
+      "opposedBy": "",
+      "sources": [
+        "https://starcitizen.tools/Wildstar_Racing",
+        "https://starcitizen.tools/Racing"
+      ]
+    },
+    {
+      "id": "blacjac-security",
+      "name": "BlacJac Security",
+      "type": "Private security / mercenary contractor (Stanton, ArcCorp area)",
+      "howToRaise": "Complete BlacJac security and contraband missions such as Seize & Destroy Narcotics / Eliminate Drug Stash.",
+      "unlocks": "Further security and counter-narcotics contracts; standing within the ArcCorp security ecosystem.",
+      "opposedBy": "Drug runners / outlaw factions whose stashes you raid",
+      "sources": [
+        "https://starcitizen.tools/Seize_and_Destroy_Narcotics",
+        "https://www.mmopixel.com/news/star-citizen-mercenary-mission-guide"
+      ]
+    },
+    {
+      "id": "citizens-for-prosperity-headhunters-frontier-fighters",
+      "name": "Citizens for Prosperity / Headhunters / Frontier Fighters",
+      "type": "Pyro narrative-event factions (Fight for Pyro)",
+      "howToRaise": "Pick one faction during the Fight for Pyro event and complete its mission line toward the faction's goal.",
+      "unlocks": "Faction-specific event rewards (e.g. Pyro laser repeaters) and narrative outcomes; mutually exclusive allegiance for the event.",
+      "opposedBy": "The two factions you did not choose",
+      "sources": [
+        "https://starcitizen.tools/Fight_for_Pyro",
+        "https://starcitizen.tools/Save_Stanton"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2600 @@
+{
+  "patch": "4.8",
+  "data": [
+    {
+      "id": "adagio-high-value-cargo-salvage-c2-m2-a2-titanium-run-3m-5m-hr",
+      "name": "Adagio High-Value Cargo Salvage: C2/M2/A2 Titanium Run (3M-5M+/hr)",
+      "category": "salvage",
+      "patch": "4.8",
+      "status": "changed",
+      "difficulty": 3,
+      "timeMinutes": 25,
+      "requirements": "Adagio Senior Contractor rep; cargo hauler (ARGO RAFT min, rentable ~67K; C2 Hercules or Ironclad ideal); ship/hand tractor beam; 800K-1M aUEC buffer for contract fees and rentals.",
+      "rewards": "~1.3-1.5M aUEC per clean RAFT run (20-25 min); 3M+/hr with a RAFT, 4M-5M+/hr with C2/Ironclad given good cargo rolls.",
+      "locations": [
+        "Grim Hex",
+        "Yela asteroid belt (Crusader)",
+        "Stanton system",
+        "Adagio Holdings contract sites"
+      ],
+      "steps": [
+        {
+          "title": "Build the buffer and rep first",
+          "detail": "Bring 800K-1M aUEC. Until you hit Senior Contractor you pay 10K-20K aUEC per contract in fees, and some markers fail or targets don't spawn - so you need a cushion before committing to 100K missions."
+        },
+        {
+          "title": "Reach Adagio Senior Contractor",
+          "detail": "Grind cheaper Adagio salvage contracts (5K fee/+100 rep and 10K fee/+150 rep) for ~2-3 hours. Senior Contractor is the practical target - it unlocks the 100K-fee missions that spawn C2/M2/A2 Hercules wrecks. Do NOT chase Elite (Senior to Elite is ~448 missions and ~44.8M aUEC in fees)."
+        },
+        {
+          "title": "Rent or buy the hauler",
+          "detail": "Rent an ARGO RAFT (~67K aUEC) rather than buying (~3.3M). If you can afford it, a C2 Hercules hauls multiple contracts at once; Ironclad has the highest ceiling. You need to move 32 SCU boxes, so a real cargo ship - not the salvage ship - does the lifting."
+        },
+        {
+          "title": "Accept only C2 / M2 / A2 missions",
+          "detail": "At Senior, ignore small-ship claims. Take the 100K-fee contracts that target C2, M2, and A2 Hercules wrecks. Skip 890 Jump missions - awkward interior layout, slow loot, waste of time unless you're testing."
+        },
+        {
+          "title": "Travel to the claim and identify Titanium",
+          "detail": "Fly to the marked wreck. Scan the cargo - your only real target is Titanium. Priority: Titanium = very high; other high-value trade goods = medium; Nitrogen/cheap/small mixed cargo = low/skip."
+        },
+        {
+          "title": "Back the hauler up to the cargo camp",
+          "detail": "Position the RAFT's rear cargo grid close to the wreck's cargo. Use the external camera and hold Z to adjust the camera angle for alignment. Keep the rear bay tight to the wreck to minimize tractor travel."
+        },
+        {
+          "title": "Load big boxes first",
+          "detail": "A strong RAFT load is roughly 5x 32 SCU boxes + 1x 24 SCU + 1x 4 SCU = ~188 SCU. Prioritize the 32 SCU boxes, tractor them onto the grid cleanly, and dump trash cargo out of the way. Don't force a box - one bad move costs more time than it saves."
+        },
+        {
+          "title": "Haul to Grim Hex and sell",
+          "detail": "Fly to Grim Hex (chosen for speed over higher-margin TDDs). Land, park rear cargo near the freight elevator, move boxes into the elevator, send to storage, go to admin, select Grim Hex Inventory, and sell the Titanium."
+        },
+        {
+          "title": "Verify balance and repeat",
+          "detail": "Grim Hex pays ~7K aUEC/SCU on Titanium; a strong TDD pays a bit over 8K/SCU. ~180 SCU = ~1.3M. Check your balance after selling (watch for Trade UI bugs), then queue the next contract."
+        }
+      ],
+      "tips": [
+        "Titanium is the whole game here - a run lives or dies on how much Titanium you load.",
+        "RAFT clean run is ~20-25 min; that cadence is what makes 3M+/hr realistic.",
+        "Grim Hex over a major TDD: the lower margin is more than offset by the time saved per run.",
+        "If you're low on credits, don't gamble everything on 100K missions - a few failed spawns can drain you. Fall back to 10K contracts to rebuild.",
+        "A C2 or Ironclad lets you stack multiple contracts before a single sell trip, pushing the hourly rate well past the RAFT."
+      ],
+      "links": [],
+      "sources": [
+        "https://www.mmopixel.com/news/star-citizen-4-8-salvage-farming-guide-make-3m-auec-per-hour-with-adagio-contracts",
+        "https://ggwtb.com/blog/star-citizen-4-8-auec-guide-3m--money-per-hour-with-salvage-cargo-runs",
+        "https://ggwtb.com/blog/star-citizen-4-8-salvage-guide-best-rmc-farming--adagio-rep--and-ships-to-use"
+      ]
+    },
+    {
+      "id": "vulture-panel-salvage-rmc-scraping-loop-100k-300k-hr",
+      "name": "Vulture Panel Salvage: RMC Scraping Loop (100k-300k/hr)",
+      "category": "salvage",
+      "patch": "4.8",
+      "status": "new",
+      "difficulty": 2,
+      "timeMinutes": 60,
+      "requirements": "Drake Vulture with Abrade salvage modules. No reputation gate. Cargo space for RMC; access to a TDD or Grim HEX to sell.",
+      "rewards": "RMC ~6,040 aUEC/SCU. A full Vulture run ~200k-250k aUEC. Weak run 100k-180k/hr; normal 180k-300k/hr; efficient 300k+/hr.",
+      "locations": [
+        "Grim Hex",
+        "Yela asteroid belt",
+        "Aaron Halo",
+        "Stanton system",
+        "Stanton",
+        "Crusader",
+        "Grim HEX",
+        "Daymar"
+      ],
+      "steps": [
+        {
+          "title": "Fit Abrade modules and enter scan mode",
+          "detail": "Equip Abrade scraper heads on the Vulture (Cinch is the alternative). In a debris field, enter scan mode - 4.8 gave salvage longer-range scanning so you can ID targets before flying in."
+        },
+        {
+          "title": "Read signatures in multiples of 2,000",
+          "detail": "Signatures map to panel count: 2,000 = 1 panel/piece, 4,000 = 2, 6,000 = 3 (good), 8,000 = 4 (high), 10,000+ = cluster (very high). Prioritize 8,000 first, then 6,000."
+        },
+        {
+          "title": "Narrow the scan and confirm",
+          "detail": "Narrow the scan angle to ~2 degrees, hold for a deeper read, and confirm whether it's a thin panel or a dense wreckage chunk before committing to fly in."
+        },
+        {
+          "title": "Judge the 2,000 targets by distance",
+          "detail": "Don't auto-ignore 2,000 signatures - some single wreckage chunks nearly fill a Vulture. Check close ones; skip far ones unless the area is empty."
+        },
+        {
+          "title": "Fly in slow and scrape high-yield first",
+          "detail": "Approach slowly. Scrape square panels and dense chunks first. Yields: small triangle ~2.1 SCU, standard panel 2.1-2.2 SCU, large square ~5.2 SCU, big wreckage piece up to 13 SCU, four-panel cluster ~11-12 SCU. If RMC gain slows, move the beam - some sections give almost nothing."
+        },
+        {
+          "title": "Process RMC before the buffer caps",
+          "detail": "Process the scraped material into RMC before your buffer fills, then keep the cargo neatly boxed - a messy bay means fewer boxes and slower unloading."
+        },
+        {
+          "title": "Sell at Grim Hex and verify SCU",
+          "detail": "Sell RMC at a TDD/Grim Hex. Before confirming, verify the terminal shows the SCU you actually loaded (e.g. 24 SCU on screen if you boxed 24). If it shows fewer, stop and recheck cargo."
+        }
+      ],
+      "tips": [
+        "Filter hard, scrape fast, sell clean - bad target selection is what tanks your hourly rate.",
+        "RMC no longer prints money like old patches (was 11k-14k/SCU, now ~6,040/SCU) - treat it as steady, not explosive, income.",
+        "Avoid salvaging too close to stations - clipping a restricted/defended zone can get you killed; leave if station warnings appear.",
+        "Don't waste 10 minutes chasing weak single panels - that's the single biggest profit killer.",
+        "For pure flexibility panels beat contracts; contracts are better if you want marked objectives and less searching.",
+        "A full run is ~200-250k; efficient target selection pushes 300k+/hr.",
+        "No reputation required - a strong owned-ship loop while grinding Adagio rep for contract salvage.",
+        "Leave low-yield panels fast; time spent scraping junk kills your hourly rate."
+      ],
+      "links": [
+        "https://ggwtb.com/blog/star-citizen-4-8-salvaging-guide-best-panel-strategy--rmc-profit--and-what-changed",
+        "https://www.mmopixel.com/news/how-to-get-rich-in-star-citizen-4-0-live-through-vulture-salvaging"
+      ],
+      "sources": [
+        "https://ggwtb.com/blog/star-citizen-4-8-salvaging-guide-best-panel-strategy--rmc-profit--and-what-changed",
+        "https://ggwtb.com/blog/star-citizen-4-8-salvage-guide-best-rmc-farming--adagio-rep--and-ships-to-use",
+        "https://starcitizen.tools/Salvage"
+      ]
+    },
+    {
+      "id": "hammerhead-weapon-salvage-fabricator-conversion-1m-hr",
+      "name": "Hammerhead Weapon Salvage: Fabricator Conversion (~1M/hr)",
+      "category": "salvage",
+      "patch": "4.8",
+      "status": "new",
+      "difficulty": 3,
+      "timeMinutes": 60,
+      "requirements": "Salvage claims with Hammerhead targets; tractor beam; large cargo ship (Ironclad Assault or C2 Hercules); Argo ATLS for fast unloading; refinery station with fabricator; Store-All containers.",
+      "rewards": "Two Hammerheads (~48 Size-4 weapons) -> ~1 SCU Hadanite (~600K aUEC) + ~49 SCU Pressurized Ice (~200K) = ~800K; ~1M/hr with clean logistics.",
+      "locations": [
+        "Refinery stations (e.g. ARC-L1, CRU-L1, HUR-L1, MIC-L1)",
+        "Stanton system",
+        "Hammerhead salvage claim sites"
+      ],
+      "steps": [
+        {
+          "title": "Unlock larger salvage claims",
+          "detail": "Run salvage contracts up the tiers (300 aUEC starter -> 10K -> 20K) until Hammerhead claims appear in the pool. Treat the fees as an unlock cost."
+        },
+        {
+          "title": "Buy Hammerhead claims",
+          "detail": "Take Hammerhead salvage contracts when available - roughly 20-30K per claim for ~24 Size-4 weapons each. Two Hammerheads (~40-60K) net ~48 weapons. Skip C2 add-ons - poor weapon count, not worth it."
+        },
+        {
+          "title": "Strip and load weapons neatly",
+          "detail": "Use the tractor beam to pull the turret weapons off. Align them cleanly in the cargo bay - bad placement wastes space and limits how many you can carry. Park beside/under the wreck without bumping it so it doesn't drift."
+        },
+        {
+          "title": "Unload at a refinery and open the fabricator",
+          "detail": "Fly to a refinery station, unload weapons to storage, and open a fabricator. The Argo ATLS makes unloading fast - moving weapons by hand kills the hourly profit."
+        },
+        {
+          "title": "Process 5 weapons at a time",
+          "detail": "Batch the fabricator at 5 weapons - that's the reliability sweet spot. 1-5 is safe, 5 is best, 10+ risks bugs, whole-page is a bad idea. Slower but it actually completes."
+        },
+        {
+          "title": "Sell the output materials",
+          "detail": "Weapons break down into Hadanite (~600K aUEC/SCU), Pressurized Ice (~4K-5K/SCU), and other minerals. Sell the Hadanite for the bulk of the value; the ice is bonus income."
+        }
+      ],
+      "tips": [
+        "The ATLS is the difference between ~1M/hr and a crawl - prioritize it.",
+        "Don't over-batch the fabricator; a bugged 10+ batch can cost you the whole load.",
+        "This is a chill solo loop - if Pyro Redwind freight elevators are bugged or you want low-pressure play, this is the safer earner.",
+        "Check it's worth your time vs hauling: weapon salvage ~1M/hr, Redwind hauling 7-9M/hr at Senior rank if you have the rep and a big hauler."
+      ],
+      "links": [],
+      "sources": [
+        "https://ggwtb.com/blog/star-citizen-4-8-1-money-guide-best-auec-methods-for-hauling-and-weapon-salvage",
+        "https://www.youtube.com/watch?v=6gJo0YRZHtg"
+      ]
+    },
+    {
+      "id": "free-component-weapon-looting-from-salvage-wrecks",
+      "name": "Free Component & Weapon Looting from Salvage Wrecks",
+      "category": "salvage",
+      "patch": "4.8",
+      "status": "new",
+      "difficulty": 2,
+      "timeMinutes": 15,
+      "requirements": "Salvage contract (spawns the lootable ship); multi-tool + tractor beam attachment; cargo or salvage ship for storage; DPS Calculator / SC Ship Performance Viewer to check loadouts.",
+      "rewards": "Free high-end gear: Size-5 Deadbolt cannon + Vanguard guns from an Aegis Vanguard Harbinger; stealth power plant/coolers/quantum drive from an Esperia Prowler. Value is in saved purchase cost, not direct aUEC.",
+      "locations": [
+        "Stanton system",
+        "Adagio Holdings contract sites"
+      ],
+      "steps": [
+        {
+          "title": "Check the target loadout before flying",
+          "detail": "Use DPS Calculator or SC Ship Performance Viewer to confirm a contract wreck actually carries the parts you want. Don't strip random ships. If only weak targets show, complete one basic salvage job - better contracts can unlock after."
+        },
+        {
+          "title": "Accept the right salvage contract",
+          "detail": "Best targets: Aegis Vanguard Harbinger (Size-5 Deadbolt cannon + ballistic guns) and Esperia Prowler (stealth power plant, coolers, quantum drive). Vanguard variants and larger military hulls are good secondary picks."
+        },
+        {
+          "title": "Park your cargo bay near the wreck",
+          "detail": "Position under or beside the target without bumping it - a drifting wreck makes the whole job miserable."
+        },
+        {
+          "title": "Tractor external weapons first",
+          "detail": "Use the tractor beam to pull external weapons into your bay. On a Harbinger grab the Size-5 Deadbolt first - it's the main prize. Also take Size-4/5 guns and missiles."
+        },
+        {
+          "title": "Pull internal components",
+          "detail": "Go inside and open component bays (Open All or per-panel controls - map the keybind if missing). Priority: power plant, shield generator, quantum drive, stealth coolers (all high). Small parts pop out easily; big power plants can snag - rotate or tractor from outside, and abandon any part that takes too long."
+        },
+        {
+          "title": "Store, then finish or destroy the hull",
+          "detail": "Stash looted gear in your ship, then salvage or destroy the rest of the hull to close the contract. Repeat when good contracts appear."
+        }
+      ],
+      "tips": [
+        "Looted gear may NOT survive major patches/database resets - use it this patch, don't treat it as permanent storage.",
+        "Time beats completeness - if a component is stuck, leave it; don't burn 20 minutes on one part.",
+        "A big cargo bay helps, but a reliable easy-access ship beats a bugged giant brick like the Ironclad for this.",
+        "Pair this with RMC scraping on the same wreck to also bank salvage income from the hull."
+      ],
+      "links": [],
+      "sources": [
+        "https://ggwtb.com/blog/star-citizen-4-8-get-free-top-tier-weapons-and-components-from-salvage-contracts"
+      ]
+    },
+    {
+      "id": "hull-munching-fracture-disintegrate-for-construction-materials",
+      "name": "Hull Munching: Fracture & Disintegrate for Construction Materials",
+      "category": "salvage",
+      "patch": "4.8",
+      "status": "existing",
+      "difficulty": 2,
+      "timeMinutes": 20,
+      "requirements": "Reclaimer (fractures any size) or Vulture (small hulls); filler modules to package material; refinery access to refine raw material into Construction Materials.",
+      "rewards": "Construction Material crates (sellable or usable for base building) plus the RMC already scraped from the hull. Slower per-aUEC than cargo/RMC loops.",
+      "locations": [
+        "Refinery stations",
+        "Stanton system",
+        "Adagio Holdings contract sites"
+      ],
+      "steps": [
+        {
+          "title": "Scrape RMC off the hull first",
+          "detail": "Before destroying the ship, run Abrade/Trawler scraping over the outer surface to collect all the RMC. This is the higher-value layer - don't skip it."
+        },
+        {
+          "title": "Switch to Fracture mode",
+          "detail": "Once scraped, switch the salvage beam to Fracture mode to break the hull into chunks. The Reclaimer can fracture ships of any size; the Vulture handles small hulls."
+        },
+        {
+          "title": "Switch to Disintegrate mode",
+          "detail": "Switch to Disintegrate mode and grind the broken chunks. The ship's filler stations package the output into Construction Material crates (Reclaimer fillers do 2/8/16 SCU containers)."
+        },
+        {
+          "title": "Refine the raw material",
+          "detail": "Raw material needs Refining to become sellable Construction Materials. Rubble, Pieces, and Salvage types give different yields and processing times - factor the refine wait into your loop."
+        },
+        {
+          "title": "Sell or store the Construction Materials",
+          "detail": "Sell CM crates at a trade terminal, or hold them for base construction if you're building."
+        }
+      ],
+      "tips": [
+        "Always scrape RMC before fracturing - the surface layer is worth more than the structural material.",
+        "This is the completion step of a full salvage job, not a standalone money printer - the big earners are RMC scraping and Adagio cargo runs.",
+        "On a Reclaimer this is smoother with a crew (one scrapes, one fills) - solo means shuttling between stations."
+      ],
+      "links": [],
+      "sources": [
+        "https://starcitizen.tools/Salvage",
+        "https://starcitizen.tools/Guide:Salvaging",
+        "https://www.noobcitizen.com/posts/careers/ship-salvage/"
+      ]
+    },
+    {
+      "id": "hathor-orbital-laser-platforms-full-activation-carite-mining",
+      "name": "Hathor Orbital Laser Platforms — Full Activation & Carite Mining",
+      "category": "event",
+      "patch": "4.8",
+      "status": "existing",
+      "difficulty": 4,
+      "timeMinutes": 90,
+      "requirements": "A ship with a max-lift tractor beam to move the orange power batteries; FPS combat loadout (PAF bunkers have hostiles); a mining method (ship mining laser, ROC, or OreBit hand tool) for the carite cave. Multi-crew recommended. Accept the Hathor mission from Wicko.",
+      "rewards": "Wicko favor → armor sets, Volt energy weapons (Volt Parallax rifle, Volt SMG), and exclusive ships earned individually; carite ore mined from the opened cave to sell/refine.",
+      "locations": [
+        "Daymar (moon of Crusader) — Attritus OLP + Attritus PAF-I/II/III",
+        "Daymar — Lamina OLP + Lamina PAF-I/II/III",
+        "Aberdeen (moon of Hurston) — Ruptura OLP + Ruptura PAF-I/II/III",
+        "Aberdeen — Vivere OLP + Vivere PAF-I/II/III",
+        "Stanton system"
+      ],
+      "steps": [
+        {
+          "title": "Pick a Hathor site",
+          "detail": "Travel to one of the four Hathor sites in Stanton. Two orbit Daymar (Attritus, Lamina) and two orbit Aberdeen (Ruptura, Vivere). Each site is an Orbital Laser Platform (OLP) paired with three Planetary Alignment Facilities (PAF-I, PAF-II, PAF-III) on the moon below. PAF-2 on Daymar is a common starter site."
+        },
+        {
+          "title": "Locate the three ground satellites (PAFs)",
+          "detail": "At the chosen site, find the three PAF ground satellite facilities that must each be aligned with the orbital laser. They are clustered as PAF-I/II/III for that site."
+        },
+        {
+          "title": "Find blue key printers",
+          "detail": "Search the buildings around each satellite for blue key printers scattered through the facility. Print a blue key."
+        },
+        {
+          "title": "Unlock red key printers",
+          "detail": "Use the blue key to unlock the red key printers. Print a red key — red keys open the secure rooms (security, comms, admin)."
+        },
+        {
+          "title": "Collect the comp boards",
+          "detail": "Use red keys to enter the security, comms, and admin rooms where the comp (composition) boards are stored. Loot a comp board at each of the three PAF facilities. Expect hostile guards in the bunkers."
+        },
+        {
+          "title": "Align the satellites",
+          "detail": "Insert a comp board into the control unit at each of the three ground satellite (PAF) locations. All three must be aligned to enable the orbital laser."
+        },
+        {
+          "title": "Gather the power batteries",
+          "detail": "Locate the large orange power batteries. You need three. They are heavy — transport them with a ship equipped with a max-lift tractor beam (or a suitable vehicle/handheld tractor for lighter handling)."
+        },
+        {
+          "title": "Power the Orbital Laser Platform",
+          "detail": "Fly the batteries up to the OLP station and insert all three into the battery terminals. Once powered, the station issues an activation card."
+        },
+        {
+          "title": "Fire the laser",
+          "detail": "Enter the bunker directly beneath the orbital laser and insert the activation card into the terminal to trigger the drilling laser, which carves a fresh cave/deposit into the surface."
+        },
+        {
+          "title": "Mine the carite",
+          "detail": "Descend into the newly opened cave and mine carite (ship mining laser, ROC, or OreBit hand tool). Delivering carite/completing the objective earns favor with Wicko."
+        },
+        {
+          "title": "Claim Wicko's rewards",
+          "detail": "Hand in to Wicko to bank favor. Rewards (armor, Volt weapons, ships) are earned individually as favor accumulates across runs."
+        }
+      ],
+      "tips": [
+        "Bring a multi-crew team: one player runs FPS bunkers for comp boards/keys while another ferries batteries with the tractor ship — halves the run time.",
+        "Loot the PAF bunkers thoroughly: Volt Parallax rifles and Volt SMGs drop from Hathor facility loot, separate from Wicko's mission payout.",
+        "Confirm you have a tractor beam that can actually lift the orange batteries before starting — moving them is the main bottleneck for solo players.",
+        "PAF-2 on Daymar is a beginner-friendly first site; Aberdeen sites (Ruptura/Vivere) sit in the new cloud layers, so watch atmospheric flight.",
+        "Carite is the event payoff ore — mine the full cave before leaving since the site resets/depletes."
+      ],
+      "links": [
+        "https://www.starzen.space/t/hathor-orbital-laser-full-activation-guide-align-mine-star-citizen-4-1/24935",
+        "https://robertsspaceindustries.com/community-hub/post/hathor-olp-full-guide-kyPBJfUIMEjk9",
+        "https://robertsspaceindustries.com/community-hub/post/hathor-laser-one-page-guide-V4mCVfAgVSXbc",
+        "https://starcitizen.tools/Hathor_Group",
+        "https://starcitizen.tools/Attritus_OLP",
+        "https://www.youtube.com/watch?v=oqT3pMjuOJs"
+      ],
+      "sources": [
+        "https://www.starzen.space/t/hathor-orbital-laser-full-activation-guide-align-mine-star-citizen-4-1/24935",
+        "https://starcitizen.tools/Hathor_Group"
+      ]
+    },
+    {
+      "id": "solo-prospector-ship-mining-scan-fracture-refine-sell-4-8",
+      "name": "Solo Prospector Ship Mining — Scan, Fracture, Refine, Sell (4.8)",
+      "category": "mining",
+      "patch": "4.8",
+      "status": "existing",
+      "difficulty": 2,
+      "timeMinutes": 60,
+      "requirements": "MISC Prospector with Hofstede-S1 + Focus III (forgiving) or Helix-S1 (experienced). Surge active module to widen the crack window. aUEC for refinery fees.",
+      "rewards": "Raw ore sold/refined: Quantainium ~44 aUEC/unit raw (highest value, volatile/decays), Bexalite ~20, Taranite ~16, plus Laranite/Titanium/Agricium for safer runs.",
+      "locations": [
+        "Daymar (Crusader)",
+        "Aberdeen / Yela / Cellin (asteroid & surface clusters)",
+        "Lyria & Wala (Aaron Halo asteroid belt access)",
+        "CRU-L1 Ambitious Dream Station (refine/sell)",
+        "ARC-L1 Wide Forest Station (refine/sell)",
+        "MIC-L1 Shallow Frontier Station (refine/sell)",
+        "HUR-L1 Green Glade Station (refine/sell)",
+        "HUR-L2 Faithful Dream Station (refine/sell)"
+      ],
+      "steps": [
+        {
+          "title": "Fit the mining head",
+          "detail": "Equip Hofstede-S1 + Focus III for a wider, more forgiving green (optimal) zone, or Helix-S1 if you can manage tight charge windows on high-resistance rocks."
+        },
+        {
+          "title": "Fly to a deposit field",
+          "detail": "Head to a moon surface (Daymar, Cellin, Yela) or the Aaron Halo asteroid belt for denser high-value rocks. 4.8 slightly improved rock distribution in space."
+        },
+        {
+          "title": "Scan rocks",
+          "detail": "Use scan mode to read mass, resistance, instability, and content. Target rocks whose resistance your head can crack and that contain Quantainium/Bexalite/Taranite/Laranite."
+        },
+        {
+          "title": "Fracture safely",
+          "detail": "Charge the laser into the green zone and hold; watch instability. Use Surge to widen the window on stubborn rocks. Avoid overcharge — an unstable rock can explode and damage the ship."
+        },
+        {
+          "title": "Extract the ore",
+          "detail": "Switch to extraction and vacuum the fractured ore chunks into your 32 SCU of pods (4x8 SCU)."
+        },
+        {
+          "title": "Refine",
+          "detail": "Dock at a refinery deck (CRU-L1, ARC-L1, MIC-L1, HUR-L1/L2). Pick a refining method — Dinyx Solventation (Dynex) is the popular value/efficiency pick; refining runs ~8-10 real hours."
+        },
+        {
+          "title": "Sell refined materials",
+          "detail": "Collect refined output and sell at the refinery's commodity kiosk or a TDD. Quantainium must be sold quickly before it decays."
+        }
+      ],
+      "tips": [
+        "In 4.8 ore quality snaps to 8 fixed bands (325/521/664/710/874/907/970/1000) instead of a 0-1000 scale; high-quality ore feeds crafting, so band matters now.",
+        "Beginners: target Titanium/Agricium first, leave oversized Quantainium rocks until your head can crack them.",
+        "Refine on log-off so the 8-10h timer runs while you're away.",
+        "Quantainium decays — only mine it when you can sell within the trip."
+      ],
+      "links": [
+        "https://www.mmopixel.com/news/star-citizen-4-8-complete-mining-guide",
+        "https://ggwtb.com/blog/star-citizen-4-7-mining-loadouts-best-mole-prospector-builds",
+        "https://space4games.com/en/games-en/star-citizen-mining/",
+        "https://scopique.com/2026/04/30/rock-on-mining-updates-in-star-citizen-4-8-ptu/"
+      ],
+      "sources": [
+        "https://www.mmopixel.com/news/star-citizen-4-8-complete-mining-guide",
+        "https://space4games.com/en/games-en/star-citizen-mining/"
+      ]
+    },
+    {
+      "id": "roc-hand-gem-mining-hadanite-run-aberdeen-daymar",
+      "name": "ROC / Hand Gem Mining — Hadanite Run (Aberdeen / Daymar)",
+      "category": "mining",
+      "patch": "4.8",
+      "status": "existing",
+      "difficulty": 2,
+      "timeMinutes": 45,
+      "requirements": "Greycat ROC (or ROC-DS / on-foot Pyro RYT + OreBit) plus a carrier ship to land the ROC. No reputation gate.",
+      "rewards": "Hadanite ~275 aUEC/unit, Aphorite ~150, Dolivine ~130. A full container is mostly Hadanite ~50-60k aUEC, fills in ~30 min → 100k+ aUEC/hour once efficient.",
+      "locations": [
+        "Aberdeen (Hurston) — HDMS-Norgaard",
+        "Aberdeen — HDMS-Anderson",
+        "Daymar (Crusader)",
+        "HUR-L1 / Lorville TDD (sell gems)"
+      ],
+      "steps": [
+        {
+          "title": "Load the ROC",
+          "detail": "Put a Greycat ROC in a carrier (Cutlass Black, MOLE, C2, etc.). For on-foot, equip the OreBit attachment on a Pyro RYT multi-tool instead."
+        },
+        {
+          "title": "Fly to Aberdeen",
+          "detail": "Aberdeen has the highest Hadanite spawn density and tight surface clusters with little travel between spots. HDMS-Norgaard is a Hadanite hub; HDMS-Anderson mixes Aphorite/Dolivine with Hadanite. Daymar is a calmer-weather alternative."
+        },
+        {
+          "title": "Spot the deposits",
+          "detail": "Look for colored veins: Hadanite is pink-to-light-purple, Aphorite purple, Dolivine green. Surface deposits are mined directly (no refining needed)."
+        },
+        {
+          "title": "Scan and fracture",
+          "detail": "Use the ROC/OreBit scan mode to read resistance, then mining mode to fracture the deposit."
+        },
+        {
+          "title": "Extract gems",
+          "detail": "Switch to extraction to collect the scattered gems into the ROC bin or your backpack."
+        },
+        {
+          "title": "Haul and sell",
+          "detail": "Fill the container (~30 min), fly to a TDD/admin kiosk (e.g. Lorville/HUR-L1) and sell the gems raw."
+        }
+      ],
+      "tips": [
+        "Gems sell raw — no refinery wait, so cash is immediate (great after a wipe).",
+        "Cluster routes beat single big deposits: chain HDMS-Norgaard surface clusters for minimal downtime.",
+        "ROC-DS lets a driver + gunner double output; hand mining is the cheapest possible start.",
+        "Watch weather on Aberdeen; switch to Daymar if storms hurt visibility."
+      ],
+      "links": [
+        "https://hadanite.com/",
+        "https://www.scminingmom.com/mining/locations/gemstones",
+        "https://ggwtb.com/blog/star-citizen-4-7-1-best-mining-money-guide-easy-hadanite-dolivine-route-for-fast-auec",
+        "https://www.mmopixel.com/news/star-citizen-best-gems-farm-hand-mining-beginners-guide"
+      ],
+      "sources": [
+        "https://hadanite.com/",
+        "https://www.scminingmom.com/mining/locations/gemstones"
+      ]
+    },
+    {
+      "id": "covalex-cargo-hauling-fast-reputation-box-delivery-loop-master-unlocks-stanton",
+      "name": "Covalex Cargo Hauling: Fast Reputation, Box-Delivery Loop & Master Unlocks (Stanton)",
+      "category": "hauling",
+      "patch": "4.8",
+      "status": "existing",
+      "difficulty": 2,
+      "timeMinutes": 60,
+      "requirements": "A ship with a cargo grid (Nomad/Cutter at the low end, scaling to Freelancer MAX/Taurus/C2 as rep grows). A tractor beam: MaxLift, Cosmoflux, or a multi-tool with a TruHold tractor attachment. Capital is NOT required (no commodity buy-in). Set your medical imprint/spawn at the hub (Everus Harbor).",
+      "rewards": "~300K-1.5M aUEC/hour depending on rank and ship size. Reputation toward Master Covalex, which unlocks interstellar hauling and military quantum-drive blueprints (VK-00, XL-1, TS-2).",
+      "locations": [
+        "Everus Harbor (Hurston orbit)",
+        "Lorville / Hurston",
+        "Hurston Dynamics Distribution Center",
+        "Baijini Point (ArcCorp orbit)",
+        "Port Tressler (microTech orbit)",
+        "Riker Memorial Spaceport"
+      ],
+      "steps": [
+        {
+          "title": "Set up your base of operations",
+          "detail": "Spawn at and set your medical imprint to a major hub like Everus Harbor (Hurston orbit). Equip a tractor beam (MaxLift handheld or a multi-tool with TruHold attachment) - you cannot load physicalized crates without one. Wear a lightweight flight suit for faster on-foot movement during loading."
+        },
+        {
+          "title": "Accept the intro/evaluation contract",
+          "detail": "Open mobiGlas (F1) > Contracts > Hauling. Only one Covalex contract is available at first. Accept and complete it to unlock the reputation ladder (Trainee > Rookie > Junior)."
+        },
+        {
+          "title": "Stack same-destination contracts",
+          "detail": "As contracts appear, accept 5-10 that pick up and drop off in the same region/hemisphere (e.g. Baijini > Riker early on). At Member rank you can hold up to 16 active contracts at once. Look for return contracts with refined goods heading back to your hub."
+        },
+        {
+          "title": "Load via the freight elevator",
+          "detail": "Land in your assigned hangar. Interact with the Freight Elevator Console and select 'Bring to Elevator' for each active order (or send the elevator down to find your crates in warehouse inventory). Use the tractor beam (key 5) to pull crates onto your ship's cargo grid; left-click when the blue hologram appears to snap them into place."
+        },
+        {
+          "title": "Deliver and unload",
+          "detail": "Fly to the destination, drop your ramp, and tractor crates from your grid onto the destination freight elevator (they must snap to the grid). Open the terminal, select 'Unload Cargo' and confirm. When the elevator descends and clears, the contract completes and pays out."
+        },
+        {
+          "title": "Climb the ladder and reach Master",
+          "detail": "Progress Rookie > Junior > Member > Experienced > Senior > Master by stacking and delivering. Experienced unlocks large Hull-C-class bulk jobs (use a C2 + ATLS if Hull C handling is buggy). Master Covalex unlocks interstellar hauling and the military quantum-drive blueprint chain (VK-00, XL-1, TS-2)."
+        }
+      ],
+      "tips": [
+        "Test the freight elevator empty first - if it instantly closes or kicks you out, do NOT load cargo; wait, retry, or change server.",
+        "Avoid ground stations (Rayari, Shubin, HDMS surface) when possible - they are more bug-prone than orbital stations.",
+        "Level ONE company at a time (Covalex OR Red Wind OR Ling) rather than splitting reputation across all three.",
+        "If interdicted, dump 100% power to shields, boost straight ahead to break the mass-dampener lock, then quantum jump away."
+      ],
+      "links": [],
+      "sources": [
+        "https://docs.sc/topics/careers/missions/hauling/",
+        "https://www.tribality.com/articles/star-citizen-4-8-covalex-cargo-hauling-guide-best-routes-reputation-farming-fast-auec-tips/",
+        "https://ggwtb.com/blog/star-citizen-covalex-cargo-hauling-4-8-fast-reputation-route--best-ships--and-master-unlocks"
+      ]
+    },
+    {
+      "id": "red-wind-linehaul-gaslight-to-ruin-station-money-printer-pyro",
+      "name": "Red Wind Linehaul: Gaslight to Ruin Station Money Printer (Pyro)",
+      "category": "hauling",
+      "patch": "4.8",
+      "status": "changed",
+      "difficulty": 3,
+      "timeMinutes": 90,
+      "requirements": "Mid-to-large hauler: Freelancer MAX or Constellation Taurus to start, C2 Hercules or Hull C for Senior bulk runs. Tractor beam. Red Wind reputation (start via 'Red Wind Seeking New Haulers'). Willingness to fly in Pyro under full PvP risk. Set spawn at a Pyro station.",
+      "rewards": "7-9M aUEC/hour at Senior rank with a large hauler; a clean Senior run can net 11M+ aUEC in ~90 minutes. Experienced-rank stacked contracts pay ~795K aUEC each.",
+      "locations": [
+        "Gaslight (Pyro)",
+        "Ruin Station (Pyro)",
+        "Pyro system"
+      ],
+      "steps": [
+        {
+          "title": "Unlock Red Wind",
+          "detail": "Complete the 'Red Wind Seeking New Haulers' intro contract to begin the Red Wind Linehaul reputation ladder. Spawn at a Pyro station so you are close to the action."
+        },
+        {
+          "title": "Grind to Experienced rank",
+          "detail": "Run smaller Red Wind freight to climb Rookie > Junior > Member > Experienced. Lower-tier contracts drop off the list as you rank up, so progress is self-accelerating."
+        },
+        {
+          "title": "Stack the Gaslight to Ruin Station route",
+          "detail": "At Experienced rank, Gaslight frequently shows several contracts worth ~795K aUEC each. Accept multiple that drop at Ruin Station, load them all in one trip, and deliver together - load once, deliver once."
+        },
+        {
+          "title": "Reach Senior and run the full stack",
+          "detail": "At Senior rank you can stack around 10 contracts, mostly terminating at Ruin Station. With a C2 Hercules or Hull C you complete the whole stack in a single large run for 7-9M aUEC/hour."
+        },
+        {
+          "title": "Manage Pyro risk",
+          "detail": "Pyro is full PvP. Avoid direct quantum jumps - drop out mid-route and realign to dodge interdiction camps. Unload fast at Ruin Station, keep radar awareness, and bring escorts for the biggest runs."
+        }
+      ],
+      "tips": [
+        "Always test the destination freight elevator empty before committing cargo.",
+        "Stacking same-destination contracts is the entire efficiency trick - never run them one at a time.",
+        "If you only have a fixed-fund start, a Freelancer MAX is enough to begin; upgrade to C2/Hull C as rep and capital grow.",
+        "Red Wind out-earns Atlassium speculative trading for pure aUEC/hour with far less capital risk."
+      ],
+      "links": [],
+      "sources": [
+        "https://starcitizen.tools/Red_Wind_Linehaul",
+        "https://ggwtb.com/blog/star-citizen-4-8-1-money-guide-best-auec-methods-for-hauling-and-weapon-salvage",
+        "https://www.youtube.com/watch?v=_b9IHGZUW6k"
+      ]
+    },
+    {
+      "id": "dead-saints-cryopod-smuggling-stack-to-sunset-mesa-pyro",
+      "name": "Dead Saints Cryopod Smuggling Stack to Sunset Mesa (Pyro)",
+      "category": "hauling",
+      "patch": "4.8",
+      "status": "new",
+      "difficulty": 3,
+      "timeMinutes": 40,
+      "requirements": "A hauler that can carry cryopods/boxes plus a tractor beam or multi-tool with tractor attachment. Two players strongly recommended (one mission sharer, one mission holder) to stack the same mission. Accept of illegal cargo means CrimeStat risk in lawful space; Pyro means PvP risk.",
+      "rewards": "~386K aUEC per cryopod mission; a full 10-mission stack pays ~3.86M aUEC, completable in 30-40 minutes if the server behaves.",
+      "locations": [
+        "Sunset Mesa (Pyro II)",
+        "Pyro system",
+        "Rustville (Pyro)"
+      ],
+      "steps": [
+        {
+          "title": "Unlock Dead Saints contracts",
+          "detail": "Open mobiGlas > Contracts and find the Unverified tab. Accept the Dead Saints 'Rookie Haul' / 'Trial Cargo Haul' to start building standing with the outlaw faction."
+        },
+        {
+          "title": "Find the cryopod mission",
+          "detail": "Locate the Dead Saints cryopod mission paying ~386K aUEC. The best target destination is Sunset Mesa on Pyro II."
+        },
+        {
+          "title": "Set up the two-player stack",
+          "detail": "With a friend, designate one player as the mission sharer and one as the mission holder. Stack ~10 copies of the same cryopod mission between you so a single delivery run satisfies all of them - around 40 cryopods total."
+        },
+        {
+          "title": "Load the cryopods",
+          "detail": "Use a multi-tool with tractor attachment (or a ship tractor beam) to load the cryopods onto your ship's cargo grid, snapping each to the grid."
+        },
+        {
+          "title": "Deliver to Sunset Mesa and cash out",
+          "detail": "Fly to Sunset Mesa (Pyro II), unload fast onto the delivery point/elevator, and confirm. A clean 10-mission stack pays out ~3.86M aUEC."
+        }
+      ],
+      "tips": [
+        "This is illegal cargo - expect CrimeStat if scanned in lawful space; stay in Pyro/Nyx and unload quickly.",
+        "Keep constant radar awareness; Pyro spots like Rustville and Sunset Mesa attract pirates.",
+        "Two players is the core of the method - solo you cannot stack the same mission efficiently.",
+        "Server state matters: a smooth server makes this 30-40 min; a janky elevator can cost the whole stack, so test elevators empty first."
+      ],
+      "links": [],
+      "sources": [
+        "https://ggwtb.com/blog/star-citizen-4-8-1-auec-making-guide-dead-saints-hauling-and-atlassium-trading",
+        "https://api.star-citizen.wiki/missions/dead-saints-trial-cargo-haul",
+        "https://www.youtube.com/watch?v=Ot49OJhp9P0"
+      ]
+    },
+    {
+      "id": "stanton-titanium-bulk-trade-route-mid-large-ship",
+      "name": "Stanton Titanium Bulk Trade Route (mid/large ship)",
+      "category": "trading",
+      "patch": "4.8",
+      "status": "existing",
+      "difficulty": 2,
+      "timeMinutes": 20,
+      "requirements": "Large capital to fill the hold with Titanium (no cargo insurance - never risk more than ~60% of total aUEC per run). A medium-to-large cargo ship: Freelancer MAX/Taurus (~174 SCU) up to C2 Hercules (696 SCU) or Caterpillar. Live price tools (sc-trade.tools / uexcorp.space).",
+      "rewards": "~2,500 aUEC/SCU margin. ~1.74M aUEC per C2 run; ~5.2M aUEC/hour at 3 runs/hour (Caterpillar ~4.3M/hour). Medium ships ~435K/run.",
+      "locations": [
+        "Bezdek (Hurston)",
+        "Area18 / Trade & Development Division (ArcCorp)",
+        "Hurston",
+        "ArcCorp"
+      ],
+      "steps": [
+        {
+          "title": "Check live prices first",
+          "detail": "Open sc-trade.tools or uexcorp.space and confirm Titanium buy price at Bezdek and sell price at Area18 TDD. Supply/demand refresh in ticks per shard, so verify before committing capital."
+        },
+        {
+          "title": "Buy Titanium at Bezdek (Hurston)",
+          "detail": "Fly to Bezdek and purchase Titanium up to your hold capacity. Loading physicalized cargo takes 6-8 minutes at outposts (3-4 with mechanized loaders) - factor this into your per-hour math."
+        },
+        {
+          "title": "Quantum to Area18 (ArcCorp)",
+          "detail": "Travel to ArcCorp and sell at the Area18 Trade & Development Division terminal at ~2,500 aUEC/SCU profit."
+        },
+        {
+          "title": "Repeat or rotate routes",
+          "detail": "Run the loop ~3x per hour. If demand depletes on your shard, switch to a backup commodity (Agricium, Laranite, Astatine) or a different sell terminal to avoid tanking the price."
+        }
+      ],
+      "tips": [
+        "No cargo insurance exists - keep single-run investment under ~60% of your total aUEC.",
+        "Titanium is the 'bread and butter' large-ship route: consistent supply, good margins, manageable risk.",
+        "Pyro routes offer 30-50% better margins but need 2-3 escort fighters; solo traders should stay in Stanton.",
+        "Use the admin-terminal autoloading where available so you never manually tractor-beam bulk commodities."
+      ],
+      "links": [],
+      "sources": [
+        "https://oronst.com/blogs/news/star-citizen-trading-guide-2026-best-routes-ships-profit-per-hour-oronst-orbital-guide",
+        "https://uexcorp.space/"
+      ]
+    },
+    {
+      "id": "gillys-flight-school-combat-gauntlet-1m-auec-hr-farming-loop-4-8",
+      "name": "Gilly's Flight School Combat Gauntlet - 1M+ aUEC/hr Farming Loop (4.8)",
+      "category": "mercenary",
+      "patch": "4.8",
+      "status": "new",
+      "difficulty": 2,
+      "timeMinutes": 60,
+      "requirements": "Combat ship with high burst DPS (Corsair best; Constellation Taurus/Andromeda; Hornet Mk II; Gladius/Sabre/Vanguard as alternatives). Strong burst weapons: M7A (S7) / M6A (S6) cannons on Corsair, Deadbolt V (S5) on Connie/Taurus. No reputation gate beyond clearing the chain once.",
+      "rewards": "~79k (S4), ~115k (S5), ~171k (S6), ~227k (S7) per run. Safe loop 7>5>4 = ~421k/cycle (~1.26M/hr at 3 loops). High-profit loop 7>6>5>4 = ~592k/cycle. Realistic 800k-1.4M aUEC/hr. Bonus: Deadbolt V / M6A / M7A weapon salvage off enemies; Wikelo scrips (trade 50:1 for Wikelo Favors).",
+      "locations": [
+        "Gilly's Flight School",
+        "Stanton",
+        "New Babbage (microTech)",
+        "Crusader",
+        "Hurston",
+        "ArcCorp",
+        "Orison"
+      ],
+      "steps": [
+        {
+          "title": "Open the Mercenary contract chain",
+          "detail": "mobiGlas > Contracts Manager > Mercenary tab. Accept Combat Gauntlet Scenario 1."
+        },
+        {
+          "title": "Unlock the farm tier",
+          "detail": "Complete Scenarios 1 > 2 > 3 once each. They are easy. Scenario 6 is the first real DPS check (Constellation). This unlock is one-time."
+        },
+        {
+          "title": "Run Scenario 7 first every rotation",
+          "detail": "~227k payout, often only ~3 light fighters, clears in 2-4 min. It is overtuned for payout / undertuned for enemies in 4.8. Reverse into open space to dodge ramming fighters and force them into your guns."
+        },
+        {
+          "title": "Run Scenario 5 next",
+          "detail": "~115k. Expect Freelancers/Vanguards/Sabres. The danger is rams and asteroids, not DPS - keep distance, fight in open space, kill ballistic-armed enemies first. Loot any Deadbolt V drops."
+        },
+        {
+          "title": "Run Scenario 4 to close the safe loop",
+          "detail": "~79k. Small wave of light ships, clear fast. This completes the 7>5>4 safe loop (~421k)."
+        },
+        {
+          "title": "Optionally insert Scenario 6 for the high-profit loop",
+          "detail": "~171k but only if your ship deletes the big Constellation quickly. Kill order: large ship > fighters > use missiles > back off when shields drop. Skip it if the fight drags - a slow 171k is worse than a fast 227k+115k."
+        },
+        {
+          "title": "Skip Scenario 8",
+          "detail": "Harder, slower, less reliable than repeating the best payouts. Never farm it."
+        },
+        {
+          "title": "Reset bugged contracts fast (Bedlog method)",
+          "detail": "4.8 has contract bugs. If a marker is wrong or a mission pays but stays accepted: park safely, leave the pilot seat, lie in your ship bed, hold interact, select Log Out, rejoin another server. This clears stuck Gilly's contracts. If enemies do not spawn, abandon/retake or server-hop."
+        }
+      ],
+      "tips": [
+        "Prioritize burst DPS over everything - tanky 4.8 targets bleed your hourly rate if your guns are weak.",
+        "Pull every fight into open space before committing; asteroid collisions and rams kill more runs than enemy fire.",
+        "Do not face-tank: if shields drop, break off and re-enter from the side/rear.",
+        "Best beginner route: rent a Corsair during a DefenseCon free-fly if available, otherwise grab a Constellation Taurus from New Babbage.",
+        "On cooked servers, take the aUEC you can get and reset fast rather than fighting the server (~500-900k/hr floor).",
+        "A clean Scenario 7 run is roughly 500k in 10-15 minutes.",
+        "No elite PvE skill needed to clear ~1M/hr with a Hornet Mk II once unlocked.",
+        "Keep spare weapon/shield components on hand to avoid downtime."
+      ],
+      "links": [
+        "https://ggwtb.com/blog/star-citizen-4-8-auec-guide-make-money-with-gilly-s-flight-school",
+        "https://robertsspaceindustries.com/community-hub/post/gilly-flight-school-complete-guide-mission-1-8-cTFiM2vYv20VX"
+      ],
+      "sources": [
+        "https://ggwtb.com/blog/star-citizen-4-8-auec-guide-make-money-with-gilly-s-flight-school",
+        "https://ggwtb.com/blog/star-citizen-4-8-auec-making-guide-fast-combat-loop-and-best-salvage-farming",
+        "https://umgamer.com/en-us/articles/star-citizen-48-auec-guide-how-to-make-money-fast-after-the-wipe"
+      ]
+    },
+    {
+      "id": "bounty-hunters-guild-ladder-vlrt-to-ert-certification-path-4-8",
+      "name": "Bounty Hunters Guild Ladder - VLRT to ERT Certification Path (4.8)",
+      "category": "bounty",
+      "patch": "4.8",
+      "status": "existing",
+      "difficulty": 3,
+      "timeMinutes": 300,
+      "requirements": "Combat ship scaling with tier: light fighter (Arrow/Gladius/Avenger Titan) for VLRT-LRT; medium fighter/gunship (Hornet Mk II/Scorpius) for MRT-HRT; Hurricane/Vanguard for HRT-VHRT; sub-capital (Retaliator/Hammerhead) or fighter wing for ERT. aUEC for certification fees. Reputation reset by the 4.8 wipe.",
+      "rewards": "Per-kill payouts: VLRT ~19,000 | LRT ~23,250 | MRT ~29,250 | HRT ~42,000 | VHRT ~62,000 | ERT ~99,000. PvP bounties (Fugitive Recovery / Suspect Apprehension, CS3+ targets) ~151,000. Rank bonuses add a pay multiplier at higher Guild ranks.",
+      "locations": [
+        "Crusader",
+        "Hurston",
+        "Stanton",
+        "Northrock Service Group"
+      ],
+      "steps": [
+        {
+          "title": "Take the Tracker Training Permit",
+          "detail": "In mobiGlas, find and accept the 'Tracker Training Permit' certification (500 aUEC fee, refunded on completion). Completing it makes you a Probationary Guild Member and unlocks VLRT bounties."
+        },
+        {
+          "title": "Activate a jurisdiction",
+          "detail": "Fly to Hurston and complete the Bounty Hunter Contractor Evaluation, and/or Crusader for the Verified Freelancer Bounty Assessment. Each unlocks bounties in that jurisdiction (also Northrock Service Group). Highest tier available depends on your Guild certification."
+        },
+        {
+          "title": "Grind VLRTs to build rep",
+          "detail": "Run VLRT contracts (~19k each, smaller ships, rarely more than one escort). Roughly ~25 completions builds enough rep to be offered the next certification. Failing contracts lowers rep and can demote you."
+        },
+        {
+          "title": "Climb the certification ladder",
+          "detail": "Buy each next permit when offered: Tracker Beginner's Permit (LRT, 1,000) > Tracker License (MRT, 2,500) > Journeyman Tracker License (HRT, 5,000) > Advanced Tracker License (VHRT, 10,000) > Master Tracker License (ERT, 25,000). Each fee is refunded on passing the certification mission."
+        },
+        {
+          "title": "Scale your ship to the tier",
+          "detail": "MRT introduces medium ships + several escorts (use a gunship). HRT brings multicrew targets with escorts. VHRT adds heavy escorts - use a multicrew ship or a wingman. ERT targets fly sub-capitals with heavy escorts - bring a Retaliator/Hammerhead or a coordinated crew/wing."
+        },
+        {
+          "title": "Use jurisdiction-specific bounty boards",
+          "detail": "Accept tiered contracts like Hurston Bounty (HRT/VHRT/ERT) and Crusader Bounty (VHRT). Higher-level certification evaluations appear only after you complete enough bounties at the prior tier."
+        },
+        {
+          "title": "Optionally branch into PvP bounties",
+          "detail": "Earn the Fugitive Recovery and Suspect Apprehension certifications to hunt escaped convicts and players with CrimeStat 3+. ~151k per target, but no risk rating - difficulty is whatever the human target brings."
+        }
+      ],
+      "tips": [
+        "Quantum in above/behind the target's signature and bleed escorts before engaging the primary - bounty targets self-destruct or flee if mishandled.",
+        "Failing contracts drops rep and can demote you a rank, so do not over-reach into a tier your ship can't handle.",
+        "Rep was wiped in 4.8 - veterans must re-grind from the Tracker Training Permit.",
+        "Certification fees are refunded if you fail the certification mission, so attempting them is low-risk.",
+        "Pair bounty work with merc bunker clears on the same planet to stack two rep tracks per trip.",
+        "This is the lawful counterpart to the Vaughn grind — keep CrimeStat clean or the Guild may refuse to employ you.",
+        "ERTs are far easier with a crew or a second pilot; solo is possible but slow and risky.",
+        "Bounties in Crusader, Hurston and Northrock all feed the same Guild ladder, so take whatever is closest."
+      ],
+      "links": [
+        "https://starcitizen.tools/Bounty_Hunters_Guild",
+        "https://www.mmopixel.com/news/star-citizen-4-0-bounty-hunting-pve-guide-tips-for-success"
+      ],
+      "sources": [
+        "https://starcitizen.tools/Bounty_Hunters_Guild",
+        "https://starcitizen.tools/Bounty_hunting",
+        "https://starcitizen.tools/Hurston_Bounty_(ERT)",
+        "https://starcitizen.tools/Crusader_Bounty_(VHRT)",
+        "https://gamerant.com/star-citizen-bounty-hunter-guide/",
+        "https://testsquadron.com/threads/how-many-bounties-for-each-level.19367/",
+        "https://www.mmopixel.com/news/how-reputation-works-in-star-citizen-4-1-1-and-how-to-maximize-it"
+      ]
+    },
+    {
+      "id": "tactical-strike-group-tsg-qv-extraction-station-trench-run-vs-vanduul-4-8",
+      "name": "Tactical Strike Group (TSG) - QV Extraction Station Trench Run vs Vanduul (4.8)",
+      "category": "combat",
+      "patch": "4.8",
+      "status": "new",
+      "difficulty": 5,
+      "timeMinutes": 75,
+      "requirements": "In the Nyx system; complete the InterSec Defense Solutions intro mission; reach InterSec Rank 3 (Contractor). Group of 4-5 minimum, 7-8 recommended. Mandatory: ballistic ship weapons (power relays resist energy), FPS armor + weapons + ammo + medical supplies for every pilot, ships fully repaired/refueled/rearmed, spawn points set near Nyx.",
+      "rewards": "aUEC plus a chance at permanent crafting blueprints from two reward pools - Novia Crossbow variants (Base, Nighthunter, Ghostmaker, Wildshot), FPS equipment and ship-component blueprints, Grade-A-tier components, a unique bomber jacket, flight suits/helmets, and rare trade commodities.",
+      "locations": [
+        "Nyx system",
+        "QV Extraction Station (Shattered Blade stronghold)",
+        "InterSec Defense Solutions",
+        "QV Extraction Station (Nyx)",
+        "Idris 'Tranquility' (Nyx)"
+      ],
+      "steps": [
+        {
+          "title": "Unlock the contract",
+          "detail": "Move your base of operations to Nyx, complete the InterSec intro mission, then run InterSec Defense Solutions contracts repeatedly until you reach Rank III. The TSG appears in mobiGlas > Verified Contracts > Mercenary tab as 'Tactical Strike Group Needed'."
+        },
+        {
+          "title": "Phase 1 - Escort and defend the Tranquility",
+          "detail": "Escort the People's Alliance Idris-class Tranquility into position and defend it. It serves as your forward refuel/rearm/repair platform for the whole operation."
+        },
+        {
+          "title": "Phase 2 - Destroy the power relays",
+          "detail": "At the station the Shattered Blade have installed Vanduul-origin heavy shielded anti-capital defenses that can't be beaten directly. Survive/disable the small-target secondary defenses and destroy the exposed power relays - these are hardened against energy weapons, so use BALLISTIC weapons on them."
+        },
+        {
+          "title": "Phase 3 - Trench run: destroy cooling units",
+          "detail": "Destroyed relays open gates into large tunnels. Traverse the trench destroying cooling units fast - they are hardened against ballistics, so switch to ENERGY weapons. Ambient distortion damage inside the tunnel will disable your ship if you are too slow."
+        },
+        {
+          "title": "Phase 4 - Destroy the core while defending Tranquility",
+          "detail": "Cooling-unit destruction opens shutters to the central core chamber, where distortion and radiation spike dangerously even for brief entries. Destroy the core quickly. Simultaneously Shattered Blade forces intensify their assault on the Tranquility outside - keep it alive."
+        },
+        {
+          "title": "Phase 5 - Infiltrate and override",
+          "detail": "With main defenses down, a personally-accessible section of the station opens. Form a ground team, board, fight the Shattered Blade on foot, and activate the override terminal to free the captured pilot."
+        },
+        {
+          "title": "Phase 6 - Escort Gabe Windell to safety",
+          "detail": "Extract pilot Gabe Windell and get him off the station to complete the contract."
+        },
+        {
+          "title": "Survive the Vanduul vengeance wave",
+          "detail": "After objectives complete, the Shattered Blade's greatest enemy arrives - a Vanduul Mauler with fighter escort that attacks everyone indiscriminately regardless of affiliation. Be ready to fight or withdraw."
+        }
+      ],
+      "tips": [
+        "This is reputation-gated, not gear-gated - grind InterSec Rank III in Nyx first; do not waste time on unrelated merc factions for this unlock.",
+        "Bring BOTH weapon types per ship: ballistics for the energy-hardened relays, energy for the ballistic-hardened cooling units.",
+        "Assign a dedicated ground team in advance - Phase 5 stalls without infantry capability.",
+        "Speed is mandatory in the trench (Phase 3) and core chamber (Phase 4) due to distortion/radiation damage.",
+        "Rep was reset by the 4.8 wipe - if the contract is missing, check InterSec rank before blaming the server; relog/server-hop if all three unlock conditions are met.",
+        "Carry BOTH ballistic and energy options across the group — relays need ballistics, cooling units need energy.",
+        "Every pilot needs full FPS kit; the rescue phase is on-foot and lethal.",
+        "Set respawn points near Nyx before launch so deaths don't end the run.",
+        "7-8 players is the practical baseline; 4-5 can do it but it is very hard.",
+        "Fully repair/refuel/rearm before launch — there is no break between phases."
+      ],
+      "links": [
+        "https://starcitizen.tools/Tactical_Strike_Group",
+        "https://expcarry.com/star-citizen-tactical-strike",
+        "https://citizen-starter-guide.com/tactical-strike-groups-guide/",
+        "https://www.mmopixel.com/news/star-citizen-4-8-new-tsg-mission-tunnel-trench-run-guide"
+      ],
+      "sources": [
+        "https://starcitizen.tools/Tactical_Strike_Group",
+        "https://expcarry.com/star-citizen-tactical-strike",
+        "https://www.mmopixel.com/news/star-citizen-4-8-new-tsg-mission-tunnel-trench-run-guide",
+        "https://massivelyop.com/2026/05/15/star-citizen-alpha-4-8-tactical-strike-includes-a-group-mission-defensecon-free-fly-and-ship-insurance-updates/",
+        "https://robertsspaceindustries.com/en/comm-link/transmission/21142-Alpha-48-Tactical-Strike"
+      ]
+    },
+    {
+      "id": "pyro-executive-hangars-contested-zones-combat-looting-guide-4-8",
+      "name": "Pyro Executive Hangars & Contested Zones - Combat Looting Guide (4.8)",
+      "category": "combat",
+      "patch": "4.8",
+      "status": "existing",
+      "difficulty": 5,
+      "timeMinutes": 90,
+      "requirements": "Ship to reach Pyro, full FPS armor, multiple weapons with 15-20+ mags each, medpens/medical, fuses and the relevant keycards. Duo or team strongly recommended for revives, ammo and watching your back in a free-fire PvPvE zone.",
+      "rewards": "Rare FPS weapons (grenade launchers, railguns), Grade-A and Grade-B ship components, RMC/CMAS, illicit goods, mining materials, and - via Executive Hangars - in-game ownership of one of ~8 Executive/Wikelo-War-Special ships (F7A Hornet Mk II, F8C Lightning, Corsair, Cutlass Black, Syulen, Guardian MX, Meteor, Scorpius).",
+      "locations": [
+        "Pyro system",
+        "Checkmate Station",
+        "Ruin Station (Ghost Arena)",
+        "Orbituary",
+        "PYAM-EXHANG-0-1 (Executive Hangar asteroid bases)",
+        "PYAM-SUPVISR-3-4",
+        "PYAM-SUPVISR-3-5"
+      ],
+      "steps": [
+        {
+          "title": "Pick a contested zone",
+          "detail": "Three primary zones: Checkmate, Ruin Station (Ghost Arena), Orbituary. These are free-fire PvPvE - expect NPCs and hostile players throughout. Bring far more ammo than feels reasonable."
+        },
+        {
+          "title": "Learn the door types",
+          "detail": "Fuse Doors: insert a fuse (found in red sparking wall boxes, or fabricated on Vulture/Fortune/Reclaimer) low and left-of-center; manually close it behind you. Keycard Doors: insert the matching keycard - Red (Supervisor), Blue (Security), Crypt/Gold-Green, Last Resort/Gold-Yellow, Wasteland/Gold-Blue."
+        },
+        {
+          "title": "Print keycards",
+          "detail": "Red Supervisor cards print only at PYAM-SUPVISR-3-4 / -3-5 (asteroid bases sharing Bloom's orbit; not searchable on Starmap - pan/zoom to find; printers have a 30-min cooldown). Blue cards print at Checkmate (4 printers, easiest) and Orbituary (2, behind a red door). Crypt/Wasteland/Last Resort cards are at Ruin Station behind fuse doors."
+        },
+        {
+          "title": "Handle the Timer Door at Ruin",
+          "detail": "The only timer door in the game is at Ruin's Ghost Arena: open 1 minute, closed 20 minutes, on a fixed cycle. 30 seconds before opening, blue lights appear in the central room; white lights mean it's open. You cannot manually open/close it, so time your run."
+        },
+        {
+          "title": "Collect Boards 1-7",
+          "detail": "Loot all seven unique compboards scattered across the Pyro contested zones (behind fuse/keycard doors - e.g. Checkmate Board 1 is behind a fuse door + red door; Boards 2-3 in the hangar behind layered doors; Board 5 printer is behind the Crypt door at Ruin). Defend yourself against players the whole time."
+        },
+        {
+          "title": "Travel to an Executive Hangar",
+          "detail": "Go to PYAM-EXHANG-0-1, the Executive Hangar asteroid bases just SW of the Pyro star. Enter the zero-g room with all 7 compboards."
+        },
+        {
+          "title": "Open the hangar",
+          "detail": "Insert all 7 compboards into their receptacles. The door opens only when at least one status indicator light is GREEN and ZERO lights are red. Once open, the Engineering door stays open ~30 minutes."
+        },
+        {
+          "title": "Claim rewards and extract before doors close",
+          "detail": "Inside, claim one of ~8 Executive/Wikelo-War-Special ships (each a military or stealth variant), plus rare FPS weapons and Grade-A components. An alarm sounds before the doors close - any player or ship still inside the Hangar/Engineering when they shut is killed or destroyed. Get out in time."
+        }
+      ],
+      "tips": [
+        "Go as a duo minimum - a downed teammate can be revived, and someone watching the entrance saves your loot.",
+        "Stockpile Blue keycards at Checkmate (only two fuse doors to reach 4 printers) before deeper runs.",
+        "Printers all share a 30-minute cooldown - print what you'll need on the way in.",
+        "If the fuse 'Insert Fuse' prompt is missing, place it with a tractor beam: back facing the door, arrow side out and pointed down, until the placement outline turns green.",
+        "Watch the 30-minute Executive Hangar timer and the closing alarm religiously - the doors are lethal."
+      ],
+      "links": [],
+      "sources": [
+        "https://starcitizen.tools/Guide:Executive_Hangars",
+        "https://starcitizen.tools/Contested_Zones",
+        "https://swtorstrategies.com/2025/08/star-citizen-contested-zones-guide.html"
+      ]
+    },
+    {
+      "id": "security-mercenary-bunker-contracts-to-ugf-alerts-merc-rep-path-4-8",
+      "name": "Security / Mercenary Bunker Contracts to UGF Alerts - Merc Rep Path (4.8)",
+      "category": "mercenary",
+      "patch": "4.8",
+      "status": "new",
+      "difficulty": 3,
+      "timeMinutes": 30,
+      "requirements": "FPS loadout: armor, primary + sidearm, 15-20 magazines per weapon, medpens, multitool. A ship to reach surface bunkers / underground facilities. No rep gate for the intro Security Work Assessment; UGF Alerts require elevated Mercenary rep.",
+      "rewards": "Per-contract aUEC plus combat loot (weapons, armor, components). Strong Mercenary reputation gains - UGF Alerts in particular give big rep boosts and unlock the final merc contract tiers. Realistic ~100k-400k aUEC/hr depending on contract type and server.",
+      "locations": [
+        "Crusader",
+        "Hurston",
+        "microTech",
+        "ArcCorp",
+        "Stanton",
+        "Orison"
+      ],
+      "steps": [
+        {
+          "title": "Take the intro security contract",
+          "detail": "Accept Crusader Security's 'Security Work Assessment' (first Mercenary contract) - typically a small bunker assault with 6-8 hostile NPCs. This opens the basic merc contract line."
+        },
+        {
+          "title": "Clear bunkers to build rep",
+          "detail": "Run bunker/surface-outpost clears repeatedly. Rotate planets - microTech, Hurston, ArcCorp, Crusader - to avoid contract cooldowns and keep a steady queue. Crusader has the most consistent merc + bounty boards."
+        },
+        {
+          "title": "Progress to 'Defend Site Under Siege' and harder contracts",
+          "detail": "Higher merc contracts (e.g. defend-site missions) unlock as rep climbs and feed toward the UGF tier."
+        },
+        {
+          "title": "Run UGF Alerts at high rep",
+          "detail": "Once Mercenary rep is high enough, UGF Alerts appear: underground facilities with 12+ enemies and reinforcement waves. They give strong rep boosts and unlock the final merc tiers."
+        },
+        {
+          "title": "Bring a team for UGF Alerts",
+          "detail": "These are long fights - go as a duo/team for revives and to sustain ammo across the waves."
+        }
+      ],
+      "tips": [
+        "Carry far more ammo than you think (15-20 mags/weapon) - reinforcement waves outlast a single loadout.",
+        "Crusader is the best home system: loaded merc boards, consistent bounties, and UGF alerts spawn all over.",
+        "Hurston is strong for Red Wind progression and solid bunker clears.",
+        "Stack bounty-hunting and merc-bunker work on the same planet trip to advance two rep tracks at once.",
+        "Loot every downed NPC - bunker/UGF combat loot (weapons, components) is a meaningful side income.",
+        "Accidental ally damage triggers a Crime Stat - costs time and money to clear at a security terminal.",
+        "Stack nearby bunker contracts to minimize travel between clears.",
+        "A Cutlass Red rental adds mobility + cargo space for hauling loot."
+      ],
+      "links": [
+        "https://www.mmojugg.com/news/1m-star-citizen-auechour-beginner-guide-alpha-48-post-wipe-mastery.html",
+        "https://www.mmojugg.com/news/600khr-post-wipe-star-citizen-48-money-making-guide-free-defense-con-rentals.html"
+      ],
+      "sources": [
+        "https://ggwtb.com/blog/star-citizen-4-8-auec-making-guide-fast-combat-loop-and-best-salvage-farming",
+        "https://www.mmopixel.com/news/star-citizen-mercenary-mission-guide",
+        "https://www.mmojugg.com/news/1m-star-citizen-auechour-beginner-guide-alpha-48-post-wipe-mastery.html"
+      ]
+    },
+    {
+      "id": "vaughn-criminal-rep-farm-4-8-1-blueprints-citadel-armor-8x-low-light-scopes",
+      "name": "Vaughn Criminal Rep Farm (4.8.1) — Blueprints, Citadel Armor & 8x Low-Light Scopes",
+      "category": "bounty",
+      "patch": "4.8",
+      "status": "new",
+      "difficulty": 4,
+      "timeMinutes": 120,
+      "requirements": "Fast DPS fighter (Buccaneer recommended; any agile fighter with escape speed). FPS loadout for the Expel Outlaws ground portion. Willingness to carry a CrimeStat.",
+      "rewards": "Vaughn reputation; blueprints (Pulverizer LMG, Tripledown Pistol + mags, Killshot Rifle, Deadrig Shotgun + mag); armor (Citadel, Carnifex, Piecemeal, Overlord Supernova); helmets (Badami, Fortifier); 8x low-light scopes/optics; better assassination contracts.",
+      "locations": [
+        "Stanton",
+        "Distribution Centers (Hurston/microTech surface)",
+        "Crusader"
+      ],
+      "steps": [
+        {
+          "title": "Gear a fast fighter",
+          "detail": "Bring a Buccaneer or similar high-DPS, high-speed fighter. The targets are small enough for a fighter to kill without constant repair runs — prioritize disengage potential over tankiness."
+        },
+        {
+          "title": "Clear the early Vaughn contracts",
+          "detail": "Run the initial low-tier Vaughn jobs to push past the slow part of the rep curve. These gate the higher-value contracts."
+        },
+        {
+          "title": "Chain 'Complicated Task'",
+          "detail": "This is the money tier: it refreshes fast, gives solid rep, and spawns fighter-killable targets. Loop it repeatedly — this is the core of the grind."
+        },
+        {
+          "title": "Complete Security Contracted Evaluation",
+          "detail": "Required to unlock the Expel Outlaws missions used for armor/scope farming."
+        },
+        {
+          "title": "Run Expel Outlaws at distribution centers",
+          "detail": "From Mercenary Offers, take Expel Outlaws. Fight to the heavy boss NPC at the distribution center — it can spawn wearing Citadel armor pieces. Kill it and loot the pieces slowly."
+        },
+        {
+          "title": "Loot sniper NPCs for optics",
+          "detail": "During Expel Outlaws, check sniper NPCs — their rifles can spawn with 8x low-light scopes or other low-light optics."
+        },
+        {
+          "title": "Run 'All Things Come To An End' for blueprints",
+          "detail": "This is the most important Vaughn blueprint mission — it overlaps multiple reward lanes covering most of the weapon/armor/helmet blueprints listed above."
+        }
+      ],
+      "tips": [
+        "Use a fast fighter so you can disengage before things get ugly — don't brawl flying warehouses.",
+        "Loot deliberately: armor pieces come off the boss one at a time.",
+        "Accept that this path raises CrimeStat and lowers lawful (Bounty Hunters Guild / security) standing.",
+        "Blueprints feed the crafting loop — craft components and sell to combat pilots for extra aUEC."
+      ],
+      "links": [
+        "https://ggwtb.com/blog/star-citizen-4-8-1-vaughn-rep-farm-guide-fast-reputation--blueprints--citadel-armor--and-8x-low-light-scopes",
+        "https://expcarry.com/star-citizen-vaughn-blueprints"
+      ],
+      "sources": [
+        "https://ggwtb.com/blog/star-citizen-4-8-1-vaughn-rep-farm-guide-fast-reputation--blueprints--citadel-armor--and-8x-low-light-scopes",
+        "https://expcarry.com/star-citizen-vaughn-blueprints"
+      ]
+    },
+    {
+      "id": "adagio-holdings-salvage-rep-grind-reach-senior-contractor",
+      "name": "Adagio Holdings Salvage Rep Grind — Reach Senior Contractor",
+      "category": "salvage",
+      "patch": "4.8",
+      "status": "new",
+      "difficulty": 3,
+      "timeMinutes": 180,
+      "requirements": "Salvage ship (Vulture solo, Reclaimer for crew) plus a cargo/RMC hauler (RAFT, C2). Budget 500k-1M aUEC for contract fees. Later contracts cost 10k-20k aUEC each.",
+      "rewards": "Adagio Holdings Senior Contractor standing; unlocks 100k salvage missions and C2/M2/A2 salvage claims enabling 3-5M aUEC/hr RMC/Titanium farming.",
+      "locations": [
+        "Stanton",
+        "Grim Hex",
+        "Trade & Development Divisions (TDDs)"
+      ],
+      "steps": [
+        {
+          "title": "Take the intro salvage line",
+          "detail": "Accept 'Adagio Holdings in Need of Salvagers' from the Contract Manager to start the rep line. Early contracts are cheap."
+        },
+        {
+          "title": "Grind mid-tier salvage contracts",
+          "detail": "Keep accepting and clearing Adagio salvage jobs. Expect rising fees (10k-20k each) — treat this phase as a money sink, not income."
+        },
+        {
+          "title": "Track rep toward Senior Contractor",
+          "detail": "Monitor standing in the mobiGlas Delphi/reputation app. Reaching Senior typically takes 2-3 hours and several hundred thousand aUEC in fees."
+        },
+        {
+          "title": "Unlock and run the 100k claims",
+          "detail": "At Senior Contractor, the 100k C2/M2/A2 salvage missions open. Prioritize C2/M2/A2 hull claims; abandon 890 Jump missions (less efficient)."
+        },
+        {
+          "title": "Sell the RMC/Titanium",
+          "detail": "Sell at Grim Hex for speed, or fly to a TDD for maximum profit. With a Reclaimer or C2 this regularly nets 3-5M aUEC/hr."
+        }
+      ],
+      "tips": [
+        "Do not chase Elite Contractor — Senior to Elite is ~448 missions and ~44.8M aUEC in fees, only worth it for future rep rewards.",
+        "Fund this grind first with a fast combat loop (mercenary/Vaughn) since the rep phase costs money rather than making it.",
+        "C2/M2/A2 claims are the payoff — skip lower-value hulls once Senior is reached."
+      ],
+      "links": [
+        "https://ggwtb.com/blog/star-citizen-4-8-salvage-guide-best-rmc-farming--adagio-rep--and-ships-to-use",
+        "https://www.mmopixel.com/news/star-citizen-4-8-salvage-farming-guide-make-3m-auec-per-hour-with-adagio-contracts"
+      ],
+      "sources": [
+        "https://ggwtb.com/blog/star-citizen-4-8-salvage-guide-best-rmc-farming--adagio-rep--and-ships-to-use",
+        "https://www.mmopixel.com/news/star-citizen-4-8-salvage-farming-guide-make-3m-auec-per-hour-with-adagio-contracts"
+      ]
+    },
+    {
+      "id": "covalex-hauling-rep-ladder-contract-stacking-to-master",
+      "name": "Covalex Hauling Rep Ladder — Contract Stacking to Master",
+      "category": "hauling",
+      "patch": "4.8",
+      "status": "existing",
+      "difficulty": 2,
+      "timeMinutes": 240,
+      "requirements": "Cargo ship scaling by tier (Avenger Titan/Nomad early; Hull A/Zeus MkII CL/RAFT mid; Constellation Taurus then C2 Hercules/Hull C late). MaxLift tractor beam. Hurston system access.",
+      "rewards": "Covalex contractor ranks (Rookie -> Junior -> Member -> Experienced -> Senior/Master) raising payout, SCU, stops and max container size; unlocks crafting blueprints and interstellar logistics jobs at the top.",
+      "locations": [
+        "Hurston",
+        "Everus Harbor",
+        "Lorville (Hurston Dynamics Distribution Center / Lorville Spaceport)"
+      ],
+      "steps": [
+        {
+          "title": "Start the intro contract",
+          "detail": "Accept 'Opportunity for Independent Cargo Hauler' from the mobiGlas Contract Manager to open the Covalex line."
+        },
+        {
+          "title": "Set up at Everus Harbor",
+          "detail": "Base out of Everus Harbor — it spawns more overlapping Covalex contracts than almost any other orbital station, with short quantum jumps to Hurston industrial sites. Set your medical imprint here for fast respawn."
+        },
+        {
+          "title": "Reach Member and start stacking",
+          "detail": "At Member rank you can hold up to 16 simultaneous missions. Accept multiple contracts going to the same destination (e.g. Hurston Dynamics Distribution Center or Lorville Spaceport) to fill cargo and multiply rep per run."
+        },
+        {
+          "title": "Scale your ship with rank",
+          "detail": "Move up from Titan/Nomad to Hull A/Zeus CL/RAFT at Member, Constellation Taurus at Experienced, then C2 Hercules or Hull C at Senior/Master."
+        },
+        {
+          "title": "Run return contracts",
+          "detail": "Take return contracts at surface outposts hauling broken components or refined goods back up to Everus Harbor to avoid empty legs."
+        }
+      ],
+      "tips": [
+        "Wear a lightweight flight suit to move faster during cargo loading.",
+        "Avoid pirates by dropping out of quantum early and varying your approach angle instead of flying standard lanes.",
+        "Once reputation unlocks blueprints, craft components from raw materials and sell to combat pilots for extra income.",
+        "Stacking same-destination contracts is the single biggest rep accelerator."
+      ],
+      "links": [
+        "https://www.tribality.com/articles/star-citizen-4-8-covalex-cargo-hauling-guide-best-routes-reputation-farming-fast-auec-tips/",
+        "https://ggwtb.com/blog/star-citizen-covalex-cargo-hauling-4-8-fast-reputation-route--best-ships--and-master-unlocks"
+      ],
+      "sources": [
+        "https://www.tribality.com/articles/star-citizen-4-8-covalex-cargo-hauling-guide-best-routes-reputation-farming-fast-auec-tips/",
+        "https://ggwtb.com/blog/star-citizen-covalex-cargo-hauling-4-8-fast-reputation-route--best-ships--and-master-unlocks",
+        "https://www.mmopixel.com/news/star-citizen-covalex-reputation-guide-most-consistent-way-to-grind-rep"
+      ]
+    },
+    {
+      "id": "refueling-overhaul-misc-starlite-how-to-refuel",
+      "name": "Refueling Overhaul + MISC Starlite — how to refuel",
+      "category": "other",
+      "patch": "4.8",
+      "status": "new",
+      "difficulty": 3,
+      "timeMinutes": 20,
+      "requirements": "MISC Starlite (solo light refueler, flight-ready at MISC Day / DefenseCon) or MISC Starfarer/Gemini for bulk. Complete the refueling intro mission; higher-tier contracts need United Wayfarers Club reputation (~Senior Contractor, ~6,800 rep), based at Checkmate Station in Pyro. Buy hydrogen + quantum fuel before launch.",
+      "rewards": "~37,000 aUEC for a standard low-rep job (minus fuel cost); high-tier 'Urgent Fleet Refuel' shows ~1M in the list but pays ~1,806,250 aUEC once opened. Reputation also unlocks blueprints for better fuel nozzles/equipment.",
+      "locations": [
+        "Checkmate Station (Pyro)",
+        "Pyro system",
+        "Stanton system"
+      ],
+      "steps": [
+        {
+          "title": "Buy fuel first",
+          "detail": "At a station, open the mobiGlas landing-services app in MANUAL mode and use the sliders to fill both tanks — hydrogen (usually the larger need) and quantum. You cannot transfer fuel you do not carry."
+        },
+        {
+          "title": "Get a job",
+          "detail": "Two paths: respond to a public refueling service beacon from another player whose ship ran dry, or open the Contracts app (after the intro mission) and accept a faction refueling contract. Payout and difficulty scale with United Wayfarers reputation."
+        },
+        {
+          "title": "Fly to the client and target it",
+          "detail": "Arrive with full tanks, target the customer ship (docking is currently automatic/assisted), and manage your power so targeting works."
+        },
+        {
+          "title": "Extend the boom and connect",
+          "detail": "Deploy the rear-mounted fuel boom/arm, point it at the customer using the docking glyphs (pitch/roll/yaw alignment), and approve the connection."
+        },
+        {
+          "title": "Open valves in order",
+          "detail": "At the fuel console, open valves sequentially — fill HYDROGEN first, close that valve, then open QUANTUM. Watch the transfer bars complete for each."
+        },
+        {
+          "title": "Disconnect and get paid",
+          "detail": "Once the requested amounts (shown on the console fuel pods) are delivered, close valves, retract the boom and the contract pays out."
+        }
+      ],
+      "tips": [
+        "Hydrogen is needed in much greater quantity than quantum — buy accordingly.",
+        "Ambush missions occur ~1 in 10; you can flee with the reward or kill attackers for a bonus. Bring a gunner/escort for those.",
+        "The Starlite is solo-convenient but holds far less fuel than a Starfarer — pick the ship to the contract size.",
+        "Future patches will make docking fully manual and add a siphon to drain fuel from derelicts."
+      ],
+      "links": [
+        "https://scopique.com/2026/05/20/refueling-with-the-misc-starlite/",
+        "https://www.starzen.space/t/star-citizen-4-8-refueling-guide-missions-mechanics/37003",
+        "https://ggwtb.com/blog/star-citizen-4-8-auec-guides-refuelling-rented-corsair-combat-farm"
+      ],
+      "sources": [
+        "https://scopique.com/2026/05/20/refueling-with-the-misc-starlite/",
+        "https://www.starzen.space/t/star-citizen-4-8-refueling-guide-missions-mechanics/37003"
+      ]
+    },
+    {
+      "id": "ship-hangar-services-t0-repair-refuel-rearm-from-a-host-ship",
+      "name": "Ship Hangar Services (T0) — repair/refuel/rearm from a host ship",
+      "category": "other",
+      "patch": "4.8",
+      "status": "new",
+      "difficulty": 2,
+      "timeMinutes": 10,
+      "requirements": "A supported host ship: any Aegis Idris variant, RSI Polaris, Origin 890 Jump, Origin 600i, Anvil Carrack, MISC Starlancer TAC, or Drake Ironclad Assault. Host must carry the right supplies on its cargo grid: RMC for repair, hydrogen+quantum fuel for refuel, matching ammo/missiles/countermeasures for rearm. Client ship lands in the host's bay.",
+      "rewards": "No direct mission payout — enables fleet logistics and field sustainment (and you can charge other players for the service).",
+      "locations": [
+        "Anywhere (field operation)"
+      ],
+      "steps": [
+        {
+          "title": "Stock the host ship",
+          "detail": "Load the capital/host ship's cargo grid with RMC (repair), hydrogen and quantum fuel (refuel), and ammunition/missiles/countermeasures (rearm). Services draw from real cargo — nothing is conjured."
+        },
+        {
+          "title": "Land the client ship in the bay",
+          "detail": "Fly the smaller ship into the host's hangar/service bay and land. Trespassers are automatically blocked from accessing services."
+        },
+        {
+          "title": "Open the landing app",
+          "detail": "From inside the landed client vehicle, open the landing app — the interface and procedure are identical to a station landing-zone hangar."
+        },
+        {
+          "title": "Select services individually",
+          "detail": "Choose Repair, Refuel, and/or Restock separately (no bulk option). Repair is all-or-nothing — insufficient RMC means no repair happens. Refuel fills both tanks to full or a set amount. Restock tops up ballistic ammo, countermeasures and missiles (ammo must match weapon size; loaded racks only top up with the same missile type, empty racks accept any of the correct size)."
+        },
+        {
+          "title": "Complete",
+          "detail": "Services complete near-instantly in T0 (no wait timers yet). Confirm the host had enough supplies for each service requested."
+        }
+      ],
+      "tips": [
+        "Repair is all-or-nothing: if RMC runs short, nothing is repaired — carry extra RMC.",
+        "Empty missile racks accept any missile of the right size; partially loaded racks only top up the same type.",
+        "This turns capital ships into genuine mobile depots — pair with the refueling profession and TSG support runs."
+      ],
+      "links": [
+        "https://theimpound.com/blogs/star-citizen-news/star-citizen-alpha-4-8-q-a-ship-hangar-services-and-command-module",
+        "https://www.starzen.space/t/4-8-ptu-rearm-refuel-repair-any-ship-from-your-hangar-game-changer/36307"
+      ],
+      "sources": [
+        "https://theimpound.com/blogs/star-citizen-news/star-citizen-alpha-4-8-q-a-ship-hangar-services-and-command-module"
+      ]
+    },
+    {
+      "id": "vehicle-loadout-item-recovery-save-and-reclaim-your-build",
+      "name": "Vehicle Loadout / Item Recovery — save and reclaim your build",
+      "category": "other",
+      "patch": "4.8",
+      "status": "new",
+      "difficulty": 2,
+      "timeMinutes": 5,
+      "requirements": "Access to an ASOP terminal (to snapshot) and a freight-elevator claim kiosk at your home location. This is the first iteration of Item Recovery, shipped alongside the 4.8 full wipe.",
+      "rewards": "Protects custom ship builds (upgraded weapons, stealth coolers, high-perf power plants, custom/pledged paints) across ship loss.",
+      "locations": [
+        "Home location (ASOP terminal / freight elevator)"
+      ],
+      "steps": [
+        {
+          "title": "Snapshot your loadout",
+          "detail": "Before flying, go to an ASOP terminal and save an INSURED loadout snapshot for every ship you care about. Do this proactively — it captures the current custom configuration."
+        },
+        {
+          "title": "On ship loss, file a claim",
+          "detail": "When a ship is destroyed, file a claim and choose a recovery path: DEFAULT loadout (fast, cheap — returns only the base hull and stock components) or INSURED loadout (paid reclaim that rebuilds the ship from your snapshot with all custom components and paints)."
+        },
+        {
+          "title": "Reclaim individual items via freight elevator",
+          "detail": "At your home freight-elevator kiosk, use the claim/recovery menu to pull back account-owned ship items: paints, weapon mounts/gimbals, turrets, modular parts, bomb/torpedo racks, special weapons (e.g. salvage repeaters)."
+        },
+        {
+          "title": "Understand bricking",
+          "detail": "Reclaiming an item creates a usable copy in your home inventory and BRICKS the previously existing in-verse instance, preventing duplication."
+        }
+      ],
+      "tips": [
+        "Insured loadout does NOT cover ordnance/consumables — missiles, torpedoes, flares and chaff are NOT returned on reclaim.",
+        "Ballistic ammo refills on reclamation, but missiles/torpedoes do not.",
+        "You can lose pledged paints if you don't snapshot — take the snapshot before risky play.",
+        "Actual ship hulls still come back via normal insurance; the freight-elevator menu is for components."
+      ],
+      "links": [
+        "https://www.elyxir.gg/news/star-citizen/star-citizen-480-item-recovery-explained-how-freight-elevator-claim-mode-works",
+        "https://theimpound.com/blogs/star-citizen-news/alpha-4-8-vehicle-insurance-and-item-bricking-what-you-need-to-know",
+        "https://www.mmopixel.com/news/star-citizen-4-8-vehicle-loadout-recovery-guide-how-to-save-restore-ship-builds"
+      ],
+      "sources": [
+        "https://www.elyxir.gg/news/star-citizen/star-citizen-480-item-recovery-explained-how-freight-elevator-claim-mode-works",
+        "https://theimpound.com/blogs/star-citizen-news/alpha-4-8-vehicle-insurance-and-item-bricking-what-you-need-to-know"
+      ]
+    },
+    {
+      "id": "ship-combat-v3-armor-shield-weapon-rebalance-adapting-your-loadout",
+      "name": "Ship Combat V3 + Armor/Shield/Weapon Rebalance — adapting your loadout",
+      "category": "combat",
+      "patch": "4.8",
+      "status": "changed",
+      "difficulty": 3,
+      "timeMinutes": 15,
+      "requirements": "Any combat ship. Understanding of damage types (ballistic vs energy) and the new deflection/penetration model.",
+      "rewards": "More survivable combat where loadout choice matters; Ship Battles (V3) reward scaling with difficulty.",
+      "locations": [
+        "Universe-wide (all ship combat)"
+      ],
+      "steps": [
+        {
+          "title": "Know the shield changes",
+          "detail": "All ships and ground vehicles got a uniform ~20% reduction in total shield HP, but shield regeneration was boosted ~60% generally (ground vehicles 300%+). Energy resistance was reset to zero across all shields. Net effect: shields drop faster but recover faster."
+        },
+        {
+          "title": "Know the armor changes",
+          "detail": "Larger ships received big increases to physical AND energy damage deflection thresholds (the Hammerhead's physical deflection went up ~250%). Small ships' deflection was reduced. Capital/gunship-class hulls are now far tougher to crack."
+        },
+        {
+          "title": "Pick damage type to target",
+          "detail": "Because deflection thresholds are high on big hulls, low-alpha shots bounce off. Bring high-alpha ballistics to punch through armored capital/gunship targets; use sustained energy to strip shields. This mirrors the TSG relay (ballistic) vs cooling-unit (energy) split."
+        },
+        {
+          "title": "Adjust for slower projectiles",
+          "detail": "Laser/high-end weapon projectile velocities were reduced to slow the combat pace and pull fights closer. Lead targets more and expect shorter effective ranges; some repeaters (Attrition) got faster ammo but nearly halved alpha/DPS."
+        },
+        {
+          "title": "Account for G-force",
+          "detail": "G-force tolerance is now tied to your flight suit (see separate guide) — aggressive maneuvering in a light suit blacks you out sooner than in a proper flight suit."
+        }
+      ],
+      "tips": [
+        "'Your loadouts really matter now' — mixed ballistic+energy loadouts are strong against the new deflection model.",
+        "Don't rely on shields alone; the regen buff rewards disengage-and-recover tactics.",
+        "Missile prices and military component prices were increased, so ordnance-spamming is more costly."
+      ],
+      "links": [
+        "https://www.mmopixel.com/news/star-citizen-4-8-weapons-and-armor-changes-best-weapon-setup-and-loadout-for-daily-use",
+        "https://www.starzen.space/t/in-depth-analysis-of-the-new-ship-shields-armor-weapon-changes-in-4-8-ptu-may-9th-2026/36565",
+        "https://www.starzen.space/t/major-4-8-updates-ship-armor-shields-weapon-missile-price-more-may-9th-2026/36561"
+      ],
+      "sources": [
+        "https://www.starzen.space/t/in-depth-analysis-of-the-new-ship-shields-armor-weapon-changes-in-4-8-ptu-may-9th-2026/36565",
+        "https://theimpound.com/blogs/star-citizen-news/star-citizen-monthly-report-may-2026-alpha-4-8-defensecon-ships-economy-tech"
+      ]
+    },
+    {
+      "id": "g-force-flight-suit-tolerance-system",
+      "name": "G-Force / Flight-Suit Tolerance System",
+      "category": "other",
+      "patch": "4.8",
+      "status": "new",
+      "difficulty": 2,
+      "timeMinutes": 5,
+      "requirements": "A character with a chosen suit. Different suits provide different G-force tolerance thresholds.",
+      "rewards": "Better sustained-maneuver performance and fewer blackouts when wearing a proper flight suit.",
+      "locations": [
+        "Universe-wide (flight)"
+      ],
+      "steps": [
+        {
+          "title": "Understand the link",
+          "detail": "G-force resistance is now tied to the flight suit your pilot wears. Each suit type has a different tolerance threshold for sustained high-G maneuvering."
+        },
+        {
+          "title": "Kit up before combat",
+          "detail": "Equip a proper flight suit (not a light/utility suit) before dogfighting. Aggressive maneuvering in a light suit impairs your pilot (greyout/blackout) earlier."
+        },
+        {
+          "title": "Fly to your suit's limit",
+          "detail": "Manage your turn rate and sustained Gs; ease off when vision starts narrowing to avoid losing control, especially in lighter suits."
+        }
+      ],
+      "tips": [
+        "Match your suit to your activity — flight suit for combat, but watch that heavy armor isn't your best dogfighting kit.",
+        "This stacks with the V3 combat changes to reward proper character preparation."
+      ],
+      "links": [
+        "https://fextralife.com/star-citizen-alpha-48-adds-refueling-missions-new-ships-and-crossbow/"
+      ],
+      "sources": [
+        "https://fextralife.com/star-citizen-alpha-48-adds-refueling-missions-new-ships-and-crossbow/",
+        "https://www.starshipdealers.com/blog/star-citizen-alpha-4-8-is-live/"
+      ]
+    },
+    {
+      "id": "drake-command-module-caterpillar-ironclad",
+      "name": "Drake Command Module (Caterpillar / Ironclad)",
+      "category": "other",
+      "patch": "4.8",
+      "status": "new",
+      "difficulty": 3,
+      "timeMinutes": 10,
+      "requirements": "A Drake Caterpillar, Ironclad, or Ironclad Assault that uses the detachable Command Module.",
+      "rewards": "A detachable command pod that can fly, quantum travel, fight lightly, and escape independently of the host hull.",
+      "locations": [
+        "Universe-wide"
+      ],
+      "steps": [
+        {
+          "title": "Use it docked",
+          "detail": "While docked, the Command Module assumes full command and control of the host ship's systems, including power allocation and management. This is the normal flying configuration."
+        },
+        {
+          "title": "Detach when needed",
+          "detail": "Detach the module to operate as an independent vessel — capable of standard flight, quantum travel, limited combat via integrated weapons, and tactical retreat/escape."
+        },
+        {
+          "title": "Mind the security risk",
+          "detail": "Hostile boarders who reach the docked module can detach and steal it. Currently a detached module shows as an independent vessel with no signature link back to the host hull."
+        }
+      ],
+      "tips": [
+        "The module is slightly larger than the original Caterpillar concept to fit combined crew; interiors are physicalized with ladders, per-seat storage and bunks.",
+        "Use detach as an escape pod if the main hull is lost.",
+        "CIG plans universal docking and signature tracking in later iterations."
+      ],
+      "links": [
+        "https://theimpound.com/blogs/star-citizen-news/star-citizen-alpha-4-8-q-a-ship-hangar-services-and-command-module",
+        "https://www.starzen.space/t/major-vehicle-item-recovery-updates-drake-command-module-star-citizen-4-8-has-some-huge-changes/36255"
+      ],
+      "sources": [
+        "https://theimpound.com/blogs/star-citizen-news/star-citizen-alpha-4-8-q-a-ship-hangar-services-and-command-module"
+      ]
+    },
+    {
+      "id": "defend-location-missions-4-8-1-anti-bomber-asteroid-defense",
+      "name": "Defend Location Missions (4.8.1) — anti-bomber asteroid defense",
+      "category": "combat",
+      "patch": "4.8",
+      "status": "new",
+      "difficulty": 3,
+      "timeMinutes": 20,
+      "requirements": "Combat ship matched to the difficulty tier — light fighter (Gladius/Arrow) for Very Easy/Easy, heavier or multi-crew ship for Hard/Super. Anti-bomber loadout (gimballed guns + missiles). Choose lawful (Foxwell Enforcement) or criminal (Headhunters) contractor.",
+      "rewards": "aUEC plus ship-component blueprints (a key reason to farm these in 4.8.1). Reputation with Foxwell Enforcement or Headhunters depending on contractor.",
+      "locations": [
+        "Stanton system",
+        "Pyro system",
+        "Asteroid mining bases (149 across both systems)"
+      ],
+      "steps": [
+        {
+          "title": "Pick a faction",
+          "detail": "Choose Foxwell Enforcement (lawful security group — needs an intro mission first) or Head Hunters (criminal org). They are competing to defend besieged mining stations from a fleet of mysterious raiders."
+        },
+        {
+          "title": "Accept at a mining base",
+          "detail": "Open the Contract Manager at an asteroid mining base in Stanton or Pyro. There are 385 missions across 149 bases, in 6 difficulty tiers (Very Easy through Super). Each has a 15-minute cooldown."
+        },
+        {
+          "title": "Stop the bombers",
+          "detail": "Enemy bombers make attack runs on critical infrastructure at the target location. Intercept and destroy them before they destroy key resources — by any means necessary."
+        },
+        {
+          "title": "Handle the escort variant",
+          "detail": "Combined missions add a friendly ship landing or launching at the location while enemy fighters try to shoot it down. Defend the location AND protect the friendly ship simultaneously."
+        },
+        {
+          "title": "Escort workers if prompted",
+          "detail": "Some contracts require escorting escaping workers to safety in addition to defending the base."
+        }
+      ],
+      "tips": [
+        "Enhanced escort missions now include enemy ace pilots and more varied flight paths — expect tougher, less predictable AI.",
+        "Stack Scrip with the issuing org to climb tiers toward blueprint rewards.",
+        "Known 4.8.1 launch bugs: broken hangar doors and exploding pilots — keep a backup spawn plan.",
+        "Lower tiers are comfortably solo; Super tier needs a group.",
+        "Carry missiles for fast bomber kills before they reach the tanks.",
+        "These are excellent for farming component blueprints in 4.8.1.",
+        "Note: early 4.8.1 had reported bugs (broken hangar doors, pilot deaths) — patch up before grinding.",
+        "Stay between the bombers and the base rather than chasing — you're defending, not dogfighting for score."
+      ],
+      "links": [
+        "https://simulationdaily.com/news/star-citizen-alpha-4-8-1-release/",
+        "https://starcitizen.tools/Update:Star_Citizen_Alpha_4.8.1",
+        "https://ggwtb.com/blog/star-citizen-alpha-4-8-1-new-missions--patch--squadron-42-rumors--and-alien-week",
+        "https://www.mmopixel.com/news/star-citizen-4-8-1-new-missions-guide-best-blueprints-to-farm",
+        "https://www.pcgamer.com/games/mmo/star-citizens-latest-alpha-patch-adds-385-asteroid-defence-missions-but-players-are-reporting-problems-with-broken-hangar-doors-and-exploding-pilots/"
+      ],
+      "sources": [
+        "https://simulationdaily.com/news/star-citizen-alpha-4-8-1-release/",
+        "https://www.pcgamer.com/games/mmo/star-citizens-latest-alpha-patch-adds-385-asteroid-defence-missions-but-players-are-reporting-problems-with-broken-hangar-doors-and-exploding-pilots/",
+        "https://ggwtb.com/blog/star-citizen-alpha-4-8-1-new-missions--patch--squadron-42-rumors--and-alien-week",
+        "https://www.mmopixel.com/news/star-citizen-4-8-1-new-missions-guide-best-blueprints-to-farm"
+      ]
+    },
+    {
+      "id": "aegis-hammerhead-gold-standard",
+      "name": "Aegis Hammerhead Gold Standard",
+      "category": "other",
+      "patch": "4.8",
+      "status": "changed",
+      "difficulty": 1,
+      "timeMinutes": 5,
+      "requirements": "An Aegis Hammerhead (owned or rented).",
+      "rewards": "Fully reworked, livable Hammerhead interior plus the 4.8 armor buff (physical deflection +~250%).",
+      "locations": [
+        "Universe-wide"
+      ],
+      "steps": [
+        {
+          "title": "Explore the rebuilt interior",
+          "detail": "Every interior space was rebuilt to Gold Standard: crew quarters, turret-access corridors, and the command bridge are all redone."
+        },
+        {
+          "title": "Use it as a gunship platform",
+          "detail": "With the 4.8 armor changes (physical deflection up ~250%) the Hammerhead is now far tankier — crew its six turrets for anti-fighter/escort and TSG support work."
+        }
+      ],
+      "tips": [
+        "Pairs naturally with TSG and Defend Location missions as a multi-crew turret boat.",
+        "Note the new big-brother Aegis Tiburon is a capital-buster variant of the Hammerhead design with a size-10 beam."
+      ],
+      "links": [
+        "https://www.starzen.space/t/the-hammerhead-is-almost-perfect-now-star-citizen-4-8-gold-standard/36381",
+        "https://starcitizen.tools/Hammerhead"
+      ],
+      "sources": [
+        "https://www.starzen.space/t/the-hammerhead-is-almost-perfect-now-star-citizen-4-8-gold-standard/36381"
+      ]
+    },
+    {
+      "id": "new-fps-weapons-ultiflex-novian-crossbow-kastak-plasma-grenade",
+      "name": "New FPS Weapons — UltiFlex Novian Crossbow & Kastak Plasma Grenade",
+      "category": "combat",
+      "patch": "4.8",
+      "status": "new",
+      "difficulty": 3,
+      "timeMinutes": 10,
+      "requirements": "The crossbow is craftable / earned as a blueprint reward; access to the crafting system and/or the TSG reward pool.",
+      "rewards": "A silent, precise stealth ranged weapon (crossbow) and a high-damage area-denial grenade.",
+      "locations": [
+        "Nyx (TSG reward source)"
+      ],
+      "steps": [
+        {
+          "title": "Get the crossbow blueprint",
+          "detail": "The UltiFlex Novian crossbow is the first craftable FPS weapon in the live build. Earn its blueprint from the Tactical Strike Group reward pool, then craft it. It is silent, near-precise with projectile drop, and suited to stealth ops."
+        },
+        {
+          "title": "Use the Kastak plasma grenade",
+          "detail": "The Kastak Arms plasma grenade is a high-damage area-denial throwable with a significant blast radius — use it to lock down chokepoints and key locations (e.g. during TSG/Defend boarding)."
+        }
+      ],
+      "tips": [
+        "Bring the crossbow for stealthy station infiltration like the TSG rescue phase.",
+        "Plasma grenades excel at area denial in tight interiors."
+      ],
+      "links": [
+        "https://fextralife.com/star-citizen-alpha-48-adds-refueling-missions-new-ships-and-crossbow/",
+        "https://starcitizen.tools/Update:Star_Citizen_Alpha_4.8.0"
+      ],
+      "sources": [
+        "https://fextralife.com/star-citizen-alpha-48-adds-refueling-missions-new-ships-and-crossbow/"
+      ]
+    },
+    {
+      "id": "new-flyable-ships-defensecon-2956-4-8",
+      "name": "New Flyable Ships (DefenseCon 2956 / 4.8)",
+      "category": "other",
+      "patch": "4.8",
+      "status": "new",
+      "difficulty": 1,
+      "timeMinutes": 5,
+      "requirements": "Pledge/buy or rent the relevant ships; several debuted flight-ready during DefenseCon 2956 (May 18-19).",
+      "rewards": "New role options across support, fighter and gunship classes.",
+      "locations": [
+        "Universe-wide"
+      ],
+      "steps": [
+        {
+          "title": "MISC Starlite",
+          "detail": "Solo-flyable light refueler with a rear-mounted fuel arm — the support ship purpose-built for the new refueling system."
+        },
+        {
+          "title": "Aegis Tiburon",
+          "detail": "Large heavy gunship built on the Hammerhead design for engaging capital ships; carries a bespoke size-10 Supremacy-10T laser beam, four size-7 C-07T ballistic remote turrets per side (crew-operated), and a stern manned turret holding four size-4 guns."
+        },
+        {
+          "title": "Origin M80",
+          "detail": "Origin's first heavy fighter for solo pilots — fast, sleek, keeps weapons retracted until ready to fire."
+        },
+        {
+          "title": "Drake Pitbull",
+          "detail": "Drake's stripped-back solo snub fighter built purely around putting fire on target."
+        },
+        {
+          "title": "Drake Ironclad / Ironclad Assault",
+          "detail": "Heavy hauler/assault hull; the Ironclad Assault supports hangar services and the detachable Drake Command Module."
+        }
+      ],
+      "tips": [
+        "The Starlite + Tiburon + Ironclad slot directly into the patch's support/cap-combat/logistics loops.",
+        "Vanduul Mauler appears as the TSG boss ship, not a player purchase."
+      ],
+      "links": [
+        "https://starcitizen.tools/Tiburon",
+        "https://starcitizen.tools/Drake_DefenseCon_2956",
+        "https://robertsspaceindustries.com/en/comm-link/engineering/21086-Q-A-DefenseCon-2956-New-Ships"
+      ],
+      "sources": [
+        "https://starcitizen.tools/Tiburon",
+        "https://theimpound.com/blogs/star-citizen-news/star-citizen-monthly-report-may-2026-alpha-4-8-defensecon-ships-economy-tech"
+      ]
+    },
+    {
+      "id": "4-8-full-wipe-crafting-economy-changes",
+      "name": "4.8 Full Wipe, Crafting & Economy Changes",
+      "category": "other",
+      "patch": "4.8",
+      "status": "changed",
+      "difficulty": 1,
+      "timeMinutes": 5,
+      "requirements": "None — applies to all accounts at 4.8 launch.",
+      "rewards": "Reset economy with new crafting/quality systems and adjusted prices.",
+      "locations": [
+        "Universe-wide"
+      ],
+      "steps": [
+        {
+          "title": "Expect a full wipe",
+          "detail": "4.8 included a complete wipe — the first since 4.0. Progress, aUEC, ships and reputation reset. Blueprints, real-money purchases and account-bound items are retained."
+        },
+        {
+          "title": "Use quality-based crafting",
+          "detail": "A quality-based crafting system for weapons (and player-crafted items) was introduced; TSG and refueling rep feed blueprint rewards that fuel long-term crafting progression."
+        },
+        {
+          "title": "Adjust to new prices",
+          "detail": "Military component prices were increased (to strengthen progression) and salvage component sale prices were boosted. Missile prices also rose — budget ordnance accordingly."
+        },
+        {
+          "title": "Re-grind reputation early",
+          "detail": "Because rep reset, prioritise the InterSec (TSG), United Wayfarers (refueling) and Foxwell/Head Hunters (4.8.1 Defend) intro missions to re-open the new gated content."
+        }
+      ],
+      "tips": [
+        "Salvage is relatively more lucrative post-patch due to boosted component sale prices.",
+        "Snapshot ship loadouts at ASOP right after the wipe so the new Item Recovery protects rebuilt ships."
+      ],
+      "links": [
+        "https://ggwtb.com/blog/star-citizen-alpha-4-8-wipe--ship-snapshots--salvage--blueprints--defensecon-priorities",
+        "https://theimpound.com/blogs/star-citizen-news/star-citizen-monthly-report-may-2026-alpha-4-8-defensecon-ships-economy-tech",
+        "https://starcitizen.tools/Update:Star_Citizen_Alpha_4.8.0"
+      ],
+      "sources": [
+        "https://theimpound.com/blogs/star-citizen-news/star-citizen-monthly-report-may-2026-alpha-4-8-defensecon-ships-economy-tech",
+        "https://ggwtb.com/blog/star-citizen-alpha-4-8-wipe--ship-snapshots--salvage--blueprints--defensecon-priorities"
+      ]
+    },
+    {
+      "id": "xenothreat-server-event-full-walkthrough-4-8",
+      "name": "XenoThreat Server Event — Full Walkthrough (4.8)",
+      "category": "event",
+      "patch": "4.8",
+      "status": "changed",
+      "difficulty": 4,
+      "timeMinutes": 120,
+      "requirements": "Combat ship (fighter such as Gladius/Hornet/Arrow for phases 1 & 3); a cargo ship (Freelancer, Cutlass Black, Constellation, or C2 Hercules) for phase 2 resupply. Multi-Tool with tractor-beam attachment. FPS gear optional. Best run with an org/large group.",
+      "rewards": "aUEC payout scaled by participation/rank, plus account-bound flair: XenoThreat armor set (ORC-mkX helmet/core/arms/legs, Modified). Past iterations also granted Hornet upgrade tokens via the linked Overdrive Initiative. CDF reputation.",
+      "locations": [
+        "INS Jericho",
+        "MIC-L1 (microTech Lagrange Point 1)",
+        "Stanton system",
+        "microTech"
+      ],
+      "steps": [
+        {
+          "title": "Join the CDF (mandatory first step)",
+          "detail": "When the event activates you receive a notification in your mobiGlas. Accept the Civilian Defence Force contract. This is critical — the game tracks participation through this notification; without accepting it you earn NO reputation and NO final rewards."
+        },
+        {
+          "title": "Travel to the event zone near INS Jericho / MIC-L1",
+          "detail": "Quantum to INS Jericho, the UEE Navy forward station near microTech's Lagrange Point 1. The surrounding gas cloud at MIC-L1 is the staging area for all phases."
+        },
+        {
+          "title": "Phase 1 — Scout & clear vanguard forces",
+          "detail": "The UEE Navy detects XenoThreat scouts entering the system. Fly to the designated coordinates and clear out the vanguard fighter forces. This is the warm-up phase and builds your initial CDF reputation."
+        },
+        {
+          "title": "Phase 2 — Resupply INS Jericho (logistics)",
+          "detail": "Fly to the nearby debris field of wrecked Starfarers. Use your Multi-Tool tractor beam to pull cargo crates of Diluthermex, AcryliPlex Composite and Zeta-Prolanide from the wrecks into your ship, then haul them back and deliver them to INS Jericho. This phase is time-consuming — bring a cargo ship and ideally a team to split hauling and defense."
+        },
+        {
+          "title": "Phase 3 — Final fleet battle",
+          "detail": "Once INS Jericho is fully resupplied, the main XenoThreat fleet arrives: multiple Aegis Hammerheads escorting an Idris-M frigate. Coordinate with the player fleet to destroy escorts, then focus fire the Idris. Stay near friendly capital support and repair/rearm at Jericho between waves."
+        },
+        {
+          "title": "Collect rewards",
+          "detail": "After the fleet is defeated, payout and account-bound flair are granted based on tracked participation. Higher rank/consistency unlocks the full XenoThreat armor set."
+        }
+      ],
+      "tips": [
+        "Accept the CDF notification before doing anything else or your whole run is uncounted.",
+        "Bring two ships if soloing across phases — a fighter and a hauler — or team up so roles are covered.",
+        "Phase 2 is the bottleneck; the more haulers, the faster the event progresses to the fun fleet battle.",
+        "Repair and rearm at INS Jericho between phase-3 waves.",
+        "Expect server population to matter — this is designed as a coordinated server-wide event."
+      ],
+      "links": [
+        "https://www.mmopixel.com/news/star-citizen-4-8-return-of-xenothreat-guide-how-to-earn-every-event-reward",
+        "https://starcitizen.tools/XenoThreat",
+        "https://starcitizen.tools/INS_Jericho",
+        "https://robertsspaceindustries.com/en/comm-link/transmission/18510-XenoThreat-For-New-Players"
+      ],
+      "sources": [
+        "https://www.mmopixel.com/news/star-citizen-4-8-return-of-xenothreat-guide-how-to-earn-every-event-reward",
+        "https://starcitizen.tools/XenoThreat",
+        "https://starcitizen.tools/INS_Jericho"
+      ]
+    },
+    {
+      "id": "siege-of-orison-full-walkthrough-4-8",
+      "name": "Siege of Orison — Full Walkthrough (4.8)",
+      "category": "event",
+      "patch": "4.8",
+      "status": "existing",
+      "difficulty": 3,
+      "timeMinutes": 45,
+      "requirements": "FPS loadout: solid armor, primary weapon + spare magazines, sidearm, medpen or medgun, multi-tool. A ship to reach Orison on Crusader (or spawn there). No ship needed once on-site — a shuttle ferries you to the combat zone.",
+      "rewards": "Approx. 800,000 aUEC total: ~250,000 for the five bosses/lieutenants, ~100,000 for stopping 'Data Theft', ~10,000 for disabling 'Main IFFI', ~440,000 for mission completion, plus a 'Call to Arms' bonus. Crusader Security / CDF reputation.",
+      "locations": [
+        "Orison",
+        "Crusader",
+        "Cloudview Center",
+        "Crusader Industries Showroom",
+        "Inspiration Park"
+      ],
+      "steps": [
+        {
+          "title": "Accept the mission",
+          "detail": "When the event is active, accept 'End Nine Tails' Occupation at Orison' from your mobiGlas. Join the Civilian Defense Force to aid Crusader Security."
+        },
+        {
+          "title": "Get to the forward operating area",
+          "detail": "Go to the Cloudview Center in Orison. Head to the Crusader Industries Showroom (same floating island as Greencircle) and take the elevator to the rooftop. Turn right to find the Crusader Security medical forward operating area with a frequent shuttle service to Inspiration Park."
+        },
+        {
+          "title": "Phases 1–3 — Liberate three platforms",
+          "detail": "Ride the shuttle to Inspiration Park. Clear Nine Tails forces from three different occupied platforms/stations. Each is held by a Nine Tails lieutenant carrying an access key — kill the lieutenant to secure that platform's key."
+        },
+        {
+          "title": "Defend objectives",
+          "detail": "During the fight, stop the 'Data Theft' objective and disable the 'Main IFFI' for bonus payouts. Hold ground against waves of Nine Tails reinforcements."
+        },
+        {
+          "title": "Phase 4/5 — Assault the Admin Center & kill Mendo Ren",
+          "detail": "With the three keys secured, advance to the Admin Center. Fight through to Mendo Ren, the Nine Tails commander who holds the final IFFI key, and kill him to complete the occupation-ending objective."
+        },
+        {
+          "title": "Extract & collect",
+          "detail": "Complete the mission to bank the full payout (~800k aUEC with all bonuses). Use medical forward area to heal/respawn nearby if you go down."
+        },
+        {
+          "title": "Repeat",
+          "detail": "The event can be re-run while active; experienced squads speed-run it in ~12 minutes for the bulk of the reward."
+        }
+      ],
+      "tips": [
+        "Bring extra ammo and at least one medpen — it's a sustained FPS fight.",
+        "Stack the 'Data Theft' and 'Main IFFI' bonuses; don't rush past them.",
+        "Team up: a coordinated squad clears platforms far faster and revives downed players.",
+        "The forward operating area is your safe respawn/heal point — use it.",
+        "Watch your footing on the platforms; falls are lethal."
+      ],
+      "links": [
+        "https://starcitizen.tools/Siege_of_Orison",
+        "https://www.dualshockers.com/how-to-begin-complete-siege-of-orison-event-star-citizen/",
+        "https://gamerant.com/star-citizen-how-to-complete-orison-mission/"
+      ],
+      "sources": [
+        "https://starcitizen.tools/Siege_of_Orison",
+        "https://www.dualshockers.com/how-to-begin-complete-siege-of-orison-event-star-citizen/",
+        "https://robertsspaceindustries.com/community-hub/post/star-citizen-800k-a-uec-in-12-minutes-siege-of-orison-speedrun-fp3mikww66f9p"
+      ]
+    },
+    {
+      "id": "jumptown-2-0-drug-lab-event-walkthrough-4-8",
+      "name": "Jumptown 2.0 — Drug Lab Event Walkthrough (4.8)",
+      "category": "event",
+      "patch": "4.8",
+      "status": "existing",
+      "difficulty": 3,
+      "timeMinutes": 40,
+      "requirements": "Multi-Tool with tractor-beam attachment (parcels are small, not SCU crates). A cargo-capable ship; an armed ship strongly recommended due to heavy PvP. FPS gear/weapon for self-defense. Choose your path based on CrimeStat.",
+      "rewards": "aUEC bonus added to each delivered parcel; high total value (one of the most profitable contraband runs). Exact 4.8 per-package value not officially published — treat payout as rough. Reputation with Crusader Security (lawful) or Ruto/criminal contacts (unlawful).",
+      "locations": [
+        "Daymar",
+        "Crusader",
+        "microTech",
+        "ArcCorp",
+        "Grim HEX"
+      ],
+      "steps": [
+        {
+          "title": "Pick your path",
+          "detail": "Lawful: have CrimeStat 0 and accept the mission from Crusader Security (mobiGlas Mission Manager > Priority > General tab). Unlawful: have any CrimeStat and accept from Ruto (Priority > Personal tab)."
+        },
+        {
+          "title": "Read the coordinates",
+          "detail": "The mission gives you the drug lab's location and the sell destination. The lab spawns at a random site in Crusader, microTech, or ArcCorp space — it is marked on your HUD and Starmap. The classic site is Jumptown on Daymar."
+        },
+        {
+          "title": "Fly to the lab",
+          "detail": "Quantum to the marked lab. Expect other players racing for the same parcels — approach with caution and an exit plan."
+        },
+        {
+          "title": "Collect the parcels",
+          "detail": "Use your Multi-Tool tractor beam to pull the small drug parcels and load them into your ship. They are deliberately compact and easy to hide compared to SCU boxes."
+        },
+        {
+          "title": "Haul to the sell point",
+          "detail": "Lawful path: deliver to the nearest LEO port indicated by the mission. Unlawful path: take everything to Grim HEX to sell for the aUEC bonus per parcel."
+        },
+        {
+          "title": "Survive the run",
+          "detail": "The danger is the trip out and the sell run — other players and pirates target loaded haulers. Stay armed, watch your scanner, and avoid lingering at the lab."
+        }
+      ],
+      "tips": [
+        "Bring a wingman or escort — the PvP at the lab is the whole challenge.",
+        "Don't overload a single ship if you can't defend it; smaller, faster runs survive better.",
+        "Unlawful path forces a Grim HEX sale regardless of where the lab spawned — plan the route.",
+        "A tractor-beam multi-tool is mandatory; you cannot grab the parcels without it.",
+        "Check both the General and Personal mobiGlas tabs depending on your CrimeStat."
+      ],
+      "links": [
+        "https://starcitizen.tools/Jumptown",
+        "https://starcitizen.tools/Jumptown_(event)",
+        "https://robertsspaceindustries.com/en/comm-link/transmission/18464-Jumptown-20"
+      ],
+      "sources": [
+        "https://starcitizen.tools/Jumptown",
+        "https://starcitizen.tools/Jumptown_(event)",
+        "https://robertsspaceindustries.com/en/comm-link/transmission/18464-Jumptown-20"
+      ]
+    },
+    {
+      "id": "scenic-tour-secret-weird-locations-4-8",
+      "name": "Scenic Tour — Secret & Weird Locations (4.8)",
+      "category": "exploration",
+      "patch": "4.8",
+      "status": "existing",
+      "difficulty": 2,
+      "timeMinutes": 60,
+      "requirements": "Ship with a good quantum fuel tank (exploration/touring/long-haul to avoid stranding). A ground vehicle helps for surface sites. Caution: several sites are in lawless space with no security.",
+      "rewards": "No aUEC — the reward is the experience, screenshots, and discovery. Some derelicts have lootable items.",
+      "locations": [
+        "microTech",
+        "Daymar",
+        "Crusader",
+        "Pyro IV (Pyro 4)",
+        "Yela",
+        "Stanton system",
+        "Pyro system"
+      ],
+      "steps": [
+        {
+          "title": "Ghost Hollow (microTech)",
+          "detail": "An unmarked settlement built inside the wreck of an Aegis Reclaimer on microTech. Navigate to Orbital Marker 3 (OM3), then look North (vector ~352 outside atmosphere) for a snowy mountain surrounded by a snow-free patch — the wreck sits there."
+        },
+        {
+          "title": "Whistler's Crypt (Daymar)",
+          "detail": "A Nine Tails shanty town on Crusader's moon Daymar with small structures, a crashed Mercury Star Runner, and a 600i wreck inside a cave. From the NT-999-XVI outpost, fly ~132 km on heading 46–47 degrees."
+        },
+        {
+          "title": "Pyro IV North Pole",
+          "detail": "Travel to Pyro's fourth planet and head to the north pole to see a massive impact scar with ripple-like crust formations — considered the best geological landmark in the game and a top screenshot spot. Pyro is lawless; expect no security."
+        },
+        {
+          "title": "Benny Henge (near Yela)",
+          "detail": "A Stonehenge homage on an asteroid near Crusader's moon Yela. It has NO quantum-travel marker — reach it by triangulation/manual navigation from nearby markers."
+        },
+        {
+          "title": "Plan fuel and safety",
+          "detail": "Top off quantum and hydrogen fuel before long hops. In lawless areas (Pyro, remote Daymar/Yela), travel armed or in a fast ship and have a respawn plan."
+        }
+      ],
+      "tips": [
+        "Use a ship with a large quantum tank so you don't strand yourself reaching unmarked sites.",
+        "Benny Henge and similar sites need manual navigation — line up bearings from known markers.",
+        "These locations can change between patches — visit while they exist.",
+        "Bring a ground vehicle for surface exploration around Whistler's Crypt and Ghost Hollow.",
+        "Lawless space has no rescue — carry medical/repair supplies or travel with a buddy."
+      ],
+      "links": [
+        "https://ggwtb.com/blog/star-citizen-exploration-guide-weird-locations-you-should-visit-before-they-change",
+        "https://starcitizen.tools/Ghost_Hollow",
+        "https://starcitizen.tools/Whistlers_Crypt",
+        "https://starcitizen.tools/Sightseeing_and_Travel_Guide",
+        "https://starcitizen.fandom.com/wiki/Easter_eggs_and_secrets"
+      ],
+      "sources": [
+        "https://ggwtb.com/blog/star-citizen-exploration-guide-weird-locations-you-should-visit-before-they-change",
+        "https://starcitizen.tools/Ghost_Hollow",
+        "https://starcitizen.tools/Whistlers_Crypt"
+      ]
+    },
+    {
+      "id": "daymar-rally-how-to-participate-community-event",
+      "name": "Daymar Rally — How to Participate (Community Event)",
+      "category": "event",
+      "patch": "4.8",
+      "status": "existing",
+      "difficulty": 2,
+      "timeMinutes": 120,
+      "requirements": "A ground vehicle in your chosen division — Buggy (Cyclone/STV), Truck (Ursa/Spartan), or Bike (Dragonfly/Hoverquad/Nox/X1). Optional support ship to deliver the vehicle and a teammate to crew it (max two drivers + two support pilots per team). Fuel/repair planning for the long course.",
+      "rewards": "In-game ship prize pack for each division's winners; mainly bragging rights and spectacle. No farmable aUEC.",
+      "locations": [
+        "Daymar",
+        "Crusader",
+        "Stanton system"
+      ],
+      "steps": [
+        {
+          "title": "Register for the event",
+          "detail": "Sign up at daymarrally.com during the annual event window. The rally is organized by ATMO Esports with official rules, checkpoints and safety infrastructure."
+        },
+        {
+          "title": "Pick a division and vehicle",
+          "detail": "Choose Buggy, Truck, or Bike and bring the matching vehicle. Assemble a team (up to two drivers + two support pilots)."
+        },
+        {
+          "title": "Get to the start on Daymar",
+          "detail": "Transport your vehicle to Daymar (load it into a cargo/vehicle ship and land at the start corridor)."
+        },
+        {
+          "title": "Run the course",
+          "detail": "Race the ~510 km corridor across deserts and canyons, passing three outposts plus Starfarer checkpoints and the Reclaimer checkpoint 'The Betty'. Hundreds of racers run simultaneously — expect chaos, crashes, and pirates."
+        },
+        {
+          "title": "Reach the finish",
+          "detail": "Cross the finish line; division winners receive ship prize packs. Even non-winners get the full spectacle of Star Citizen's biggest community event."
+        }
+      ],
+      "tips": [
+        "Bring a support pilot to ferry repairs/fuel and recover a flipped vehicle.",
+        "Drive conservatively through canyons — the course is as much about survival as speed.",
+        "Watch the calendar on daymarrally.com; it's an annual fixture, not always live.",
+        "Spectating is also worthwhile if you don't want to race.",
+        "Expect opportunistic PvP pirates along the route."
+      ],
+      "links": [
+        "https://www.daymarrally.com/",
+        "https://www.daymarrally.com/rules",
+        "https://starcitizen.tools/Daymar_Rally",
+        "https://scr.gg/event/daymar-rally"
+      ],
+      "sources": [
+        "https://www.daymarrally.com/",
+        "https://starcitizen.tools/Daymar_Rally",
+        "https://scr.gg/event/daymar-rally"
+      ]
+    },
+    {
+      "id": "post-wipe-beginner-progression-roadmap-alpha-4-8",
+      "name": "Post-Wipe Beginner Progression Roadmap (Alpha 4.8)",
+      "category": "other",
+      "patch": "4.8",
+      "status": "new",
+      "difficulty": 2,
+      "timeMinutes": 600,
+      "requirements": "Fresh account or post-wipe save. Game package with a starter ship (Aurora Mk II recommended). Apply a referral code DURING account creation for +50,000 aUEC (stacks with the ~45k tutorial reward; do it within 24h, cannot be applied retroactively).",
+      "rewards": "From 0 to a self-sustaining bankroll: first combat ship (F7C Hornet Mk II), a hauler (RAFT/Hull-B), then access to 1M+/hr loops and a 3M+/hr salvage endgame.",
+      "locations": [
+        "Stanton",
+        "Hurston",
+        "Lorville",
+        "Orison",
+        "Crusader",
+        "Area18",
+        "ArcCorp",
+        "Seraphim Station",
+        "Everus Harbor",
+        "Daymar",
+        "Grim HEX",
+        "Pyro"
+      ],
+      "steps": [
+        {
+          "title": "1. Maximize starting credits",
+          "detail": "Create the account with a referral code for the +50,000 aUEC enlistment bonus. With the tutorial reward you can land near ~95-135k aUEC on day one. Pick a home location with a good cargo hub - Lorville (Hurston) or Area18 (ArcCorp) are strong beginner cities."
+        },
+        {
+          "title": "2. Day-one cash with bunkers",
+          "detail": "Open Contracts (F1). Accept the global Call to Arms for passive pay-per-kill. Stack Foxwell Enforcement bunker-clear contracts near Orison. Clear NPCs, loot full medium-armor sets and weapons, resell in town. 3-4 runs over 20-30 min net 150-200k. Avoid friendly fire (Crime Stat)."
+        },
+        {
+          "title": "3. Unlock the combat gauntlet",
+          "detail": "Go to mobiGlas > Contracts Manager > Mercenary tab > Combat Gauntlet. Run Scenarios 1, 2, 3 once each in your starter ship to unlock the chain. These are low-risk PvE with no reputation gate."
+        },
+        {
+          "title": "4. Buy your first real combat ship",
+          "detail": "With ~1-1.5M banked, buy and kit out an F7C Hornet Mk II - the best first serious combat buy. It clears Gilly's and Foxwell faster, repairs cheaper, and scales with weapon upgrades. Alternatives: Corsair, Constellation Taurus."
+        },
+        {
+          "title": "5. Farm the gauntlet for your bankroll",
+          "detail": "Rotate Scenarios 4, 5 and 7. Scenario 7 pays 200k+ and often spawns only light fighters - a clean run is ~500k in 10-15 min. Control angles, re-enter from side/rear to avoid fire. Sustained ~1M/hr is achievable. Collect Scrips for later 50:1 Wikelo Favor trades."
+        },
+        {
+          "title": "6. Pivot to hauling for consistency + reputation",
+          "detail": "Rent an Argo RAFT at Lorville Tissa Spaceport (67k/day or 181k/3 days) or buy one; grab a MaxLift tractor beam (~20k). Set spawn at a cargo hub (Seraphim Station / Everus Harbor). Complete one Covalex titanium delivery to unlock mission stacking."
+        },
+        {
+          "title": "7. Run stacked planetary haul loops",
+          "detail": "Accept 5-6 same-route Covalex missions. Load the cargo grid at the freight elevator (left-click grab, scroll to adjust height, neat stacks). Deliver in one trip (e.g. Seraphim -> August Dunlow). ~300k+ per loop; ~1.5M/hr at full speed. Builds Covalex rep toward Master (interstellar + military QD blueprints)."
+        },
+        {
+          "title": "8. Add an owned salvage ship",
+          "detail": "Buy a Drake Vulture with Abrade modules. Scrape RMC from wrecks (target 8,000/6,000 signatures, dense panels first). RMC ~6,040/SCU; ~200-300k/hr solo, no rep gate. A good owned-ship loop while grinding Adagio reputation on the side."
+        },
+        {
+          "title": "9. Graduate to high-ceiling salvage contracts",
+          "detail": "Grind Adagio Holdings reputation from basic Hull C contracts up to Senior Contractor. Then run cargo-grab contracts on wrecked C2/M2/A2 Hercules with a RAFT - scan for intact grids, tractor valuable boxes, sell at TDD/Grim HEX. 3M+/hr realistic at Senior Contractor."
+        }
+      ],
+      "tips": [
+        "Post-wipe rule #1: protect your bankroll. Buy ships that unlock income, not ones that just look good in the hangar.",
+        "Avoid Orison servers at peak hours - FPS tanks. Low server FPS is the biggest 4.8 frustration.",
+        "On a 30K crash mid-haul, do NOT immediately reclaim the ship - wait 10-15 min; the server often heartbeats cargo back to its last safe spot.",
+        "Use the Submit button for partial mission credit if cargo bugs out.",
+        "Set your spawn at a medical clinic (Transfer Imprint) near your work zone so Backspace respawns you on-site.",
+        "Watch rental timers; abandon any Grim HEX missions immediately as a fresh player.",
+        "Defense Con-style free rental events (e.g. Bevic Convention Center, Area18) periodically let you borrow Caterpillar/Vulture/Reclaimer/C2-class ships free - exploit them to multiply early income."
+      ],
+      "links": [
+        "https://www.mmojugg.com/news/1m-star-citizen-auechour-beginner-guide-alpha-48-post-wipe-mastery.html",
+        "https://umgamer.com/en-us/articles/star-citizen-48-auec-guide-how-to-make-money-fast-after-the-wipe",
+        "https://www.mmopixel.com/news/star-citizen-4-8-beginners-guide",
+        "https://startstarcitizen.com/",
+        "https://starcitizen.tools/Guide:New_Player_Guide"
+      ],
+      "sources": [
+        "https://www.mmojugg.com/news/1m-star-citizen-auechour-beginner-guide-alpha-48-post-wipe-mastery.html",
+        "https://umgamer.com/en-us/articles/star-citizen-48-auec-guide-how-to-make-money-fast-after-the-wipe"
+      ]
+    },
+    {
+      "id": "stacked-covalex-planetary-hauling",
+      "name": "Stacked Covalex Planetary Hauling",
+      "category": "hauling",
+      "patch": "4.8",
+      "status": "new",
+      "difficulty": 2,
+      "timeMinutes": 150,
+      "requirements": "Argo RAFT (rental ~67k/day or 181k/3 days at Lorville Tissa Spaceport, or owned) or Hull-B. MaxLift tractor beam (~20k). One completed Covalex titanium delivery to unlock stacking.",
+      "rewards": "~300k+ per 5-6 mission loop; up to ~1.5M aUEC/hr at full speed. Builds Covalex reputation toward Master (interstellar hauling + military quantum drive blueprints).",
+      "locations": [
+        "Stanton",
+        "Hurston",
+        "Lorville",
+        "Seraphim Station",
+        "Everus Harbor",
+        "August Dunlow"
+      ],
+      "steps": [
+        {
+          "title": "1. Set up spawn and ship",
+          "detail": "At a medical clinic (e.g. Seraphim Station) use Transfer Imprint so Backspace respawns you on-site. Rent/own a RAFT and fit a MaxLift tractor beam."
+        },
+        {
+          "title": "2. Unlock stacking",
+          "detail": "Complete your first Covalex Independent Contractors titanium delivery (Rookie rank) to enable holding multiple missions."
+        },
+        {
+          "title": "3. Stack same-route missions",
+          "detail": "Accept 5-6 Rookie-rank planetary titanium/cargo contracts that share a route. Everus Harbor / Hurston hub spawns dense overlapping Covalex contracts."
+        },
+        {
+          "title": "4. Load cargo",
+          "detail": "Position the RAFT cargo grid near the freight elevator. Tractor-grab boxes (left-click), scroll wheel to set height, stack neatly in the grid."
+        },
+        {
+          "title": "5. Deliver in one trip",
+          "detail": "Quantum to the destination (e.g. August Dunlow). Hold Left Alt + Middle Mouse to call ATC for a hangar, land, then use a quick-tap drop to place stable stacks under the freight elevator."
+        },
+        {
+          "title": "6. Submit and repeat",
+          "detail": "Complete all stacked contracts. If cargo bugs, hit Submit for partial credit. Repeat the loop; reputation climbs Trainee -> Rookie -> Junior -> Member -> Experienced -> Senior -> Master."
+        }
+      ],
+      "tips": [
+        "Prioritize reputation over squeezing max profit early - higher Covalex ranks unlock far bigger contracts.",
+        "Stacking same-route missions and abusing short travel loops is the key to high hourly rates.",
+        "Member rank lets you hold many missions at once - a big efficiency jump.",
+        "On low server FPS, ghost/floating cargo can occur - wait for the server heartbeat to sync before reloading."
+      ],
+      "links": [
+        "https://www.tribality.com/articles/star-citizen-4-8-covalex-cargo-hauling-guide-best-routes-reputation-farming-fast-auec-tips/",
+        "https://www.mmojugg.com/news/1m-star-citizen-auechour-beginner-guide-alpha-48-post-wipe-mastery.html"
+      ],
+      "sources": [
+        "https://www.tribality.com/articles/star-citizen-4-8-covalex-cargo-hauling-guide-best-routes-reputation-farming-fast-auec-tips/",
+        "https://www.mmojugg.com/news/1m-star-citizen-auechour-beginner-guide-alpha-48-post-wipe-mastery.html"
+      ]
+    },
+    {
+      "id": "piracy-in-4-8-interdict-disable-steal-cargo",
+      "name": "Piracy in 4.8 — Interdict, Disable & Steal Cargo",
+      "category": "combat",
+      "patch": "4.8",
+      "status": "new",
+      "difficulty": 5,
+      "timeMinutes": 40,
+      "requirements": "RSI Mantis (quantum dampener) to trap targets at SCM speed; a cargo ship (Cutlass Black / C2 / Caterpillar) to carry loot; ship or multi-tool tractor beam; FPS gear if boarding. A wingman strongly recommended.",
+      "rewards": "Highly variable — a single loaded hauler can net several hundred thousand to 1M+ aUEC in stolen commodities; many runs net nothing. Generates CrimeStat.",
+      "locations": [
+        "Pyro system (lawless space)",
+        "Stanton jump points",
+        "Pyro - Ruin Station approach",
+        "Stanton trade lanes (Hurston / ArcCorp / Crusader)"
+      ],
+      "steps": [
+        {
+          "title": "Pick a hunting ground",
+          "detail": "Camp known trade lanes and jump points where loaded haulers transit — Pyro lawless space and Stanton-Pyro jump approaches are prime. Lawless space avoids most security response."
+        },
+        {
+          "title": "Scan and select a target",
+          "detail": "Use your ship scanner to identify cargo ships actually carrying freight. Prioritize haulers heavy with valuable commodities over empty or combat ships."
+        },
+        {
+          "title": "Interdict with a quantum dampener",
+          "detail": "Drop the target out of quantum and pin them at SCM speed with the Mantis's quantum dampener so they cannot re-spool and flee. Note: 4.8 has reported bugs where interdiction sometimes fails to engage — be ready to abort."
+        },
+        {
+          "title": "Negotiate or disable",
+          "detail": "4.8's design rewards boarding/negotiation over destruction. Disable engines/thrusters precisely or demand they power down; outright destroying the ship often destroys the cargo you want."
+        },
+        {
+          "title": "Board or tractor the cargo",
+          "detail": "If boarding, clear the crew with FPS weapons and tractor the cargo crates into your own hold; if disabling, pop the cargo grid and tractor externally. Work fast — distress calls draw responders."
+        },
+        {
+          "title": "Haul out and fence the loot",
+          "detail": "Quantum away before reinforcements arrive and sell the stolen commodities at a no-questions terminal (Pyro outlaw stations / illicit trade terminals). Manage your CrimeStat before returning to lawful space."
+        }
+      ],
+      "tips": [
+        "Interdiction can currently bug out and do nothing — keep a backup plan and don't over-commit fuel.",
+        "Two ships (one interdictor + one hauler) is far more effective than soloing both roles.",
+        "Empty ships waste your time — scan for cargo before committing to the interdiction.",
+        "Sell stolen goods at outlaw-friendly terminals to avoid impound/seizure."
+      ],
+      "links": [],
+      "sources": [
+        "https://starcitizen.tools/Piracy",
+        "https://www.youtube.com/watch?v=G7x9qr5H-wg",
+        "https://www.youtube.com/watch?v=R3AH2i4XGfc"
+      ]
+    },
+    {
+      "id": "data-heist-microtech-ugf-hack-bit-zeros-rep",
+      "name": "Data Heist — microTech UGF Hack (Bit Zeros Rep)",
+      "category": "mercenary",
+      "patch": "4.8",
+      "status": "existing",
+      "difficulty": 3,
+      "timeMinutes": 20,
+      "requirements": "FPS rifle + armor, medpens, a ship to reach microTech UGFs, and a Cryptokey (recommended for the terminal insert).",
+      "rewards": "~30,000 aUEC base variant up to ~60,000+ for higher Bit Zeros tiers; raises Bit Zeros reputation to unlock riskier, better-paid variants.",
+      "locations": [
+        "microTech (Stanton)",
+        "microTech Underground Facilities (UGF)"
+      ],
+      "steps": [
+        {
+          "title": "Accept a Data Heist from a microTech contact",
+          "detail": "Data Heist contracts are only available around microTech. Take the lowest-difficulty variant first to build Bit Zeros rep."
+        },
+        {
+          "title": "Travel to the designated UGF",
+          "detail": "Fly to the underground facility named in the contract and make your way to its datacenter."
+        },
+        {
+          "title": "Insert the Cryptokey and start the hack",
+          "detail": "At the datacenter terminal, insert your Cryptokey to begin the mainframe upload for the hacker."
+        },
+        {
+          "title": "Authorize the connection",
+          "detail": "Once the mainframe is hacked, allow the incoming connection from the mission giver to the mainframe to start the data transfer."
+        },
+        {
+          "title": "Fix the overheating servers",
+          "detail": "Site owners trigger server overheats to stop the theft. Search the area, find why cooling failed, and re-enable the cooling systems to keep the upload alive."
+        },
+        {
+          "title": "Survive the waves and extract",
+          "detail": "Enemies keep spawning throughout — hold the datacenter until the upload completes, then exfiltrate to your ship and turn the contract in."
+        }
+      ],
+      "tips": [
+        "Bring a Cryptokey — it's the intended way to start the terminal hack.",
+        "Clear elevated angles before settling at the terminal; the upload pins you in place.",
+        "Stack medpens — sustained respawning waves are the real threat, not any single enemy.",
+        "Grind low-tier variants first; Bit Zeros rep gates the high-payout versions."
+      ],
+      "links": [],
+      "sources": [
+        "https://starcitizen.tools/Data_Heist",
+        "https://www.dualshockers.com/star-citizen-get-complete-new-data-heist-missions/",
+        "https://robertsspaceindustries.com/community-hub/post/star-citizen-mission-features-data-heists-and-loot-5lm0WDSE3lKKf"
+      ]
+    },
+    {
+      "id": "box-ryari-delivery-chain-cutter-rambler-day-one-loop",
+      "name": "Box & Ryari Delivery Chain — Cutter Rambler Day-One Loop",
+      "category": "hauling",
+      "patch": "4.8",
+      "status": "new",
+      "difficulty": 1,
+      "timeMinutes": 60,
+      "requirements": "Any small ship (MISC Cutter Rambler ideal), Greycat multi-tool with tractor-beam attachment, mobiglas to stack contracts. No combat gear needed.",
+      "rewards": "~20k aUEC per box mission; 100K-class delivery contracts chain in; full 'box → distro-center loot → Ryari → 100K delivery' chain can clear ~900K aUEC in one long no-combat session.",
+      "locations": [
+        "Stanton - Hurston",
+        "Stanton - ArcCorp",
+        "Stanton - Crusader",
+        "Stanton - microTech",
+        "Stanton Distribution Centers"
+      ],
+      "steps": [
+        {
+          "title": "Pull a stack of box-delivery contracts",
+          "detail": "At a major hub, accept several local delivery missions at once — they're lawful at novice rep and chain pickups/drop-offs around the same planet."
+        },
+        {
+          "title": "Use a tractor multi-tool for boxes",
+          "detail": "Equip the Greycat multi-tool with the tractor-beam attachment so you can move multiple boxes without stopping to hand-grab each one — essential for multi-box missions."
+        },
+        {
+          "title": "Run the deliveries in an optimized loop",
+          "detail": "Order drop-offs geographically so each landing serves several contracts. Any ship works; the Cutter Rambler's cargo + bed makes it the budget workhorse."
+        },
+        {
+          "title": "Detour through a Distribution Center",
+          "detail": "When a route passes a DC, clear/loot it for free components and Citadel armor (see DC loot guide) to add value with zero extra travel."
+        },
+        {
+          "title": "Collect Ryari harvestables",
+          "detail": "Pick up Ryari harvestables along the route to feed the higher-value 100K delivery contracts that unlock as your courier standing rises."
+        },
+        {
+          "title": "Cash the 100K contracts",
+          "detail": "Turn in the stacked deliveries plus the 100K harvestable contracts to close the loop at ~900K for a long session — all without combat."
+        }
+      ],
+      "tips": [
+        "Tractor multi-tool is the single biggest time-saver for multi-box missions.",
+        "Stack and geo-sort contracts before flying — don't take them one at a time.",
+        "Chaining a DC loot stop turns dead travel time into free gear.",
+        "This is the cleanest no-combat starter loop after the wipe."
+      ],
+      "links": [],
+      "sources": [
+        "https://ggwtb.com/blog/star-citizen-4-8-cutter-rambler-money-guide-earn-auec-with-ryari-delivery-missions",
+        "https://gamerant.com/star-citizen-delivery-guide/",
+        "https://www.mmopixel.com/news/star-citizen-4-8-beginners-guide"
+      ]
+    },
+    {
+      "id": "distribution-center-loot-farming-4-8-components-citadel-armor",
+      "name": "Distribution Center Loot Farming (4.8) — Components & Citadel Armor",
+      "category": "mercenary",
+      "patch": "4.8",
+      "status": "new",
+      "difficulty": 3,
+      "timeMinutes": 30,
+      "requirements": "FPS rifle + armor + medpens, a ship to reach the DC, and backpack/cargo space to haul out looted components and armor.",
+      "rewards": "Free ship components, Citadel armor sets, and FPS weapons (quietly added to DCs in 4.8); Expel Outlaws contracts also pay a cash reward.",
+      "locations": [
+        "Stanton Distribution Centers (planetary)",
+        "Hurston",
+        "ArcCorp",
+        "microTech"
+      ],
+      "steps": [
+        {
+          "title": "Take an Expel Outlaws / DC clear contract",
+          "detail": "Accept a Distribution Center combat contract from the security board, or simply travel to a DC known to spawn loot."
+        },
+        {
+          "title": "Breach and clear elevated angles first",
+          "detail": "DC interiors are messy — NPCs perch on railings, platforms, and elevated walkways. Clear high angles before pushing into open rooms."
+        },
+        {
+          "title": "Loot slowly and confirm each pickup",
+          "detail": "If you close the inventory screen too fast, looted armor can snap back onto the NPC body. Pull each item, wait, and confirm it stayed in your inventory before moving on."
+        },
+        {
+          "title": "Prioritize components and Citadel armor",
+          "detail": "Grab ship components (high resale/crafting value) and Citadel armor pieces first, then weapons. These are the real reason to run DCs in 4.8."
+        },
+        {
+          "title": "Haul the loot out",
+          "detail": "Carry components and armor back to your ship's hold; multiple trips may be needed for a full clear."
+        },
+        {
+          "title": "Repeat across servers",
+          "detail": "DC loot is fixed per instance — re-clearing the same DC on different servers is the fastest way to farm components and armor."
+        }
+      ],
+      "tips": [
+        "Confirm every loot pickup — fast inventory closes lose the item back to the body.",
+        "Components feed straight into the 4.8 crafting loop — don't vendor them blindly.",
+        "Citadel armor here saves you the Vaughn rep grind for the same gear.",
+        "Bring more medpens than you think; DC pushes are sustained FPS fights."
+      ],
+      "links": [],
+      "sources": [
+        "https://www.mmopixel.com/news/star-citizen-4-8-best-loot-farming-guide",
+        "https://www.youtube.com/watch?v=Y31rmMtdARQ",
+        "https://www.youtube.com/watch?v=KqJlD516z4Y"
+      ]
+    },
+    {
+      "id": "medical-beacon-rescue-service-cutlass-red-apollo-50k-per-save",
+      "name": "Medical Beacon Rescue Service — Cutlass Red / Apollo (50k per Save)",
+      "category": "medical",
+      "patch": "4.8",
+      "status": "new",
+      "difficulty": 2,
+      "timeMinutes": 20,
+      "requirements": "Medical ship — Drake Cutlass Red (budget: 2x Tier-3 beds + cargo) or RSI Apollo Triage/Medivac (gold standard: modular T1/T2/T3 rooms). Medical supplies/MedGels and a fast quantum drive.",
+      "rewards": "Flat 50,000 aUEC paid from the rescued player's account per successful hospital delivery; builds medical/rescue reputation and player goodwill.",
+      "locations": [
+        "Stanton - any hospital (Area18 / Lorville / New Babbage / Orison)",
+        "Wherever player medical beacons spawn (system-wide)"
+      ],
+      "steps": [
+        {
+          "title": "Stage a medical ship and stock supplies",
+          "detail": "Spawn a Cutlass Red (affordable, two T3 beds + cargo) or an Apollo (modular rooms, handles severe/T1 cases). Load MedGels and medical supplies before going on call."
+        },
+        {
+          "title": "Watch for medical beacons",
+          "detail": "Incapacitated players broadcast beacons. Accept one and quantum to their marked location — speed matters because they're bleeding out."
+        },
+        {
+          "title": "Reach and revive the patient",
+          "detail": "Aim at the downed player and hold fire to run the revive beam through their bleed-out. When the bar fills they regain consciousness at very low health."
+        },
+        {
+          "title": "Get them onto a medical bed",
+          "detail": "Move the patient into your medbay and use the Tier-3 (Cutlass Red) or higher-tier (Apollo) bed to stabilize and heal them up from low health."
+        },
+        {
+          "title": "Transport to a hospital",
+          "detail": "Fly to the nearest hospital and deposit the patient. On delivery you're paid the flat 50,000 aUEC from their account."
+        },
+        {
+          "title": "Return to standby",
+          "detail": "Restock supplies if used and watch for the next beacon. Apollo's extra beds let you handle multiple/severe patients per sortie."
+        }
+      ],
+      "tips": [
+        "Cutlass Red is the cost-effective entry; Apollo is worth it only if you run high beacon volume or severe injuries.",
+        "Income tracks beacon availability — pair this with another loop for downtime.",
+        "Revive beam works through bleed-out — start it immediately, don't wait.",
+        "Keep MedGels stocked; arriving without supplies wastes the run."
+      ],
+      "links": [],
+      "sources": [
+        "https://starcitizen.tools/Medical",
+        "https://starcitizen.tools/Cutlass_Red",
+        "https://starcitizen.tools/Apollo_Triage",
+        "https://www.mmopixel.com/news/star-citizen-medical-ships-guide"
+      ]
+    },
+    {
+      "id": "wildstar-racing-pu-time-trial-rep-reward-loop",
+      "name": "Wildstar Racing — PU Time-Trial Rep & Reward Loop",
+      "category": "other",
+      "patch": "4.8",
+      "status": "new",
+      "difficulty": 2,
+      "timeMinutes": 15,
+      "requirements": "A fast, agile ship (350r, M50, Razor / Razor LX, Fury LX, Mustang Gamma, P-52 Merlin) with a good quantum drive. No combat gear.",
+      "rewards": "Cumulative aUEC per medal tier (bronze/silver/gold/platinum) — finishing a higher tier also pays the lower tiers plus the mission-fee refund; higher Wildstar rep unlocks new tracks.",
+      "locations": [
+        "Stanton race tracks (community-built circuits added in 3.18, still active)",
+        "Orbital and planetary time-trial courses"
+      ],
+      "steps": [
+        {
+          "title": "Accept a Wildstar time trial",
+          "detail": "Pick up a time-trial contract from Wildstar Racing via the contract manager. Start with whatever tracks your current reputation has unlocked."
+        },
+        {
+          "title": "Bring the right ship",
+          "detail": "Use a dedicated racer (M50, 350r, Razor LX, Fury LX). Agility and quantum/boost handling matter far more than firepower here."
+        },
+        {
+          "title": "Learn the track line",
+          "detail": "Do a recon lap to learn gates and the racing line, then commit. Times are checkpoint-gated, so a clean line beats raw throttle."
+        },
+        {
+          "title": "Beat the medal thresholds",
+          "detail": "Aim for the best medal you can hit — rewards are cumulative, so a gold finish also banks bronze/silver plus the returned mission fee."
+        },
+        {
+          "title": "Climb Wildstar reputation",
+          "detail": "Repeat runs and better times raise Wildstar Racing rep, unlocking additional, higher-reward tracks over time."
+        }
+      ],
+      "tips": [
+        "Rewards stack downward — always push for the highest medal you can land cleanly.",
+        "A recon lap to memorize gates is faster overall than blind speed runs.",
+        "This is a PU loop in your own ship — distinct from Arena Commander's instanced races.",
+        "Low risk and combat-free: a good change-of-pace earner between grinds."
+      ],
+      "links": [],
+      "sources": [
+        "https://starcitizen.tools/Racing",
+        "https://starcitizen.tools/Wildstar_Racing",
+        "https://gamerjournalist.com/where-to-find-race-tracks-and-time-trials-in-star-citizen/"
+      ]
+    },
+    {
+      "id": "crafting-fabrication-profit-loop-4-8-blueprints-to-components",
+      "name": "Crafting & Fabrication Profit Loop (4.8) — Blueprints to Components",
+      "category": "trading",
+      "patch": "4.8",
+      "status": "new",
+      "difficulty": 4,
+      "timeMinutes": 90,
+      "requirements": "Access to a fabrication/crafting station, blueprints (from mission rewards/loot), and a supply of high-quality materials (mined ore in high quality bands, salvaged RMC, looted components). Strong inventory management.",
+      "rewards": "Crafted ship components (power plants, coolers, shield generators, weapons) whose stats inherit material quality — sellable or tradeable to other players; blueprints themselves are high-value long-term assets.",
+      "locations": [
+        "Crafting / fabrication stations (Stanton & Pyro hubs)",
+        "Mining sites (high-quality ore)",
+        "Distribution Centers (looted components)"
+      ],
+      "steps": [
+        {
+          "title": "Acquire blueprints",
+          "detail": "Blueprints are the gate and the most valuable asset in the system. Farm them from mission rewards (e.g. Vaughn, Data Heist) and loot before chasing raw cash."
+        },
+        {
+          "title": "Gather high-quality materials",
+          "detail": "Mining now uses 8 static quality bands — Band 8 (1000 quality) is premium crafting stock. Treat high-band ore, salvaged RMC, and looted components as feedstock, not vendor trash."
+        },
+        {
+          "title": "Level your blueprint progression",
+          "detail": "Blueprint progression and material quality now matter more than before — invest in advancing blueprints since they outlast money through wipes."
+        },
+        {
+          "title": "Fabricate components",
+          "detail": "At a crafting station, fabricate components (power plants, coolers, shield generators, weapons). Higher material quality carries through into better component stats."
+        },
+        {
+          "title": "Sell or trade the output",
+          "detail": "Move finished components to other players or terminals. Quality-stat components command a premium over base-stat ones."
+        },
+        {
+          "title": "Specialize and split roles",
+          "detail": "Solo: pair one gathering profession with crafting. Orgs: split gathering, refining, research, crafting, and logistics across members for throughput."
+        }
+      ],
+      "tips": [
+        "Prioritize blueprints + reputation over short-term cash after the wipe — money resets, unlocks don't.",
+        "Band 8 / 1000-quality ore is premium feedstock; don't refine it into mediocre output.",
+        "Looted DC components feed straight into this loop — stop vendoring them.",
+        "For orgs, role specialization (gather/refine/research/craft/logistics) massively outpaces everyone doing everything."
+      ],
+      "links": [],
+      "sources": [
+        "https://ggwtb.com/blog/star-citizen-4-8-crafting-guide-best-blueprint-strategy--salvage-materials--player-trading",
+        "https://www.mmopixel.com/news/star-citizen-4-8-ship-blueprints-crafting-guide-how-to-unlock-components-fast",
+        "https://www.mmopixel.com/news/star-citizen-4-8-wipe-guide-how-to-make-auec-and-craft-ships-from-zero-after-wipe"
+      ]
+    },
+    {
+      "id": "save-stanton-fight-for-pyro-narrative-event-walkthrough",
+      "name": "Save Stanton / Fight for Pyro — Narrative Event Walkthrough",
+      "category": "event",
+      "patch": "4.8",
+      "status": "new",
+      "difficulty": 4,
+      "timeMinutes": 60,
+      "requirements": "Combat-capable ship (fighter/gunship) and FPS gear for ground objectives. In Fight for Pyro, you must commit to one faction.",
+      "rewards": "Faction-aligned event rewards (e.g. Pyro laser repeaters), aUEC from event missions, and one-time narrative progression.",
+      "locations": [
+        "Stanton system (Save Stanton — Slicer invasion)",
+        "Pyro system (Fight for Pyro continuation)"
+      ],
+      "steps": [
+        {
+          "title": "Join the Save Stanton defense",
+          "detail": "When active, Save Stanton tasks players with repelling a Slicer invasion attacking ships and stealing cargo across Stanton. Engage the invaders to earn event progress."
+        },
+        {
+          "title": "Complete Stanton-phase objectives",
+          "detail": "Run the event missions broadcast during the invasion — defending convoys/locations and destroying Slicer forces to advance the narrative meter."
+        },
+        {
+          "title": "Transition to Fight for Pyro",
+          "detail": "The continuation moves the conflict to Pyro. Here you must pick a side: Citizens for Prosperity, the Headhunters, or the Frontier Fighters."
+        },
+        {
+          "title": "Choose a faction deliberately",
+          "detail": "Your allegiance is mutually exclusive and determines which missions you receive and which rewards you can earn — choose based on the reward you want (e.g. faction weapons)."
+        },
+        {
+          "title": "Complete your faction's mission line",
+          "detail": "Run your chosen faction's contracts toward its goal in Pyro to bank the event currency/rep and unlock the aligned rewards."
+        },
+        {
+          "title": "Claim event rewards before it ends",
+          "detail": "These are limited-time/one-time-run events — collect the Pyro laser repeaters and other faction rewards before the event window closes."
+        }
+      ],
+      "tips": [
+        "Faction choice in Fight for Pyro is exclusive — decide which reward you want first.",
+        "These are limited-time narrative events; don't expect them to be permanently available.",
+        "Bring both ship combat and FPS capability — objectives span space and ground.",
+        "Group up — invasion/faction objectives are tuned for multiplayer participation."
+      ],
+      "links": [],
+      "sources": [
+        "https://starcitizen.tools/Save_Stanton",
+        "https://starcitizen.tools/Fight_for_Pyro",
+        "https://www.mmopixel.com/news/star-citizen-save-stanton-guide-a-one-time-run-event"
+      ]
+    }
+  ]
+}
