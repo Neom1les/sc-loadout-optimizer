@@ -7,6 +7,7 @@ import { loadJSON } from './data-loader.js';
 
 let ROOT = null;
 let GUIDES = [];
+let PATCH_INFO = {};
 let selectedPatch = 'all';
 let currentGuide = null;
 
@@ -17,6 +18,7 @@ export async function initPatchHub(root) {
   ROOT = root;
   try {
     GUIDES = (await loadJSON('guides.json')) || [];
+    try { PATCH_INFO = (await loadJSON('patch-info.json')) || {}; } catch { PATCH_INFO = {}; }
   } catch (e) {
     root.innerHTML = `<div class="empty-state" style="color:var(--status-crit)"><h3>Guide database not found</h3><p>data/guides.json is being built. ${e.message}</p></div>`;
     return;
@@ -57,9 +59,14 @@ function render() {
     </div>`;
   }).join('') || `<div class="empty-state"><p>No guides for this patch yet.</p></div>`;
 
+  const pv = esc(PATCH_INFO.patch_version || (GUIDES[0] && GUIDES[0].patch) || '4.8');
+  const upd = esc(PATCH_INFO.auto_updated || PATCH_INFO.data_collection_date || '');
+  const status = `<div class="patch-status"><span class="ps-dot"></span><span>Data patch <b>${pv}</b>${upd ? ' · updated <b>' + upd + '</b>' : ''} · auto-refreshed weekly from live sources</span></div>`;
+
   ROOT.innerHTML = `
     <div class="ph-head"><h2>Patch Hub &amp; Guides</h2>
-      <div class="ef-sub" style="font-family:var(--font-mono);font-size:.8rem;color:var(--text-secondary);margin-top:4px">New &amp; changed gameplay since the last patches — pick a feature for a complete step-by-step walkthrough with maps.</div></div>
+      <div class="ef-sub">New &amp; changed gameplay since the last patches — pick a feature for a complete step-by-step walkthrough with maps.</div></div>
+    ${status}
     <div class="patch-timeline">${timeline}</div>
     <div class="feature-grid">${cards}</div>`;
 
