@@ -1,52 +1,47 @@
-# Auto-Update Pipeline — SC Earnings & Patch Data
+# Keeping the SC Earnings & Patch Data Current
 
-Keeps the **Earnings Finder** and **Patch Hub** data current with each new Star
-Citizen patch, automatically.
+The **Earnings Finder** and **Patch Hub** data is community-curated and shifts
+with each Star Citizen patch. It is refreshed **manually, on request** — there
+is **no stored API key and no automatic job**, by design (the repo and the
+website are public, so no secret lives here).
 
-## How it works
+## How to refresh (the normal way)
 
-1. **`.github/workflows/update-sc-data.yml`** runs every **Monday 06:00 UTC**
-   (and can be triggered manually under *Actions → Update SC Data → Run workflow*).
-2. It runs **`scripts/update-sc-data.py`**, which uses **Claude (Opus 4.8) with
-   web search** to find the current SC patch and the latest money / reputation
-   methods + new gameplay features.
-3. The script merges the findings into `data/activities.json`,
-   `data/guides.json`, and `data/patch-info.json`:
-   - **adds** new activities and guides,
-   - **revises** aUEC/hour values for known activities,
-   - marks no-longer-viable activities **`stale`** (it never deletes — you review),
-   - bumps the patch stamp + `auto_updated` date.
-4. If anything changed, the workflow commits to `master` and GitHub Pages
-   rebuilds. The site shows the data patch + last-updated date in the Patch Hub.
+Just ask Claude Code in this repo:
 
-## One-time setup (required)
+> "Update the SC data."
 
-The workflow needs an Anthropic API key as a repository secret:
+Claude then:
+1. Web-searches the **current live SC patch** and the latest money / reputation
+   methods + any new gameplay features.
+2. Merges findings into `data/activities.json`, `data/guides.json`, and
+   `data/patch-info.json` — adds new entries, revises aUEC/hour values, and
+   flags anything no longer viable (it doesn't silently delete).
+3. Commits & pushes. GitHub Pages rebuilds; the Patch Hub shows the new data
+   patch + date.
 
-1. Get a key at <https://console.anthropic.com> → API Keys.
-2. In the repo: **Settings → Secrets and variables → Actions → New repository secret**
-   - Name: `ANTHROPIC_API_KEY`
-   - Value: your key
-3. Done. The next scheduled run (or a manual *Run workflow*) will use it.
+No key, nothing to configure. You see exactly what changed in the commit.
 
-> Cost is minimal — one Opus 4.8 run with web search per week (a few cents).
+## Optional: run the helper script locally
 
-## Run it locally
+`scripts/update-sc-data.py` does the same fetch programmatically with the
+Anthropic API. It is **not wired to any GitHub Action** — run it on your own
+machine with your own key if you ever want to:
 
 ```bash
 pip install anthropic
-export ANTHROPIC_API_KEY=sk-ant-...
+export ANTHROPIC_API_KEY=sk-ant-...      # stays on your machine only
 export RUN_DATE=$(date -u +%Y-%m-%d)
 python scripts/update-sc-data.py
-git diff data/        # review, then commit if good
+git diff data/                            # review, then commit if good
 ```
+
+The key never enters the repo or GitHub. (A scheduled GitHub Action was
+deliberately **not** used, to avoid storing a key in a public project.)
 
 ## Design notes
 
-- **Conservative merges.** New data is added; existing entries are revised in
-  place; dropped activities are demoted to `confidence: "stale"` + tagged, not
-  removed. Every change lands in a reviewable commit.
-- **Accuracy flags.** aUEC/hour are community estimates — each carries a
+- **Conservative merges** — new data added, existing values revised in place,
+  dropped activities demoted to `confidence: "stale"` + tagged, never removed.
+- **Accuracy flags** — aUEC/hour are community estimates, each carrying a
   `verified` / `estimated` / `rough` / `stale` confidence the UI surfaces.
-- **Model.** `claude-opus-4-8` with the `web_search_20260209` server tool and
-  adaptive thinking. Change `MODEL` in the script to adjust.

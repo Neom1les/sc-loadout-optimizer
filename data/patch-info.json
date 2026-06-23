@@ -1,15 +1,16 @@
 {
   "game": "Star Citizen",
-  "patch_version": "4.8.0-LIVE",
-  "build_number": "4.8.0-LIVE.11875683",
-  "release_date": "2026-05-14",
-  "data_collection_date": "2026-05-24",
+  "patch_version": "4.8.2-LIVE",
+  "build_number": "4.8.2-LIVE.12030094",
+  "release_date": "2026-06-03",
+  "data_collection_date": "2026-06-22",
+  "auto_updated": "2026-06-22",
   "data_source": {
-    "name": "Star Citizen Wiki API",
+    "name": "Star Citizen Wiki API + curated community sources",
     "url": "https://api.star-citizen.wiki/api/v2/",
-    "type": "Game-File-Extraction API (single source of truth)",
-    "version_confirmed": "4.8.0-LIVE.11875683",
-    "note": "Complete rebuild from this single source. No other sources mixed in. UEX price data is embedded in the API responses."
+    "type": "Game-File-Extraction API (ships/weapons) + curated community data (earnings/guides)",
+    "version_confirmed": "4.8.0-LIVE.11875683 (ship/weapon catalog) · 4.8.x (earnings/guides)",
+    "note": "Ship/weapon catalog from the single-source API rebuild. Earnings Finder + Patch Hub data is community-curated and tracked separately."
   },
   "key_changes_in_48": [
     "Damage Deflection Threshold system (armor meta overhaul)",
@@ -17,7 +18,9 @@
     "Tactical Strike Group missions",
     "G-Force tolerances / Flight Suit system",
     "Refueling system rebuild",
-    "Weapon velocity and DPS rebalancing"
+    "Weapon velocity and DPS rebalancing",
+    "4.8.1 (2026-06-03): Gatac Railen flyable (medium hybrid cargo hauler) + second Gatac industrial ship; new Defend missions; Alien Week event; 30+ fixes",
+    "4.8.2: stability hotfix"
   ],
   "data_quality": {
     "total_items": 754,
@@ -27,5 +30,5 @@
     "no_duplicate_uuids": true,
     "spot_check_validation": "3 ships + 3 weapons verified against live API — all values match exactly"
   },
-  "notes": "v2.0 — Complete single-source rebuild replacing v1.0 multi-source data. Armor stored as damage multipliers (not percentages). Penetration stored as base_distance (raw API value)."
+  "notes": "v2.0 — single-source ship/weapon rebuild (armor as damage multipliers; penetration as base_distance). Patch tracking refreshed to 4.8.2-LIVE on 2026-06-22 (manual update). Money/reputation/guide content verified current for 4.8.x — 4.8.1 and 4.8.2 added ships, defend missions and fixes but no new earning mechanics."
 }
