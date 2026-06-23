@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SC Optimizer — Alpha 4.8</title>
-    <link rel="stylesheet" href="css/terminal.css?v=24">
-    <link rel="stylesheet" href="css/layout.css?v=24">
-    <link rel="stylesheet" href="css/components.css?v=24">
-    <link rel="stylesheet" href="css/features.css?v=24">
+    <link rel="stylesheet" href="css/terminal.css?v=25">
+    <link rel="stylesheet" href="css/layout.css?v=25">
+    <link rel="stylesheet" href="css/components.css?v=25">
+    <link rel="stylesheet" href="css/features.css?v=25">
 </head>
-<body class="tab-optimizer">
+<body class="tab-home">
 
 <div class="loading-screen" id="loadingScreen">
     <div class="loading-text cursor-blink">INITIALIZING SHIP DATABASE</div>
@@ -26,7 +26,7 @@
             <a href="https://robertsspaceindustries.com/en/orgs/N3M3S1S" target="_blank" title="NEMESIS Organization">
                 <img src="assets/nemesis-logo.webp" alt="NEMESIS" style="height:42px;width:auto;filter:brightness(1.5) drop-shadow(0 0 6px var(--sc-teal-glow));transition:filter 0.3s;" onmouseover="this.style.filter='brightness(2) drop-shadow(0 0 12px rgba(61,255,242,0.4))'" onmouseout="this.style.filter='brightness(1.5) drop-shadow(0 0 6px var(--sc-teal-glow))'">
             </a>
-            <div>
+            <div id="goHome" style="cursor:pointer" title="Back to hub">
                 <div class="app-title">SC Optimizer</div>
                 <div class="app-patch" id="patchInfo">LOADING...</div>
             </div>
@@ -44,8 +44,11 @@
         </div>
     </header>
 
+    <!-- ============ HUB · HOME ============ -->
+    <div class="tab-panel active" id="tabHome"><div id="homeRoot"></div></div>
+
     <!-- ============ TAB 1 · LOADOUT OPTIMIZER (existing) ============ -->
-    <div class="tab-panel active" id="tabOptimizer">
+    <div class="tab-panel" id="tabOptimizer">
         <section class="config-section">
             <div class="config-left">
                 <div class="panel" id="shipSelectPanel">
@@ -130,17 +133,17 @@
 
 </div>
 
-<script type="module" src="js/data-loader.js?v=24"></script>
-<script type="module" src="js/ship-selector.js?v=24"></script>
-<script type="module" src="js/optimizer.js?v=24"></script>
-<script type="module" src="js/stats-calculator.js?v=24"></script>
-<script type="module" src="js/shop-finder.js?v=24"></script>
-<script type="module" src="js/loadout-renderer.js?v=24"></script>
-<script type="module" src="js/storage.js?v=24"></script>
-<script type="module" src="js/matchup.js?v=24"></script>
-<script type="module" src="js/app.js?v=24"></script>
-<script type="module" src="js/earnings-finder.js?v=24"></script>
-<script type="module" src="js/patch-hub.js?v=24"></script>
-<script type="module" src="js/tabs.js?v=24"></script>
+<script type="module" src="js/data-loader.js?v=25"></script>
+<script type="module" src="js/ship-selector.js?v=25"></script>
+<script type="module" src="js/optimizer.js?v=25"></script>
+<script type="module" src="js/stats-calculator.js?v=25"></script>
+<script type="module" src="js/shop-finder.js?v=25"></script>
+<script type="module" src="js/loadout-renderer.js?v=25"></script>
+<script type="module" src="js/storage.js?v=25"></script>
+<script type="module" src="js/matchup.js?v=25"></script>
+<script type="module" src="js/app.js?v=25"></script>
+<script type="module" src="js/earnings-finder.js?v=25"></script>
+<script type="module" src="js/patch-hub.js?v=25"></script>
+<script type="module" src="js/tabs.js?v=25"></script>
 </body>
 </html>

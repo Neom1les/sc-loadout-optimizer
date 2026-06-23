@@ -181,3 +181,25 @@ body.tab-optimizer .btn-save { display:inline-flex; }
 .up-body b { font-family:var(--font-heading); font-size:.92rem; letter-spacing:.02em; color:var(--text-bright); line-height:1.2; }
 .up-body span { font-size:.84rem; color:var(--text-secondary); line-height:1.45; }
 @media (max-width:600px){ .up-when { margin-left:0; width:100%; } }
+
+/* ============================================================
+   HOME HUB (landing tiles)
+   ============================================================ */
+.home-hero { text-align:center; padding:clamp(1.4rem,5vw,3.4rem) 1rem 1.6rem; }
+.hh-kicker { font-family:var(--font-mono); font-size:.72rem; letter-spacing:.28em; text-transform:uppercase; color:var(--sc-teal); }
+.hh-title { font-family:var(--font-heading); font-size:clamp(2rem,6vw,3.4rem); font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--text-bright); margin:.35rem 0; line-height:1.05; }
+.hh-sub { font-family:var(--font-read); font-size:1rem; color:var(--text-secondary); }
+.home-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; max-width:1120px; margin:0 auto; padding:0 4px 8px; }
+.home-tile { position:relative; display:block; text-align:left; border:1px solid var(--border-panel); background:var(--bg-panel); cursor:pointer; overflow:hidden; min-height:300px; padding:0; font:inherit; color:inherit; transition:border-color .2s, box-shadow .2s, transform .2s; clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px)); }
+.home-tile:hover { border-color:var(--sc-teal); box-shadow:0 0 28px rgba(61,255,242,.12); transform:translateY(-3px); }
+.home-tile .ht-img { position:absolute; inset:0; background-size:cover; background-position:center; transition:transform .45s ease; }
+.home-tile:hover .ht-img { transform:scale(1.06); }
+.home-tile .ht-shade { position:absolute; inset:0; background:linear-gradient(180deg, rgba(3,6,8,.25) 0%, rgba(3,6,8,.55) 45%, rgba(7,17,20,.94) 100%); transition:background .25s; }
+.home-tile:hover .ht-shade { background:linear-gradient(180deg, rgba(3,6,8,.2) 0%, rgba(8,30,33,.5) 45%, rgba(7,22,26,.96) 100%); }
+.ht-body { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; gap:6px; padding:20px; }
+.ht-ico { font-size:1.6rem; color:var(--sc-teal); line-height:1; text-shadow:0 0 12px var(--sc-teal-glow); margin-bottom:auto; }
+.ht-title { font-family:var(--font-heading); font-size:1.5rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--text-bright); line-height:1.1; }
+.ht-desc { font-family:var(--font-read); font-size:.92rem; color:var(--text-secondary); line-height:1.5; max-width:42ch; }
+.ht-cta { font-family:var(--font-heading); font-size:.8rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--sc-teal); margin-top:6px; }
+.home-tile:hover .ht-cta { color:var(--text-bright); }
+.home-tile:hover .ht-ico { color:var(--text-bright); }
