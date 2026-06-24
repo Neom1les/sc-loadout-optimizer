@@ -1,21 +1,23 @@
 /* ============================================================
    SC Optimizer — Fleet tab (org / clan tools)
-   Three sub-tools: Squad Composition Builder, Fleet & Crew Roster,
-   and Squad Loadout Presets (with shareable links). All client-side
-   (LocalStorage + URL-hash sharing), built for NEMESIS coordination.
+   Sub-tools: My Fleet (visual fleet builder with previews + to-scale
+   size comparison), Squad Composition Builder, and Squad Loadout
+   Presets (shareable). All client-side (LocalStorage + URL-hash).
    ============================================================ */
 import { getCombatShips } from './ship-combat.js';
 import { getSavedLoadouts } from './storage.js';
 import { formatNumber } from './stats-calculator.js';
+import { loadJSON } from './data-loader.js';
 
-const RKEY = 'sc-fleet-roster';
+const FKEY = 'sc-my-fleet';
 const PKEY = 'sc-squad-presets';
 
 let ROOT = null;
-let SHIPS = [];
-let mode = 'squad';
-let squad = [];          // array of ship profiles
-let sharedSquad = null;  // decoded from URL hash, if any
+let COMBAT = [];
+let ALL = null;
+let mode = 'myfleet';
+let squad = [];
+let sharedSquad = null;
 
 function esc(s) { return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 function lget(k) { try { return JSON.parse(localStorage.getItem(k)) || []; } catch { return []; } }
@@ -27,15 +29,47 @@ function roleClass(role) {
   if (/heavy fighter|gunship/.test(r)) return 'Heavy';
   if (/light fighter|interceptor|snub/.test(r)) return 'Interceptor';
   if (/medical|support|refuel|repair|tanker/.test(r)) return 'Support';
-  if (/capital|corvette|frigate|destroyer|cruiser/.test(r)) return 'Capital';
+  if (/capital|corvette|frigate|destroyer|cruiser|carrier/.test(r)) return 'Capital';
+  if (/cargo|freight|haul|transport/.test(r)) return 'Cargo';
+  if (/mining|salvage|refinery/.test(r)) return 'Industrial';
+  if (/explor|pathfinder|expedition/.test(r)) return 'Explorer';
   if (/fighter/.test(r)) return 'Fighter';
   return 'Other';
+}
+
+function szClass(size) { return ({ small: 's', medium: 'm', large: 'l', capital: 'c', vehicle: 'v' }[(size || '').toLowerCase()]) || 'm'; }
+
+/* all ships (every type), basic fields for the fleet view */
+async function loadAllShips() {
+  if (ALL) return ALL;
+  const ships = await loadJSON('ships.json');
+  const seen = new Set();
+  ALL = [];
+  for (const s of ships) {
+    if (!(s.is_spaceship || s.is_vehicle) || !s.name || seen.has(s.name)) continue;
+    seen.add(s.name);
+    ALL.push({
+      uuid: s.uuid,
+      name: s.name,
+      manufacturer: s.manufacturer?.name || 'Unknown',
+      role: s.role || 'Unknown',
+      size: s.size?.en_EN || '',
+      length: s.dimensions?.length || 0,
+      crewMin: s.crew?.min || 1,
+      crewMax: s.crew?.max || 1,
+      cargo: s.cargo_capacity || 0,
+      scm: s.speed?.scm || 0,
+      image: s.images?.[0]?.thumbnail_url || s.images?.[0]?.original_url || null,
+    });
+  }
+  ALL.sort((a, b) => a.name.localeCompare(b.name));
+  return ALL;
 }
 
 export async function initFleet(root) {
   ROOT = root;
   try {
-    SHIPS = await getCombatShips();
+    [COMBAT, ALL] = await Promise.all([getCombatShips(), loadAllShips()]);
   } catch (e) {
     root.innerHTML = `<div class="empty-state" style="color:var(--status-crit)"><h3>Ship data unavailable</h3><p>${e.message}</p></div>`;
     return;
@@ -48,17 +82,119 @@ export async function initFleet(root) {
 function render() {
   ROOT.innerHTML = `
     <div class="ph-head"><h2>Fleet Operations</h2>
-      <div class="ef-sub">Plan squad compositions, track your org's fleet &amp; crews, and share standard loadout presets — all stored locally, no account needed.</div></div>
+      <div class="ef-sub">Build &amp; visualize your fleet, plan combat squads, and share standard loadout presets — all stored locally, no account needed.</div></div>
     <div class="fleet-subtabs">
+      <button class="fl-sub${mode === 'myfleet' ? ' active' : ''}" data-mode="myfleet">My Fleet</button>
       <button class="fl-sub${mode === 'squad' ? ' active' : ''}" data-mode="squad">Squad Builder</button>
-      <button class="fl-sub${mode === 'roster' ? ' active' : ''}" data-mode="roster">Fleet &amp; Crew Roster</button>
       <button class="fl-sub${mode === 'presets' ? ' active' : ''}" data-mode="presets">Loadout Presets</button>
     </div>
     <div id="fleetBody"></div>`;
-  ROOT.querySelectorAll('.fl-sub').forEach(b => b.onclick = () => { mode = b.dataset.mode; render(); });
-  if (mode === 'squad') renderSquad();
-  else if (mode === 'roster') renderRoster();
+  ROOT.querySelectorAll('.fl-sub[data-mode]').forEach(b => b.onclick = () => { mode = b.dataset.mode; render(); });
+  if (mode === 'myfleet') renderMyFleet();
+  else if (mode === 'squad') renderSquad();
   else renderPresets();
+}
+
+/* ─────────────────────────── My Fleet ─────────────────────────────────── */
+function shipCard(s) {
+  const img = s.image
+    ? `<img src="${s.image}" alt="${esc(s.name)}" loading="lazy" onerror="this.closest('.fleet-card').classList.add('no-img')">`
+    : '';
+  return `<div class="fleet-card${s.image ? '' : ' no-img'}">
+    <div class="fc-img">${img}<span class="fc-noimg">NO IMAGE</span><span class="sq-remove" data-x="${s.uuid}">×</span></div>
+    <div class="fc-info">
+      <div class="fc-title">${esc(s.name)}</div>
+      <div class="ship-role">${esc(s.manufacturer)} · ${esc(s.role)}${s.size ? ' · ' + esc(s.size) : ''}</div>
+      <div class="fc-stats">
+        <span>${s.crewMax > 1 ? s.crewMin + '–' + s.crewMax + ' crew' : 'solo'}</span>
+        <span>${s.cargo ? formatNumber(s.cargo) + ' SCU' : 'no cargo'}</span>
+        ${s.length ? `<span>${s.length} m</span>` : ''}
+        ${s.scm ? `<span>${formatNumber(s.scm)} m/s</span>` : ''}
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderSizeBars(ships) {
+  const withLen = ships.filter(s => s.length > 0).sort((a, b) => b.length - a.length);
+  if (!withLen.length) return '<div class="src-note">No dimension data for these ships.</div>';
+  const maxLen = withLen[0].length;
+  return withLen.map(s => {
+    const pct = Math.max(2, (s.length / maxLen) * 100);
+    return `<div class="sizebar-row"><span class="sizebar-name">${esc(s.name)}</span><div class="sizebar-track"><span class="sizebar-fill sz-${szClass(s.size)}" style="width:${pct}%"></span></div><span class="sizebar-len">${s.length} m</span></div>`;
+  }).join('');
+}
+
+function renderMyFleet() {
+  const body = ROOT.querySelector('#fleetBody');
+  const fleetIds = lget(FKEY);
+  const inFleet = new Set(fleetIds);
+  const ships = fleetIds.map(id => ALL.find(s => s.uuid === id)).filter(Boolean);
+
+  const agg = { count: ships.length, cargo: 0, seats: 0, roles: {} };
+  for (const s of ships) { agg.cargo += s.cargo; agg.seats += s.crewMax; const r = roleClass(s.role); agg.roles[r] = (agg.roles[r] || 0) + 1; }
+  const longest = ships.reduce((m, s) => Math.max(m, s.length || 0), 0);
+
+  body.innerHTML = `
+    <div class="tac-layout">
+      <div class="panel tac-pick">
+        <div class="panel-header">Add ship (${ships.length} in fleet)</div>
+        <input type="text" class="search-input" id="mfSearch" placeholder="Search ${ALL.length} ships...">
+        <div class="ship-list" id="mfList"></div>
+      </div>
+      <div class="tac-analysis">
+        ${ships.length ? `
+        <div class="panel">
+          <div class="panel-header">Fleet overview <span class="pc-note">${agg.count} ships · ${formatNumber(agg.cargo)} SCU · ${agg.seats} crew seats</span></div>
+          <div class="sq-roles">${Object.entries(agg.roles).sort((a, b) => b[1] - a[1]).map(([r, n]) => `<span class="sq-role-chip">${esc(r)} ×${n}</span>`).join('')}</div>
+          <div class="fleet-io">
+            <button class="fl-sub" id="mfExport">Export JSON</button>
+            <button class="fl-sub" id="mfImport">Import JSON</button>
+            <button class="fl-sub" id="mfClear">Clear fleet</button>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-header">Size comparison <span class="pc-note">to scale · longest ${Math.round(longest)} m</span></div>
+          <div class="fleet-sizecmp">${renderSizeBars(ships)}</div>
+        </div>
+        <div class="fleet-grid">${ships.map(shipCard).join('')}</div>
+        ` : '<div class="empty-state"><h3>Your fleet is empty</h3><p>Search on the left and add the ships you own (or want). You\'ll see them with render previews, stats, and a to-scale size comparison.</p></div>'}
+      </div>
+    </div>`;
+
+  const search = body.querySelector('#mfSearch');
+  const drawList = (q) => {
+    const list = q ? ALL.filter(s => s.name.toLowerCase().includes(q) || s.manufacturer.toLowerCase().includes(q) || s.role.toLowerCase().includes(q)) : ALL;
+    body.querySelector('#mfList').innerHTML = list.slice(0, 160).map(s =>
+      `<div class="ship-item${inFleet.has(s.uuid) ? ' active' : ''}" data-uuid="${s.uuid}"><span>${esc(s.name)}</span><span class="ship-role">${esc(s.role)}</span></div>`
+    ).join('') || '<div class="empty-state"><p>No ships</p></div>';
+    body.querySelectorAll('#mfList .ship-item').forEach(it => it.onclick = () => {
+      const id = it.dataset.uuid;
+      let f = lget(FKEY);
+      f = f.includes(id) ? f.filter(x => x !== id) : [...f, id];
+      lset(FKEY, f);
+      renderMyFleet();
+    });
+  };
+  search.addEventListener('input', () => drawList(search.value.toLowerCase().trim()));
+  drawList('');
+
+  body.querySelectorAll('.fleet-card .sq-remove').forEach(x => x.onclick = () => { lset(FKEY, lget(FKEY).filter(id => id !== x.dataset.x)); renderMyFleet(); });
+
+  const exp = body.querySelector('#mfExport');
+  if (exp) exp.onclick = () => {
+    const out = ships.map(s => ({ uuid: s.uuid, name: s.name }));
+    const blob = new Blob([JSON.stringify(out, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'my-fleet.json'; a.click();
+  };
+  const imp = body.querySelector('#mfImport');
+  if (imp) imp.onclick = () => {
+    const inp = document.createElement('input'); inp.type = 'file'; inp.accept = 'application/json';
+    inp.onchange = () => { const f = inp.files[0]; if (!f) return; const rd = new FileReader(); rd.onload = () => { try { const data = JSON.parse(rd.result); const ids = (Array.isArray(data) ? data : []).map(x => x.uuid || x).filter(Boolean); if (ids.length) { lset(FKEY, ids); renderMyFleet(); } } catch {} }; rd.readAsText(f); };
+    inp.click();
+  };
+  const clr = body.querySelector('#mfClear');
+  if (clr) clr.onclick = () => { if (confirm('Clear your whole fleet?')) { lset(FKEY, []); renderMyFleet(); } };
 }
 
 /* ─────────────────────────── Squad Composition Builder ─────────────────── */
@@ -71,13 +207,13 @@ function renderSquad() {
     <div class="tac-layout">
       <div class="panel tac-pick">
         <div class="panel-header">Add ships (${squad.length}/8)</div>
-        <input type="text" class="search-input" id="sqSearch" placeholder="Search ${SHIPS.length} ships...">
+        <input type="text" class="search-input" id="sqSearch" placeholder="Search ${COMBAT.length} combat ships...">
         <div class="ship-list" id="sqList"></div>
       </div>
       <div class="tac-analysis">
         <div class="panel">
           <div class="panel-header">Squad — ${squad.length} ship${squad.length === 1 ? '' : 's'}</div>
-          <div id="sqMembers">${squad.length ? '' : '<div class="empty-state"><p>Add 2–8 ships to compose a squad.</p></div>'}</div>
+          <div id="sqMembers">${squad.length ? '' : '<div class="empty-state"><p>Add 2–8 combat ships to compose a squad.</p></div>'}</div>
         </div>
         ${squad.length ? `
         <div class="panel">
@@ -100,12 +236,12 @@ function renderSquad() {
 
   const search = body.querySelector('#sqSearch');
   const drawList = (q) => {
-    const list = q ? SHIPS.filter(s => s.name.toLowerCase().includes(q) || s.manufacturer.toLowerCase().includes(q) || s.role.toLowerCase().includes(q)) : SHIPS;
+    const list = q ? COMBAT.filter(s => s.name.toLowerCase().includes(q) || s.manufacturer.toLowerCase().includes(q) || s.role.toLowerCase().includes(q)) : COMBAT;
     body.querySelector('#sqList').innerHTML = list.slice(0, 140).map(s =>
       `<div class="ship-item${inSquad.has(s.uuid) ? ' active' : ''}" data-uuid="${s.uuid}"><span>${esc(s.name)}</span><span class="ship-role">${esc(s.role)}</span></div>`
     ).join('') || '<div class="empty-state"><p>No ships</p></div>';
     body.querySelectorAll('#sqList .ship-item').forEach(it => it.onclick = () => {
-      const s = SHIPS.find(x => x.uuid === it.dataset.uuid);
+      const s = COMBAT.find(x => x.uuid === it.dataset.uuid);
       if (inSquad.has(s.uuid)) squad = squad.filter(x => x.uuid !== s.uuid);
       else if (squad.length < 8) squad.push(s);
       renderSquad();
@@ -114,10 +250,13 @@ function renderSquad() {
   search.addEventListener('input', () => drawList(search.value.toLowerCase().trim()));
   drawList('');
 
-  body.querySelector('#sqMembers').innerHTML = squad.map(s =>
-    `<div class="sq-member"><div><b>${esc(s.name)}</b> <span class="ship-role">${esc(s.role)}</span><span class="sq-mstats">${formatNumber(s.dps)} DPS · ${formatNumber(s.ehp)} EHP · ${s.crew.max > 1 ? s.crew.min + '–' + s.crew.max + ' crew' : 'solo'}</span></div><span class="sq-remove" data-x="${s.uuid}">×</span></div>`
-  ).join('');
-  body.querySelectorAll('.sq-remove').forEach(x => x.onclick = () => { squad = squad.filter(s => s.uuid !== x.dataset.x); renderSquad(); });
+  const mem = body.querySelector('#sqMembers');
+  if (mem && squad.length) {
+    mem.innerHTML = squad.map(s =>
+      `<div class="sq-member"><div><b>${esc(s.name)}</b> <span class="ship-role">${esc(s.role)}</span><span class="sq-mstats">${formatNumber(s.dps)} DPS · ${formatNumber(s.ehp)} EHP · ${s.crew.max > 1 ? s.crew.min + '–' + s.crew.max + ' crew' : 'solo'}</span></div><span class="sq-remove" data-x="${s.uuid}">×</span></div>`
+    ).join('');
+    mem.querySelectorAll('.sq-remove').forEach(x => x.onclick = () => { squad = squad.filter(s => s.uuid !== x.dataset.x); renderSquad(); });
+  }
 }
 
 function squadAggregate(list) {
@@ -139,84 +278,6 @@ function squadAggregate(list) {
   if (!has('Bomber') && !has('Capital')) agg.feedback.push({ kind: 'warn', text: 'No bomber or capital — limited anti-large firepower.' });
   if (agg.minScm < 200 && list.length > 1) agg.feedback.push({ kind: 'warn', text: `Slowest ship at ${Math.round(agg.minScm)} m/s will hold the group back.` });
   return agg;
-}
-
-/* ─────────────────────────── Fleet & Crew Roster ──────────────────────── */
-function renderRoster() {
-  const body = ROOT.querySelector('#fleetBody');
-  const assets = lget(RKEY);
-  const shipOpts = ['<option value="">— select ship —</option>'].concat(SHIPS.map(s => `<option value="${s.uuid}">${esc(s.name)}</option>`)).join('');
-
-  // fleet aggregate + crew demand
-  let totalCrew = 0, multicrew = 0;
-  const byMember = {};
-  for (const a of assets) {
-    (byMember[a.member] = byMember[a.member] || []).push(a);
-    const ship = SHIPS.find(s => s.uuid === a.shipUuid);
-    if (ship) { totalCrew += ship.crew.max; if (ship.crew.max > 1) multicrew++; }
-  }
-
-  body.innerHTML = `
-    <div class="panel">
-      <div class="panel-header">Add fleet asset</div>
-      <div class="roster-form">
-        <input type="text" class="search-input" id="rMember" placeholder="Member / handle">
-        <select class="search-input" id="rShip">${shipOpts}</select>
-        <input type="text" class="search-input" id="rLoc" placeholder="Stored at (e.g. Area18)">
-        <select class="search-input" id="rStatus"><option value="ready">Ready</option><option value="maintenance">Maintenance</option><option value="loaned">Loaned out</option></select>
-        <button class="btn-optimize" id="rAdd" style="white-space:nowrap">+ Add</button>
-      </div>
-    </div>
-    ${assets.length ? `
-    <div class="panel">
-      <div class="panel-header">Fleet overview <span class="pc-note">${assets.length} ships · ${Object.keys(byMember).length} members · ${multicrew} multicrew · ${totalCrew} seats total</span></div>
-      <div id="rosterList"></div>
-    </div>
-    <div class="roster-io">
-      <button class="fl-sub" id="rExport">Export JSON</button>
-      <button class="fl-sub" id="rImport">Import JSON</button>
-    </div>` : '<div class="empty-state"><p>No fleet assets yet. Add ships above to track who owns what and who can crew them.</p></div>'}`;
-
-  body.querySelector('#rAdd').onclick = () => {
-    const member = body.querySelector('#rMember').value.trim();
-    const shipUuid = body.querySelector('#rShip').value;
-    const ship = SHIPS.find(s => s.uuid === shipUuid);
-    if (!member || !ship) return;
-    const assets = lget(RKEY);
-    assets.push({ id: Math.random().toString(36).slice(2, 9), member, shipUuid, shipName: ship.name, location: body.querySelector('#rLoc').value.trim(), status: body.querySelector('#rStatus').value });
-    lset(RKEY, assets);
-    renderRoster();
-  };
-
-  const listEl = body.querySelector('#rosterList');
-  if (listEl) {
-    listEl.innerHTML = Object.entries(byMember).sort((a, b) => a[0].localeCompare(b[0])).map(([member, ships]) => `
-      <div class="roster-member">
-        <div class="rm-head">${esc(member)} <span class="pc-note">${ships.length} ship${ships.length === 1 ? '' : 's'}</span></div>
-        ${ships.map(a => {
-          const ship = SHIPS.find(s => s.uuid === a.shipUuid);
-          const crew = ship && ship.crew.max > 1 ? `${ship.crew.min}–${ship.crew.max} crew` : 'solo';
-          return `<div class="roster-asset">
-            <div><b>${esc(a.shipName)}</b> <span class="ship-role">${crew}</span>${a.location ? `<span class="sq-mstats">@ ${esc(a.location)}</span>` : ''}</div>
-            <span class="rstatus rs-${a.status}">${a.status}</span>
-            <span class="sq-remove" data-del="${a.id}">×</span>
-          </div>`;
-        }).join('')}
-      </div>`).join('');
-    listEl.querySelectorAll('[data-del]').forEach(x => x.onclick = () => { lset(RKEY, lget(RKEY).filter(a => a.id !== x.dataset.del)); renderRoster(); });
-  }
-
-  const exp = body.querySelector('#rExport');
-  if (exp) exp.onclick = () => {
-    const blob = new Blob([JSON.stringify(lget(RKEY), null, 2)], { type: 'application/json' });
-    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'nemesis-fleet-roster.json'; a.click();
-  };
-  const imp = body.querySelector('#rImport');
-  if (imp) imp.onclick = () => {
-    const inp = document.createElement('input'); inp.type = 'file'; inp.accept = 'application/json';
-    inp.onchange = () => { const f = inp.files[0]; if (!f) return; const rd = new FileReader(); rd.onload = () => { try { const data = JSON.parse(rd.result); if (Array.isArray(data)) { lset(RKEY, data); renderRoster(); } } catch {} }; rd.readAsText(f); };
-    inp.click();
-  };
 }
 
 /* ─────────────────────────── Squad Loadout Presets ────────────────────── */
