@@ -4,6 +4,7 @@ import { optimizeLoadout, getProfile } from './optimizer.js';
 import { renderLoadout, setSlotChangeCallback, clearShoppingChecks } from './loadout-renderer.js';
 import { getSavedLoadouts, saveLoadout, deleteLoadout } from './storage.js';
 import { calculateMatchup, renderMatchup } from './matchup.js';
+import { applyBudgetMode } from './budget.js';
 
 let currentShip = null;
 let currentLoadout = null;
@@ -144,6 +145,16 @@ async function onOptimize() {
     try {
         clearShoppingChecks();
         currentLoadout = await optimizeLoadout(currentShip, profile);
+
+        const budgetEl = document.getElementById('budgetSummary');
+        if (document.getElementById('cbBudget')?.checked) {
+            const r = applyBudgetMode(currentLoadout);
+            budgetEl.innerHTML = `<div class="budget-banner"><span class="bb-ico">💰</span> Budget build — ${r.picked} purchasable component${r.picked === 1 ? '' : 's'} for <b>${r.cost.toLocaleString('en-US')} aUEC</b>, chosen for best performance-per-credit. Untick Budget build for the meta loadout.</div>`;
+            budgetEl.style.display = '';
+        } else if (budgetEl) {
+            budgetEl.innerHTML = '';
+            budgetEl.style.display = 'none';
+        }
 
         document.getElementById('resultsSection').style.display = '';
 

@@ -269,3 +269,9 @@ body.tab-optimizer .btn-save { display:inline-flex; }
 .sq-preset-ships { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:8px; }
 .sq-preset-actions { display:flex; gap:6px; }
 @media (max-width:820px){ .tac-layout { grid-template-columns:1fr; } .tac-pick .ship-list { max-height:280px; } .tac-def-grid { grid-template-columns:1fr; } }
+
+/* budget build mode */
+.budget-toggle { margin-top:10px; }
+.budget-banner { font-family:var(--font-read); font-size:.9rem; color:var(--text-primary); line-height:1.5; background:linear-gradient(90deg, rgba(255,184,48,.1), transparent); border:1px solid var(--sc-amber-dim); border-left:3px solid var(--sc-amber); padding:10px 14px; margin-bottom:14px; }
+.budget-banner b { color:var(--sc-amber); font-family:var(--font-mono); }
+.budget-banner .bb-ico { margin-right:4px; }

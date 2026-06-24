@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SC Optimizer — Alpha 4.8</title>
-    <link rel="stylesheet" href="css/terminal.css?v=27">
-    <link rel="stylesheet" href="css/layout.css?v=27">
-    <link rel="stylesheet" href="css/components.css?v=27">
-    <link rel="stylesheet" href="css/features.css?v=27">
+    <link rel="stylesheet" href="css/terminal.css?v=28">
+    <link rel="stylesheet" href="css/layout.css?v=28">
+    <link rel="stylesheet" href="css/components.css?v=28">
+    <link rel="stylesheet" href="css/features.css?v=28">
 </head>
 <body class="tab-home">
 
@@ -68,6 +68,7 @@
                             <label class="sc-checkbox"><input type="checkbox" id="cbPvE" checked><span>PvE</span></label>
                             <label class="sc-checkbox"><input type="checkbox" id="cbPvP"><span>PvP</span></label>
                         </div>
+                        <label class="sc-checkbox budget-toggle"><input type="checkbox" id="cbBudget"><span>💰 Budget build — best value per aUEC</span></label>
                     </div>
                     <div style="margin-top:14px;">
                         <button class="btn-optimize" id="btnOptimize" disabled>&gt;&gt;&gt; Optimize Loadout &lt;&lt;&lt;</button>
@@ -84,6 +85,7 @@
         </section>
 
         <section class="results-section" id="resultsSection" style="display:none;">
+            <div id="budgetSummary" style="display:none;"></div>
             <div class="panel fade-in" id="weaponsPanel"><div class="panel-header">Weapons Loadout</div><div id="weaponsResult"></div></div>
             <div class="two-col">
                 <div class="panel fade-in" id="componentsPanel"><div class="panel-header">Components</div><div id="componentsResult"></div></div>
@@ -145,17 +147,17 @@
 
 </div>
 
-<script type="module" src="js/data-loader.js?v=27"></script>
-<script type="module" src="js/ship-selector.js?v=27"></script>
-<script type="module" src="js/optimizer.js?v=27"></script>
-<script type="module" src="js/stats-calculator.js?v=27"></script>
-<script type="module" src="js/shop-finder.js?v=27"></script>
-<script type="module" src="js/loadout-renderer.js?v=27"></script>
-<script type="module" src="js/storage.js?v=27"></script>
-<script type="module" src="js/matchup.js?v=27"></script>
-<script type="module" src="js/app.js?v=27"></script>
-<script type="module" src="js/earnings-finder.js?v=27"></script>
-<script type="module" src="js/patch-hub.js?v=27"></script>
-<script type="module" src="js/tabs.js?v=27"></script>
+<script type="module" src="js/data-loader.js?v=28"></script>
+<script type="module" src="js/ship-selector.js?v=28"></script>
+<script type="module" src="js/optimizer.js?v=28"></script>
+<script type="module" src="js/stats-calculator.js?v=28"></script>
+<script type="module" src="js/shop-finder.js?v=28"></script>
+<script type="module" src="js/loadout-renderer.js?v=28"></script>
+<script type="module" src="js/storage.js?v=28"></script>
+<script type="module" src="js/matchup.js?v=28"></script>
+<script type="module" src="js/app.js?v=28"></script>
+<script type="module" src="js/earnings-finder.js?v=28"></script>
+<script type="module" src="js/patch-hub.js?v=28"></script>
+<script type="module" src="js/tabs.js?v=28"></script>
 </body>
 </html>
