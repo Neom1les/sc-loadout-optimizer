@@ -71,16 +71,18 @@ function renderAnalysis() {
   const adv = damageAdvice(t.armorMult);
   const uniform = adv.best.mult === adv.worst.mult;
 
-  const counters = SHIPS.filter(s => s.uuid !== t.uuid && s.combatRole && s.sizeRank <= t.sizeRank + 1)
+  const counters = SHIPS.filter(s => s.combatRole && s.sizeRank <= t.sizeRank + 1)
     .map(s => ({ s, ...duel(s, t) }))
     .filter(c => isFinite(c.aKillsB))
-    .sort((a, b) => (b.margin - a.margin) || (a.aKillsB - b.aKillsB))
+    .sort((a, b) => (a.aKillsB - b.aKillsB) || (b.margin - a.margin))
     .slice(0, 12);
 
   const counterRows = counters.map((c, i) => {
     const cls = c.margin > 0 ? 'ok' : c.margin < 0 ? 'crit' : 'warn';
     const speedAdv = Math.round(c.s.scm - t.scm);
-    const reason = `kills in ${fmtTime(c.aKillsB)} vs your ${fmtTime(c.bKillsA)}${speedAdv > 30 ? ` · +${speedAdv} m/s` : ''}`;
+    const usesTorp = t.sizeRank >= 3 && (c.s.missileDamage || 0) >= t.effShieldHp && t.effShieldHp > 0;
+    const mirror = c.s.uuid === t.uuid;
+    const reason = `${mirror ? 'mirror match · ' : ''}${usesTorp ? 'torpedo strike · ' : ''}kills in ${fmtTime(c.aKillsB)} vs your ${fmtTime(c.bKillsA)}${speedAdv > 30 ? ` · +${speedAdv} m/s` : ''}`;
     const marginText = c.margin >= 1e9 ? 'DOMINANT' : (c.margin > 0 ? '+' : '−') + fmtTime(Math.abs(c.margin));
     return `<div class="tac-counter">
       <span class="tc-rank">#${i + 1}</span>

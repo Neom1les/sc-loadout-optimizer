@@ -51,11 +51,12 @@ export function shipCombatProfile(ship) {
     manufacturer: ship.manufacturer?.name || 'Unknown',
     size: ship.size?.en_EN || '',
     sizeRank: sizeRankOf(ship),
-    combatRole: /fighter|interceptor|gunship|bomber|combat|snub/i.test(ship.role || ''),
+    combatRole: /fighter|interceptor|gunship|bomber|combat|snub|corvette|frigate|destroyer|cruiser|carrier/i.test(ship.role || ''),
     crew: { min: ship.crew?.min || 1, max: ship.crew?.max || 1 },
     dps,
     sustained: sustained || dps,
     alpha: ship.weaponry?.pilot_alpha || 0,
+    missileDamage: ship.weaponry?.total_missile_damage || 0,
     shieldHp,
     effShieldHp,
     shieldRegen: shield.details?.regeneration || 0,
@@ -99,15 +100,44 @@ function meanMult(def) {
   return (def.armorMult.physical + def.armorMult.energy) / 2;
 }
 
-/* time for attacker to kill defender (stock vs stock); Infinity if shield un-breakable */
+/* time for attacker to kill defender (stock vs stock).
+   Models sustained gun DPS AND torpedo/missile alpha — a torpedo salvo bursts
+   through the shield (ignoring regen), which is how capitals actually kill each
+   other. Returns Infinity only if the attacker can neither outpace the shield
+   regen with guns nor punch it open with torpedoes. */
 export function timeToKill(att, def) {
-  const dps = att.sustained || att.dps;
-  if (dps <= 0) return Infinity;
-  const netVsShield = dps - def.shieldRegen;
-  if (netVsShield <= 0) return Infinity;
-  const tShield = def.effShieldHp / netVsShield;
-  const tHull = (def.armorHp + def.hullHp) / (dps * meanMult(def));
-  return tShield + tHull;
+  const gunDps = att.sustained || att.dps || 0;
+  // torpedoes only land reliably on large/capital targets — agile fighters dodge them
+  const torp = def.sizeRank >= 3 ? (att.missileDamage || 0) : 0;
+  const mult = meanMult(def);
+
+  const torpBreaksShield = torp >= def.effShieldHp;
+  const gunsBreakShield = gunDps > def.shieldRegen;
+  if (!torpBreaksShield && !gunsBreakShield) return Infinity;
+
+  let t = 0;
+  let shieldPool = def.effShieldHp;
+  let hullPool = def.armorHp + def.hullHp;
+
+  // torpedo salvo first — bursts the shield, overflow spills into hull
+  if (torp > 0) {
+    t += 10; // approach + lock + fire a torpedo run
+    if (torp >= shieldPool) { hullPool -= (torp - shieldPool); shieldPool = 0; }
+    else shieldPool -= torp;
+    if (hullPool <= 0) return t;
+  }
+
+  // finish the remaining shield with sustained guns (regen matters here)
+  if (shieldPool > 0) {
+    const net = gunDps - def.shieldRegen;
+    if (net <= 0) return Infinity;
+    t += shieldPool / net;
+  }
+
+  // grind the hull with sustained guns (armor multiplier applies)
+  const eff = gunDps * mult;
+  if (eff <= 0) return Infinity;
+  return t + hullPool / eff;
 }
 
 /* bidirectional stock duel; margin > 0 means `a` wins (kills faster) */
