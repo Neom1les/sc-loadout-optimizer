@@ -4,8 +4,10 @@
    ============================================================ */
 import { initEarnings } from './earnings-finder.js';
 import { initPatchHub, showGuide } from './patch-hub.js';
+import { initTactics } from './tactics.js';
+import { initFleet } from './fleet.js';
 
-const TABS = ['home', 'optimizer', 'earnings', 'patch'];
+const TABS = ['home', 'optimizer', 'earnings', 'patch', 'tactics', 'fleet'];
 const inited = {};
 
 function panelId(tab) { return 'tab' + tab.charAt(0).toUpperCase() + tab.slice(1); }
@@ -17,6 +19,8 @@ function renderHome() {
     { tab: 'optimizer', ico: '⬡', img: 'assets/bg2.webp', title: 'Loadout Optimizer', desc: 'Optimize weapons, shields & components for any combat ship — with damage matchups, TTK and shopping lists.' },
     { tab: 'earnings', ico: '◎', img: 'assets/bg.jpg', title: 'Earnings Finder', desc: 'Find the fastest way to earn aUEC or grind a faction’s reputation — ranked by your goal, with full guides.' },
     { tab: 'patch', ico: '❖', img: 'assets/bg3.webp', title: 'Patch Hub', desc: 'What’s new each patch with step-by-step guides — plus the upcoming Alpha 4.9 roadmap.' },
+    { tab: 'tactics', ico: '⊕', img: 'assets/bg2.webp', title: 'Tactics', desc: 'Counter-pick any enemy ship, read its armor weakness, and see which ships hard-counter it.' },
+    { tab: 'fleet', ico: '⊟', img: 'assets/bg3.webp', title: 'Fleet Ops', desc: 'Build squad comps, track your org’s fleet & crews, and share standard loadout presets.' },
   ];
   root.innerHTML = `
     <div class="home-hero">
@@ -45,13 +49,17 @@ function show(tab) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
   const panel = document.getElementById(panelId(tab));
   if (panel) panel.classList.add('active');
-  document.body.classList.remove('tab-home', 'tab-optimizer', 'tab-earnings', 'tab-patch');
+  document.body.classList.remove('tab-home', 'tab-optimizer', 'tab-earnings', 'tab-patch', 'tab-tactics', 'tab-fleet');
   document.body.classList.add('tab-' + tab);
-  if (location.hash.slice(1) !== tab) history.replaceState(null, '', '#' + tab);
+  if (!(location.hash || '').startsWith('#squad=') && location.hash.slice(1) !== tab) {
+    history.replaceState(null, '', '#' + tab);
+  }
 
   if (tab === 'home' && !inited.home) { inited.home = true; renderHome(); }
   if (tab === 'earnings' && !inited.earnings) { inited.earnings = true; initEarnings(document.getElementById('earningsRoot')); }
   if (tab === 'patch' && !inited.patch) { inited.patch = true; initPatchHub(document.getElementById('patchRoot')); }
+  if (tab === 'tactics' && !inited.tactics) { inited.tactics = true; initTactics(document.getElementById('tacticsRoot')); }
+  if (tab === 'fleet' && !inited.fleet) { inited.fleet = true; initFleet(document.getElementById('fleetRoot')); }
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -76,5 +84,6 @@ window.scPrefillShipSearch = (text) => {
   if (s && text) { s.value = text; s.dispatchEvent(new Event('input')); s.focus(); }
 };
 
-/* initial view — the hub */
-show(location.hash.slice(1) || 'home');
+/* initial view — the hub (or Fleet if opened via a shared squad link) */
+const initialHash = location.hash.slice(1);
+show((location.hash || '').startsWith('#squad=') ? 'fleet' : (initialHash || 'home'));

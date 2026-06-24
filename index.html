@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SC Optimizer — Alpha 4.8</title>
-    <link rel="stylesheet" href="css/terminal.css?v=25">
-    <link rel="stylesheet" href="css/layout.css?v=25">
-    <link rel="stylesheet" href="css/components.css?v=25">
-    <link rel="stylesheet" href="css/features.css?v=25">
+    <link rel="stylesheet" href="css/terminal.css?v=27">
+    <link rel="stylesheet" href="css/layout.css?v=27">
+    <link rel="stylesheet" href="css/components.css?v=27">
+    <link rel="stylesheet" href="css/features.css?v=27">
 </head>
 <body class="tab-home">
 
@@ -36,6 +36,8 @@
             <button class="tab-btn active" data-tab="optimizer"><span class="ti">⬡</span> Loadout Optimizer</button>
             <button class="tab-btn" data-tab="earnings"><span class="ti">◎</span> Earnings Finder</button>
             <button class="tab-btn" data-tab="patch"><span class="ti">❖</span> Patch Hub</button>
+            <button class="tab-btn" data-tab="tactics"><span class="ti">⊕</span> Tactics</button>
+            <button class="tab-btn" data-tab="fleet"><span class="ti">⊟</span> Fleet</button>
         </nav>
 
         <div style="display:flex;gap:10px;align-items:center;">
@@ -118,6 +120,16 @@
         <div id="patchRoot"><div class="empty-state"><p>Loading patch guides…</p></div></div>
     </div>
 
+    <!-- ============ TAB 4 · TACTICS (new) ============ -->
+    <div class="tab-panel" id="tabTactics">
+        <div id="tacticsRoot"><div class="empty-state"><p>Loading combat intel…</p></div></div>
+    </div>
+
+    <!-- ============ TAB 5 · FLEET (new) ============ -->
+    <div class="tab-panel" id="tabFleet">
+        <div id="fleetRoot"><div class="empty-state"><p>Loading fleet tools…</p></div></div>
+    </div>
+
     <a href="https://robertsspaceindustries.com/en/orgs/N3M3S1S" target="_blank" class="nemesis-banner">
         <img src="assets/nemesis-logo.webp" alt="NEMESIS">
         <div>
@@ -133,17 +145,17 @@
 
 </div>
 
-<script type="module" src="js/data-loader.js?v=25"></script>
-<script type="module" src="js/ship-selector.js?v=25"></script>
-<script type="module" src="js/optimizer.js?v=25"></script>
-<script type="module" src="js/stats-calculator.js?v=25"></script>
-<script type="module" src="js/shop-finder.js?v=25"></script>
-<script type="module" src="js/loadout-renderer.js?v=25"></script>
-<script type="module" src="js/storage.js?v=25"></script>
-<script type="module" src="js/matchup.js?v=25"></script>
-<script type="module" src="js/app.js?v=25"></script>
-<script type="module" src="js/earnings-finder.js?v=25"></script>
-<script type="module" src="js/patch-hub.js?v=25"></script>
-<script type="module" src="js/tabs.js?v=25"></script>
+<script type="module" src="js/data-loader.js?v=27"></script>
+<script type="module" src="js/ship-selector.js?v=27"></script>
+<script type="module" src="js/optimizer.js?v=27"></script>
+<script type="module" src="js/stats-calculator.js?v=27"></script>
+<script type="module" src="js/shop-finder.js?v=27"></script>
+<script type="module" src="js/loadout-renderer.js?v=27"></script>
+<script type="module" src="js/storage.js?v=27"></script>
+<script type="module" src="js/matchup.js?v=27"></script>
+<script type="module" src="js/app.js?v=27"></script>
+<script type="module" src="js/earnings-finder.js?v=27"></script>
+<script type="module" src="js/patch-hub.js?v=27"></script>
+<script type="module" src="js/tabs.js?v=27"></script>
 </body>
 </html>
