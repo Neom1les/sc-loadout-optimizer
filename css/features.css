@@ -405,3 +405,8 @@ body.tab-optimizer .btn-save { display:inline-flex; }
 .tr-profit { color:var(--status-ok); font-family:var(--font-mono); }
 .trade-table td { vertical-align:top; }
 .trade-table .cf-conf { margin-left:4px; }
+
+/* crafting supply-chain cost */
+.wb-cost { margin:9px 0 2px; display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; }
+.wb-total-row td { border-top:2px solid var(--sc-teal); padding-top:9px; vertical-align:baseline; }
+.wb-ing td:nth-child(3) { font-family:var(--font-read); font-size:.82rem; color:var(--text-secondary); }

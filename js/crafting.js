@@ -10,11 +10,13 @@
    no resale value is shown — quantities and craft data only.
    ============================================================ */
 import { loadJSON } from './data-loader.js';
+import { formatNumber } from './stats-calculator.js';
 
 let ROOT = null;
 let GUIDE = null;
 let RECIPES = [];
 let GV = '';
+let BUYIDX = null;        // commodity-buy.json: name(lowercase) -> top-3 cheapest buy terminals
 let craftMode = 'guide';
 let confOnly = false;
 let wbSearch = '';
@@ -57,7 +59,23 @@ export async function initCrafting(root) {
     RECIPES = (r && r.recipes) || [];
     GV = (r && r.game_version) || '';
   } catch { RECIPES = []; }
+  // Supply-chain layer: where to buy each raw material (UEX snapshot, optional).
+  try { BUYIDX = await loadJSON('commodity-buy.json'); } catch { BUYIDX = null; }
   render();
+}
+
+/* ── supply-chain helpers (map a crafting material to UEX buy terminals) ──── */
+// commodity-buy.json lists buy terminals sorted cheapest-first per commodity.
+function buysFor(name) {
+  if (!BUYIDX || !BUYIDX.commodities || !name) return null;
+  return BUYIDX.commodities[name.toLowerCase().trim()] || null;
+}
+function cheapestBuy(name) { const b = buysFor(name); return b && b.length ? b[0] : null; }
+// est. aUEC to buy `qty` SCU of a material at its cheapest known terminal (null if unsold)
+function lineCost(ing) {
+  if (ing.kind !== 'resource') return null;          // items are crafted/looted, not bought as cargo
+  const c = cheapestBuy(ing.name);
+  return c ? c.price * ing.qty : null;
 }
 
 function render() {
@@ -122,8 +140,25 @@ function renderGuide() {
 }
 
 /* ─────────────────────────── Workbench ─────────────────────────────────── */
+function buyCell(ing) {
+  if (ing.kind !== 'resource') return '<span class="cf-conf cf-dim" title="Crafted or looted — not bought as cargo">crafted / looted</span>';
+  const c = cheapestBuy(ing.name);
+  if (!c) return '<span class="cf-conf cf-dim" title="Not sold at terminals — mine or refine it">mine / refine</span>';
+  return `${formatNumber(c.price)}<span class="tr-loc">${esc(c.terminal || '?')}${c.system ? ' · ' + esc(c.system) : ''}</span>`;
+}
+
 function recipeCard(r) {
-  const ing = r.ingredients.map(i => `<tr><td>${esc(i.name)}</td><td class="num">${fmtQty(i.qty)} ${esc(i.unit)}</td><td class="cr-kind">${esc(i.kind)}</td></tr>`).join('') || '<tr><td colspan="3" class="src-note">No ingredients listed.</td></tr>';
+  let matCost = 0, anyPriced = false, anyUnsold = false;
+  const ing = r.ingredients.map(i => {
+    const lc = lineCost(i);
+    if (lc != null) { matCost += lc; anyPriced = true; }
+    else if (i.kind === 'resource') anyUnsold = true;
+    const cost = lc != null ? `≈${formatNumber(Math.round(lc))}` : '<span class="cf-conf cf-dim">—</span>';
+    return `<tr><td>${esc(i.name)} <span class="cr-kind">${esc(i.kind)}</span></td><td class="num">${fmtQty(i.qty)} ${esc(i.unit)}</td><td>${buyCell(i)}</td><td class="num">${cost}</td></tr>`;
+  }).join('') || '<tr><td colspan="4" class="src-note">No ingredients listed.</td></tr>';
+  const costFoot = anyPriced
+    ? `<div class="wb-cost"><span class="pc-note">Est. buyable materials</span> <b class="tr-profit">≈${formatNumber(Math.round(matCost))} aUEC</b>${anyUnsold ? ' <span class="cf-conf cf-dim">+ mined-only mats</span>' : ''} <span class="pc-note">cheapest terminals · UEX snapshot</span></div>`
+    : '';
   const dis = (r.dismantle || []).map(dd => `<span class="wb-dis">${esc(dd.name)} ${fmtQty(dd.qty)} ${esc(dd.unit)}</span>`).join('') || '<span class="src-note">—</span>';
 
   let unlock;
@@ -153,8 +188,9 @@ function recipeCard(r) {
     </div>
     <div class="wb-meta"><span class="cf-conf cf-dim">Craft ${esc(r.craftLabel || r.craftSeconds + 's')}</span></div>
     ${unlock}
-    <div class="wb-sub-h">Materials needed</div>
-    <table class="fleet-table wb-ing"><thead><tr><th>Material</th><th class="num">Qty</th><th>Type</th></tr></thead><tbody>${ing}</tbody></table>
+    <div class="wb-sub-h">Materials needed <span class="pc-note">with cheapest buy terminal</span></div>
+    <table class="fleet-table wb-ing"><thead><tr><th>Material</th><th class="num">Qty</th><th>Cheapest buy / SCU</th><th class="num">Line est.</th></tr></thead><tbody>${ing}</tbody></table>
+    ${costFoot}
     ${quality}
     <div class="wb-dismantle"><span class="pc-note">Dismantle returns:</span> ${dis}</div>
   </div>`;
@@ -173,17 +209,27 @@ function buildListPanel() {
       agg[k].qty += i.qty * qty;
     }
   }
+  let grandTotal = 0, anyPriced = false, anyUnsold = false;
   const rows = Object.values(agg).sort((a, b) => a.name.localeCompare(b.name))
-    .map(m => `<tr><td>${esc(m.name)}</td><td class="num">${fmtQty(m.qty)} ${esc(m.unit)}</td><td class="cr-kind">${esc(m.kind)}</td></tr>`).join('');
+    .map(m => {
+      const lc = lineCost(m);
+      if (lc != null) { grandTotal += lc; anyPriced = true; }
+      else if (m.kind === 'resource') anyUnsold = true;
+      const cost = lc != null ? `≈${formatNumber(Math.round(lc))}` : '<span class="cf-conf cf-dim">—</span>';
+      return `<tr><td>${esc(m.name)} <span class="cr-kind">${esc(m.kind)}</span></td><td class="num">${fmtQty(m.qty)} ${esc(m.unit)}</td><td>${buyCell(m)}</td><td class="num">${cost}</td></tr>`;
+    }).join('');
+  const totalRow = anyPriced
+    ? `<tr class="wb-total-row"><td><b>Est. material cost</b>${anyUnsold ? ' <span class="cf-conf cf-dim">excl. mined-only</span>' : ''}</td><td></td><td class="src-note">cheapest terminals · UEX snapshot</td><td class="num"><b class="tr-profit">≈${formatNumber(Math.round(grandTotal))}</b></td></tr>`
+    : '';
   const list = items.map(({ r, qty }) => `<div class="wb-bl-row"><span class="wb-bl-q">${qty}×</span><b>${esc(r.name)}</b><span class="ship-role">${esc(r.typeLabel)}</span><span class="sq-remove" data-del="${r.uuid}">×</span></div>`).join('');
   const hrs = totalSec >= 3600 ? (totalSec / 3600).toFixed(1) + ' h' : Math.round(totalSec / 60) + ' min';
   return `<div class="panel">
     <div class="panel-header">Build list <span class="pc-note">${items.length} blueprint${items.length === 1 ? '' : 's'} · total craft ${hrs}</span></div>
     <div class="wb-buildlist">${list}</div>
-    <div class="panel-header" style="margin-top:14px">Consolidated materials needed</div>
-    <table class="fleet-table"><thead><tr><th>Material</th><th class="num">Total qty</th><th>Type</th></tr></thead><tbody>${rows}</tbody></table>
+    <div class="panel-header" style="margin-top:14px">Consolidated materials &amp; where to buy</div>
+    <table class="fleet-table"><thead><tr><th>Material</th><th class="num">Total qty</th><th>Cheapest buy / SCU</th><th class="num">Est. cost</th></tr></thead><tbody>${rows}${totalRow}</tbody></table>
     <div class="wb-actions"><button class="fl-sub" id="wbClear">Clear build</button></div>
-    <div class="src-note">Quantities are datamined &amp; patch-accurate (${esc(GV)}). SC has no player marketplace, so no aUEC resale value is shown — see the Guide for why.</div>
+    <div class="src-note">Quantities are datamined &amp; patch-accurate (${esc(GV)}). Buy prices are a <b>UEX snapshot${BUYIDX && BUYIDX.snapshot ? ' (' + esc(BUYIDX.snapshot) + ')' : ''}</b>, not live, and cover only materials sold at terminals — mined-only ores (e.g. Aslarite, Quantainium) and crafted/looted components show no price. SC has no player marketplace, so this is your <i>input</i> cost, not resale value.</div>
   </div>`;
 }
 
