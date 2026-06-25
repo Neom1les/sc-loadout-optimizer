@@ -6,8 +6,9 @@ import { initEarnings } from './earnings-finder.js';
 import { initPatchHub, showGuide } from './patch-hub.js';
 import { initTactics } from './tactics.js';
 import { initFleet } from './fleet.js';
+import { initCrafting } from './crafting.js';
 
-const TABS = ['home', 'optimizer', 'earnings', 'patch', 'tactics', 'fleet'];
+const TABS = ['home', 'optimizer', 'earnings', 'patch', 'tactics', 'fleet', 'crafting'];
 const inited = {};
 
 function panelId(tab) { return 'tab' + tab.charAt(0).toUpperCase() + tab.slice(1); }
@@ -21,6 +22,7 @@ function renderHome() {
     { tab: 'patch', ico: '❖', img: 'assets/bg3.webp', title: 'Patch Hub', desc: 'What’s new each patch with step-by-step guides — plus the upcoming Alpha 4.9 roadmap.' },
     { tab: 'tactics', ico: '⊕', img: 'assets/tactics.jpg', title: 'Tactics', desc: 'Counter-pick any enemy ship, read its armor weakness, and see which ships hard-counter it.' },
     { tab: 'fleet', ico: '⊟', img: 'assets/fleet.jpg', title: 'Fleet Ops', desc: 'Build squad comps, track your org’s fleet & crews, and share standard loadout presets.' },
+    { tab: 'crafting', ico: '⚒', img: 'assets/crafting.jpg', title: 'Crafting Guide', desc: 'Materials, blueprints, recipes and what’s worth making — every claim tagged live / PTU / community.' },
   ];
   root.innerHTML = `
     <div class="home-hero">
@@ -49,7 +51,7 @@ function show(tab) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
   const panel = document.getElementById(panelId(tab));
   if (panel) panel.classList.add('active');
-  document.body.classList.remove('tab-home', 'tab-optimizer', 'tab-earnings', 'tab-patch', 'tab-tactics', 'tab-fleet');
+  document.body.classList.remove('tab-home', 'tab-optimizer', 'tab-earnings', 'tab-patch', 'tab-tactics', 'tab-fleet', 'tab-crafting');
   document.body.classList.add('tab-' + tab);
   if (!(location.hash || '').startsWith('#squad=') && location.hash.slice(1) !== tab) {
     history.replaceState(null, '', '#' + tab);
@@ -60,6 +62,7 @@ function show(tab) {
   if (tab === 'patch' && !inited.patch) { inited.patch = true; initPatchHub(document.getElementById('patchRoot')); }
   if (tab === 'tactics' && !inited.tactics) { inited.tactics = true; initTactics(document.getElementById('tacticsRoot')); }
   if (tab === 'fleet' && !inited.fleet) { inited.fleet = true; initFleet(document.getElementById('fleetRoot')); }
+  if (tab === 'crafting' && !inited.crafting) { inited.crafting = true; initCrafting(document.getElementById('craftingRoot')); }
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
