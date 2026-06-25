@@ -18,6 +18,9 @@ let ALL = null;
 let mode = 'myfleet';
 let squad = [];
 let sharedSquad = null;
+let mfView = 'cards';            // 'cards' | 'table'
+let mfFilter = new Set();        // active career filters (empty = all)
+let mfSort = { col: 'name', dir: 1 };
 
 function esc(s) { return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 function lget(k) { try { return JSON.parse(localStorage.getItem(k)) || []; } catch { return []; } }
@@ -58,7 +61,15 @@ async function loadAllShips() {
       crewMin: s.crew?.min || 1,
       crewMax: s.crew?.max || 1,
       cargo: s.cargo_capacity || 0,
+      ore: s.ore_capacity || 0,
       scm: s.speed?.scm || 0,
+      career: s.career || 'Other',
+      dps: s.weaponry?.pilot_dps || 0,
+      missile: s.weaponry?.total_missile_damage || 0,
+      hull: s.hull_health || 0,
+      shield: s.shield?.shield_hp || 0,
+      ehp: (s.hull_health || 0) + (s.shield?.shield_hp || 0),
+      qtRange: s.quantum?.quantum_range || 0,
       image: s.images?.[0]?.thumbnail_url || s.images?.[0]?.original_url || null,
     });
   }
@@ -125,40 +136,110 @@ function renderSizeBars(ships) {
   }).join('');
 }
 
+function fmtRange(m) {
+  if (!m) return '—';
+  return m >= 1e9 ? (m / 1e9).toFixed(1) + ' Gm' : Math.round(m / 1e6) + ' Mm';
+}
+
+const FLEET_COLS = [
+  { k: 'name', l: 'Ship', num: false },
+  { k: 'manufacturer', l: 'Mfr', num: false },
+  { k: 'career', l: 'Career', num: false },
+  { k: 'crewMax', l: 'Crew', num: true },
+  { k: 'cargo', l: 'Cargo', num: true, fmt: v => v ? formatNumber(v) : '—' },
+  { k: 'length', l: 'Length', num: true, fmt: v => v ? v + ' m' : '—' },
+  { k: 'scm', l: 'SCM', num: true, fmt: v => v ? formatNumber(v) : '—' },
+  { k: 'qtRange', l: 'QT', num: true, fmt: fmtRange },
+  { k: 'dps', l: 'DPS', num: true, fmt: v => v ? formatNumber(v) : '—' },
+  { k: 'ehp', l: 'EHP', num: true, fmt: v => formatNumber(v) },
+];
+
+function fleetDashboard(ships) {
+  const sum = f => ships.reduce((a, s) => a + (f(s) || 0), 0);
+  const cargo = sum(s => s.cargo), ore = sum(s => s.ore), seats = sum(s => s.crewMax);
+  const dps = sum(s => s.dps), missile = sum(s => s.missile), ehp = sum(s => s.ehp);
+  const ranges = ships.map(s => s.qtRange).filter(r => r > 0);
+  const minRange = ranges.length ? Math.min(...ranges) : 0;
+  const car = {};
+  for (const s of ships) car[s.career] = (car[s.career] || 0) + 1;
+  const carEntries = Object.entries(car).sort((a, b) => b[1] - a[1]);
+  const maxCar = Math.max(1, ...carEntries.map(e => e[1]));
+  const careers = new Set(ships.map(s => s.career));
+  const warn = [];
+  if (!careers.has('Support')) warn.push('No Support ship (medical / repair / refuel).');
+  if (cargo === 0) warn.push('No cargo capacity — the fleet can\'t haul.');
+  if (!careers.has('Combat') && !careers.has('Gunship') && !careers.has('Destroyer')) warn.push('No combat ship — no firepower.');
+  const stat = (l, v, cls) => `<div class="dash-stat"><label>${l}</label><span class="${cls || ''}">${v}</span></div>`;
+  const chart = carEntries.map(([c, n]) => `<div class="dash-bar-row"><span class="dash-bar-label">${esc(c)}</span><div class="dash-bar"><span style="width:${(n / maxCar) * 100}%"></span></div><span class="dash-bar-n">${n}</span></div>`).join('');
+  return `
+    <div class="dash-grid">
+      ${stat('Total cargo', formatNumber(cargo) + ' SCU')}
+      ${ore ? stat('Ore capacity', formatNumber(ore) + ' SCU') : ''}
+      ${stat('Crew seats', seats)}
+      ${stat('Pilot DPS', formatNumber(dps), 'dps-number')}
+      ${missile ? stat('Missile dmg', formatNumber(missile)) : ''}
+      ${stat('Fleet EHP', formatNumber(ehp))}
+      ${stat('Min QT range', fmtRange(minRange))}
+    </div>
+    <div class="dash-chart">${chart}</div>
+    ${warn.length ? `<div class="sq-feedback">${warn.map(w => `<div class="sq-fb warn">${esc(w)}</div>`).join('')}</div>` : '<div class="sq-fb ok">Balanced — combat, cargo and support covered.</div>'}`;
+}
+
+function renderSpecTable(ships) {
+  const sorted = [...ships].sort((a, b) => {
+    const c = mfSort.col, av = a[c], bv = b[c];
+    if (typeof av === 'number') return (av - bv) * mfSort.dir;
+    return String(av).localeCompare(String(bv)) * mfSort.dir;
+  });
+  const maxes = {};
+  for (const col of FLEET_COLS) if (col.num) maxes[col.k] = Math.max(0, ...ships.map(s => s[col.k] || 0));
+  const head = FLEET_COLS.map(col => `<th data-col="${col.k}" class="${col.num ? 'num' : ''}${mfSort.col === col.k ? ' sorted' : ''}">${col.l}${mfSort.col === col.k ? (mfSort.dir > 0 ? ' ▲' : ' ▼') : ''}</th>`).join('');
+  const rows = sorted.map(s => `<tr>${FLEET_COLS.map(col => {
+    const v = s[col.k];
+    const disp = col.fmt ? col.fmt(v) : esc(String(v));
+    const best = col.num && v > 0 && v === maxes[col.k];
+    return `<td class="${col.num ? 'num' : ''}${best ? ' best' : ''}">${disp}</td>`;
+  }).join('')}<td class="num"><span class="sq-remove" data-x="${s.uuid}">×</span></td></tr>`).join('');
+  return `<table class="fleet-table"><thead><tr>${head}<th></th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+
 function renderMyFleet() {
   const body = ROOT.querySelector('#fleetBody');
   const fleetIds = lget(FKEY);
   const inFleet = new Set(fleetIds);
-  const ships = fleetIds.map(id => ALL.find(s => s.uuid === id)).filter(Boolean);
-
-  const agg = { count: ships.length, cargo: 0, seats: 0, roles: {} };
-  for (const s of ships) { agg.cargo += s.cargo; agg.seats += s.crewMax; const r = roleClass(s.role); agg.roles[r] = (agg.roles[r] || 0) + 1; }
+  const all = fleetIds.map(id => ALL.find(s => s.uuid === id)).filter(Boolean);
+  const ships = mfFilter.size ? all.filter(s => mfFilter.has(s.career)) : all;
+  const careers = [...new Set(all.map(s => s.career))].sort();
   const longest = ships.reduce((m, s) => Math.max(m, s.length || 0), 0);
 
   body.innerHTML = `
     <div class="tac-layout">
       <div class="panel tac-pick">
-        <div class="panel-header">Add ship (${ships.length} in fleet)</div>
+        <div class="panel-header">Add ship (${all.length} in fleet)</div>
         <input type="text" class="search-input" id="mfSearch" placeholder="Search ${ALL.length} ships...">
         <div class="ship-list" id="mfList"></div>
       </div>
       <div class="tac-analysis">
-        ${ships.length ? `
+        ${all.length ? `
         <div class="panel">
-          <div class="panel-header">Fleet overview <span class="pc-note">${agg.count} ships · ${formatNumber(agg.cargo)} SCU · ${agg.seats} crew seats</span></div>
-          <div class="sq-roles">${Object.entries(agg.roles).sort((a, b) => b[1] - a[1]).map(([r, n]) => `<span class="sq-role-chip">${esc(r)} ×${n}</span>`).join('')}</div>
+          <div class="panel-header">Fleet dashboard <span class="pc-note">${all.length} ships${mfFilter.size ? ` · ${ships.length} shown` : ''}</span></div>
+          ${fleetDashboard(ships)}
           <div class="fleet-io">
             <button class="fl-sub" id="mfExport">Export JSON</button>
             <button class="fl-sub" id="mfImport">Import JSON</button>
             <button class="fl-sub" id="mfClear">Clear fleet</button>
           </div>
         </div>
+        <div class="fleet-controls">
+          <div class="fleet-filters">${careers.map(c => `<button class="fl-chip${mfFilter.has(c) ? ' active' : ''}" data-career="${esc(c)}">${esc(c)}</button>`).join('')}</div>
+          <div class="fleet-viewtoggle"><button class="fl-chip${mfView === 'cards' ? ' active' : ''}" data-view="cards">Cards</button><button class="fl-chip${mfView === 'table' ? ' active' : ''}" data-view="table">Table</button></div>
+        </div>
         <div class="panel">
           <div class="panel-header">Size comparison <span class="pc-note">to scale · longest ${Math.round(longest)} m</span></div>
           <div class="fleet-sizecmp">${renderSizeBars(ships)}</div>
         </div>
-        <div class="fleet-grid">${ships.map(shipCard).join('')}</div>
-        ` : '<div class="empty-state"><h3>Your fleet is empty</h3><p>Search on the left and add the ships you own (or want). You\'ll see them with render previews, stats, and a to-scale size comparison.</p></div>'}
+        ${mfView === 'table' ? `<div class="panel fleet-tablewrap">${renderSpecTable(ships)}</div>` : `<div class="fleet-grid">${ships.map(shipCard).join('')}</div>`}
+        ` : '<div class="empty-state"><h3>Your fleet is empty</h3><p>Search on the left and add the ships you own (or want). You\'ll see render previews, a fleet dashboard, a sortable spec table and a to-scale size comparison.</p></div>'}
       </div>
     </div>`;
 
@@ -179,11 +260,14 @@ function renderMyFleet() {
   search.addEventListener('input', () => drawList(search.value.toLowerCase().trim()));
   drawList('');
 
-  body.querySelectorAll('.fleet-card .sq-remove').forEach(x => x.onclick = () => { lset(FKEY, lget(FKEY).filter(id => id !== x.dataset.x)); renderMyFleet(); });
+  body.querySelectorAll('.fl-chip[data-career]').forEach(c => c.onclick = () => { const k = c.dataset.career; mfFilter.has(k) ? mfFilter.delete(k) : mfFilter.add(k); renderMyFleet(); });
+  body.querySelectorAll('.fl-chip[data-view]').forEach(b => b.onclick = () => { mfView = b.dataset.view; renderMyFleet(); });
+  body.querySelectorAll('.fleet-table th[data-col]').forEach(th => th.onclick = () => { const c = th.dataset.col; if (mfSort.col === c) mfSort.dir *= -1; else { mfSort.col = c; mfSort.dir = 1; } renderMyFleet(); });
+  body.querySelectorAll('.sq-remove[data-x]').forEach(x => x.onclick = () => { lset(FKEY, lget(FKEY).filter(id => id !== x.dataset.x)); renderMyFleet(); });
 
   const exp = body.querySelector('#mfExport');
   if (exp) exp.onclick = () => {
-    const out = ships.map(s => ({ uuid: s.uuid, name: s.name }));
+    const out = all.map(s => ({ uuid: s.uuid, name: s.name }));
     const blob = new Blob([JSON.stringify(out, null, 2)], { type: 'application/json' });
     const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'my-fleet.json'; a.click();
   };
