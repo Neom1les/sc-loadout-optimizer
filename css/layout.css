@@ -9,6 +9,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: 4px;
     padding: 16px 20px;
     border-bottom: 1px solid var(--border-panel);
     margin-bottom: 24px;
@@ -26,11 +28,13 @@
 
 .app-title {
     font-family: var(--font-heading);
-    font-size: 1.6rem;
-    letter-spacing: 0.2em;
+    font-size: 1.42rem;
+    letter-spacing: 0.12em;
     color: var(--sc-teal);
     text-shadow: 0 0 20px var(--sc-teal-glow);
+    white-space: nowrap;
 }
+#goHome:hover .app-title { text-shadow: 0 0 28px var(--sc-teal); }
 
 .app-patch {
     font-family: var(--font-data);

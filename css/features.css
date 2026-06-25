@@ -12,17 +12,24 @@
 #tabEarnings p, #tabPatch p { line-height: 1.55; }
 
 /* ---------- Tab bar ---------- */
-.tab-bar { display:flex; gap:6px; flex-wrap:wrap; }
+.tab-bar { display:flex; gap:7px; flex-wrap:wrap; order:3; width:100%; justify-content:center; margin-top:12px; }
 .tab-btn {
-  font-family: var(--font-heading); font-size:0.86rem; letter-spacing:0.1em; text-transform:uppercase; font-weight:600;
-  color: var(--text-secondary); background: var(--bg-panel); border:1px solid var(--border-panel);
-  padding:9px 18px; cursor:pointer; transition: all .2s;
+  font-family: var(--font-heading); font-size:0.82rem; letter-spacing:0.1em; text-transform:uppercase; font-weight:600;
+  color: var(--text-secondary); background: linear-gradient(180deg, var(--bg-panel), rgba(0,0,0,.28)); border:1px solid var(--border-panel);
+  padding:9px 18px; cursor:pointer; transition: all .15s; position:relative;
   clip-path: polygon(0 0, calc(100% - 9px) 0, 100% 9px, 100% 100%, 9px 100%, 0 calc(100% - 9px));
 }
-.tab-btn .ti { color: var(--sc-teal-dim); margin-right:5px; }
-.tab-btn:hover { color: var(--text-primary); border-color: var(--border-active); background: var(--bg-panel-hover); }
-.tab-btn.active { color: var(--sc-teal); border-color: var(--sc-teal); box-shadow: 0 0 14px var(--sc-teal-glow); background: var(--bg-surface); }
-.tab-btn.active .ti { color: var(--sc-teal); }
+.tab-btn .ti { color: var(--sc-teal-dim); margin-right:6px; }
+.tab-btn:hover { color: var(--text-bright); border-color: var(--sc-teal); background: var(--bg-panel-hover); transform: translateY(-1px); box-shadow: 0 0 12px var(--sc-teal-glow); }
+.tab-btn:hover .ti { color: var(--sc-teal); }
+.tab-btn.active { color:#04140f; border-color: var(--sc-teal); background: linear-gradient(180deg, var(--sc-teal), var(--sc-teal-dim)); box-shadow: 0 0 18px var(--sc-teal-glow); font-weight:700; }
+.tab-btn.active .ti { color:#04140f; }
+.tab-btn:active { transform: translateY(0) scale(.98); }
+
+/* org link — game button (was unstyled → browser purple) */
+.org-link { font-family: var(--font-heading); font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color: var(--sc-amber); text-decoration:none; background: linear-gradient(180deg, rgba(255,184,48,.08), transparent); border:1px solid var(--sc-amber-dim); padding:8px 13px; transition: all .15s; white-space:nowrap; clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px)); }
+.org-link:visited { color: var(--sc-amber); }
+.org-link:hover { color:#1a1000; background: var(--sc-amber); box-shadow: 0 0 14px var(--sc-amber-glow); transform: translateY(-1px); }
 
 .tab-panel { display:none; }
 .tab-panel.active { display:block; animation: fade-in-up .35s ease-out both; }

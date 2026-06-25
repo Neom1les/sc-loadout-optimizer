@@ -212,21 +212,25 @@
 .btn-optimize:active { transform: scale(0.97); }
 
 .btn-save {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    padding: 6px 16px;
-    background: transparent;
+    font-family: var(--font-heading);
+    font-size: 0.78rem;
+    padding: 8px 16px;
+    background: linear-gradient(180deg, rgba(255,184,48,0.08), transparent);
     border: 1px solid var(--sc-amber-dim);
     color: var(--sc-amber);
     cursor: pointer;
-    letter-spacing: 0.1em;
-    transition: all 0.2s;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: all 0.15s;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
 }
 
 .btn-save:hover {
-    background: rgba(255,184,48,0.08);
-    box-shadow: 0 0 12px var(--sc-amber-glow);
+    background: rgba(255,184,48,0.14);
+    box-shadow: 0 0 14px var(--sc-amber-glow);
+    transform: translateY(-1px);
 }
+.btn-save:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
 
 .loadout-table {
     width: 100%;
