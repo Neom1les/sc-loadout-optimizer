@@ -125,14 +125,37 @@ function renderGuide() {
 function recipeCard(r) {
   const ing = r.ingredients.map(i => `<tr><td>${esc(i.name)}</td><td class="num">${fmtQty(i.qty)} ${esc(i.unit)}</td><td class="cr-kind">${esc(i.kind)}</td></tr>`).join('') || '<tr><td colspan="3" class="src-note">No ingredients listed.</td></tr>';
   const dis = (r.dismantle || []).map(dd => `<span class="wb-dis">${esc(dd.name)} ${fmtQty(dd.qty)} ${esc(dd.unit)}</span>`).join('') || '<span class="src-note">—</span>';
-  const gate = r.default ? '<span class="cf-conf cf-ok">Default</span>' : `<span class="cf-conf cf-warn">Unlock${r.unlockMissions ? ` · ${r.unlockMissions} mission${r.unlockMissions > 1 ? 's' : ''}` : ''}</span>`;
+
+  let unlock;
+  if (r.default) {
+    unlock = '<div class="wb-info"><span class="cf-conf cf-ok">Default</span><span class="wb-info-txt">Available from the start — no unlock needed.</span></div>';
+  } else if (r.missions && r.missions.length) {
+    const ms = r.missions.map(m => `<span class="wb-mission">${esc(m.title)} ${m.chance >= 1 ? '<span class="cf-conf cf-ok">guaranteed</span>' : `<span class="cf-conf cf-warn">${Math.round((m.chance || 0) * 100)}% drop</span>`}</span>`).join('');
+    unlock = `<div class="wb-info"><span class="cf-conf cf-warn">Unlock</span><span class="wb-info-txt">Earn this blueprint by completing ${r.missions.length > 1 ? 'one of these missions:' : 'this mission:'}</span><div class="wb-missions">${ms}</div></div>`;
+  } else {
+    unlock = `<div class="wb-info"><span class="cf-conf cf-warn">Unlock</span><span class="wb-info-txt">Not a default blueprint — unlocked via ${r.unlockMissions || 1} mission / reputation source (specific source not in the data).</span></div>`;
+  }
+
+  let quality = '';
+  if (r.quality && r.quality.length) {
+    const qrows = r.quality.map(q => {
+      const dir = q.betterWhen === 'higher' ? '↑ higher = better' : q.betterWhen === 'lower' ? '↓ lower = better' : '';
+      const range = (q.atMin != null && q.atMax != null) ? `${q.atMin}× – ${q.atMax}×` : '—';
+      return `<tr><td>${esc(q.stat)}</td><td class="cr-kind">${dir}</td><td class="num">${range}</td></tr>`;
+    }).join('');
+    quality = `<div class="wb-sub-h">Material-quality scaling <span class="pc-note">output multiplier at quality 0 → 1000</span></div><table class="fleet-table"><tbody>${qrows}</tbody></table>`;
+  }
+
   return `<div class="panel">
     <div class="wb-head">
       <div><div class="wb-title">${esc(r.name)}</div><div class="ship-role">${esc(r.typeLabel)}${r.grade ? ' · Grade ' + esc(r.grade) : ''}${r.subType ? ' · ' + esc(r.subType) : ''}</div></div>
       <button class="btn-optimize wb-add" data-add="${r.uuid}">+ Add to build</button>
     </div>
-    <div class="wb-meta">${gate} <span class="cf-conf cf-dim">Craft ${esc(r.craftLabel || r.craftSeconds + 's')}</span></div>
+    <div class="wb-meta"><span class="cf-conf cf-dim">Craft ${esc(r.craftLabel || r.craftSeconds + 's')}</span></div>
+    ${unlock}
+    <div class="wb-sub-h">Materials needed</div>
     <table class="fleet-table wb-ing"><thead><tr><th>Material</th><th class="num">Qty</th><th>Type</th></tr></thead><tbody>${ing}</tbody></table>
+    ${quality}
     <div class="wb-dismantle"><span class="pc-note">Dismantle returns:</span> ${dis}</div>
   </div>`;
 }

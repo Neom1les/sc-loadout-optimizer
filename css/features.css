@@ -383,3 +383,8 @@ body.tab-optimizer .btn-save { display:inline-flex; }
 .wb-bl-row .ship-role { margin-left:auto; }
 .wb-bl-q { font-family:var(--font-mono); font-size:.85rem; color:var(--sc-teal); font-weight:700; min-width:28px; }
 .wb-actions { margin-top:12px; }
+.wb-sub-h { font-family:var(--font-heading); font-size:.76rem; letter-spacing:.06em; text-transform:uppercase; color:var(--text-secondary); margin:14px 0 6px; }
+.wb-info { display:flex; flex-wrap:wrap; align-items:baseline; gap:8px; background:var(--bg-panel); border:1px solid var(--border-panel); border-left:3px solid var(--sc-amber); padding:9px 12px; margin-bottom:6px; }
+.wb-info-txt { font-family:var(--font-read); font-size:.86rem; color:var(--text-secondary); }
+.wb-missions { display:flex; flex-direction:column; gap:5px; width:100%; margin-top:4px; }
+.wb-mission { font-family:var(--font-heading); font-size:.98rem; color:var(--text-bright); display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
