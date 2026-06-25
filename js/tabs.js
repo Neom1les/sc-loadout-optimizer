@@ -19,8 +19,8 @@ function renderHome() {
     { tab: 'optimizer', ico: '⬡', img: 'assets/bg2.webp', title: 'Loadout Optimizer', desc: 'Optimize weapons, shields & components for any combat ship — with damage matchups, TTK and shopping lists.' },
     { tab: 'earnings', ico: '◎', img: 'assets/bg.jpg', title: 'Earnings Finder', desc: 'Find the fastest way to earn aUEC or grind a faction’s reputation — ranked by your goal, with full guides.' },
     { tab: 'patch', ico: '❖', img: 'assets/bg3.webp', title: 'Patch Hub', desc: 'What’s new each patch with step-by-step guides — plus the upcoming Alpha 4.9 roadmap.' },
-    { tab: 'tactics', ico: '⊕', img: 'assets/bg2.webp', title: 'Tactics', desc: 'Counter-pick any enemy ship, read its armor weakness, and see which ships hard-counter it.' },
-    { tab: 'fleet', ico: '⊟', img: 'assets/bg3.webp', title: 'Fleet Ops', desc: 'Build squad comps, track your org’s fleet & crews, and share standard loadout presets.' },
+    { tab: 'tactics', ico: '⊕', img: 'assets/tactics.jpg', title: 'Tactics', desc: 'Counter-pick any enemy ship, read its armor weakness, and see which ships hard-counter it.' },
+    { tab: 'fleet', ico: '⊟', img: 'assets/fleet.jpg', title: 'Fleet Ops', desc: 'Build squad comps, track your org’s fleet & crews, and share standard loadout presets.' },
   ];
   root.innerHTML = `
     <div class="home-hero">
