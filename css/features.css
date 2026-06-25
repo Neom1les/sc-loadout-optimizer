@@ -367,3 +367,19 @@ body.tab-optimizer .btn-save { display:inline-flex; }
 .qcalc-result { font-family:var(--font-read); font-size:.9rem; color:var(--text-primary); display:flex; align-items:center; gap:8px; }
 .craft-roadmap { border-left:3px solid var(--sc-amber); }
 .craft-sources { font-family:var(--font-read); font-size:.84rem; color:var(--text-secondary); line-height:1.7; margin:0; padding-left:18px; }
+
+/* crafting workbench */
+.wb-head { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap; margin-bottom:10px; }
+.wb-title { font-family:var(--font-heading); font-size:1.3rem; font-weight:700; color:var(--text-bright); letter-spacing:.03em; }
+.wb-add { padding:8px 14px; white-space:nowrap; flex:0 0 auto; }
+.wb-meta { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px; }
+.wb-ing { margin-bottom:10px; }
+.cr-kind { font-family:var(--font-read); font-size:.78rem; color:var(--text-dim); text-transform:capitalize; }
+.wb-dismantle { font-family:var(--font-read); font-size:.84rem; color:var(--text-secondary); display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
+.wb-dis { background:var(--bg-panel); border:1px solid var(--border-panel); padding:2px 8px; border-radius:2px; font-size:.8rem; }
+.wb-buildlist { display:flex; flex-direction:column; gap:5px; }
+.wb-bl-row { display:flex; align-items:center; gap:9px; background:var(--bg-panel); border:1px solid var(--border-panel); padding:6px 10px; }
+.wb-bl-row b { font-family:var(--font-heading); color:var(--text-bright); font-size:.92rem; }
+.wb-bl-row .ship-role { margin-left:auto; }
+.wb-bl-q { font-family:var(--font-mono); font-size:.85rem; color:var(--sc-teal); font-weight:700; min-width:28px; }
+.wb-actions { margin-top:12px; }
