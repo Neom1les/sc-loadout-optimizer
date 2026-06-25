@@ -10,6 +10,7 @@ import { formatNumber } from './stats-calculator.js';
 import { loadJSON } from './data-loader.js';
 
 const FKEY = 'sc-my-fleet';
+const SKEY = 'sc-fleet-saves';
 const PKEY = 'sc-squad-presets';
 
 let ROOT = null;
@@ -203,6 +204,18 @@ function renderSpecTable(ships) {
   return `<table class="fleet-table"><thead><tr>${head}<th></th></tr></thead><tbody>${rows}</tbody></table>`;
 }
 
+function savedFleetsPanel(all) {
+  const saves = lget(SKEY);
+  const list = saves.length
+    ? saves.map(s => `<div class="wb-bl-row"><b>${esc(s.name)}</b><span class="ship-role">${(s.ships || []).length} ships</span><button class="fl-sub fl-load" data-load="${s.id}">Load</button><span class="sq-remove" data-delsave="${s.id}">×</span></div>`).join('')
+    : '<div class="src-note">No saved fleets yet — build one and save it under a name.</div>';
+  return `<div class="panel">
+    <div class="panel-header">Saved fleets <span class="pc-note">${saves.length}</span></div>
+    <div class="wb-buildlist">${list}</div>
+    <div class="fleet-io"><button class="fl-sub" id="mfSaveAs"${all.length ? '' : ' disabled'}>💾 Save current fleet as…</button></div>
+  </div>`;
+}
+
 function renderMyFleet() {
   const body = ROOT.querySelector('#fleetBody');
   const fleetIds = lget(FKEY);
@@ -220,6 +233,7 @@ function renderMyFleet() {
         <div class="ship-list" id="mfList"></div>
       </div>
       <div class="tac-analysis">
+        ${savedFleetsPanel(all)}
         ${all.length ? `
         <div class="panel">
           <div class="panel-header">Fleet dashboard <span class="pc-note">${all.length} ships${mfFilter.size ? ` · ${ships.length} shown` : ''}</span></div>
@@ -279,6 +293,32 @@ function renderMyFleet() {
   };
   const clr = body.querySelector('#mfClear');
   if (clr) clr.onclick = () => { if (confirm('Clear your whole fleet?')) { lset(FKEY, []); renderMyFleet(); } };
+
+  const saveAs = body.querySelector('#mfSaveAs');
+  if (saveAs) saveAs.onclick = () => {
+    const ids = lget(FKEY);
+    if (!ids.length) return;
+    const name = (prompt('Save this fleet as:', '') || '').trim();
+    if (!name) return;
+    const saves = lget(SKEY);
+    const existing = saves.find(s => (s.name || '').toLowerCase() === name.toLowerCase());
+    if (existing) { existing.ships = ids; existing.ts = new Date().toISOString(); }
+    else saves.push({ id: Math.random().toString(36).slice(2, 9), name, ships: ids, ts: new Date().toISOString() });
+    lset(SKEY, saves);
+    renderMyFleet();
+  };
+  body.querySelectorAll('[data-load]').forEach(b => b.onclick = () => {
+    const s = lget(SKEY).find(x => x.id === b.dataset.load);
+    if (!s) return;
+    lset(FKEY, s.ships || []);
+    mfFilter.clear();
+    renderMyFleet();
+  });
+  body.querySelectorAll('[data-delsave]').forEach(b => b.onclick = () => {
+    if (!confirm('Delete this saved fleet?')) return;
+    lset(SKEY, lget(SKEY).filter(x => x.id !== b.dataset.delsave));
+    renderMyFleet();
+  });
 }
 
 /* ─────────────────────────── Squad Composition Builder ─────────────────── */
