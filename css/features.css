@@ -405,6 +405,13 @@ body.tab-optimizer .btn-save { display:inline-flex; }
 .tr-profit { color:var(--status-ok); font-family:var(--font-mono); }
 .trade-table td { vertical-align:top; }
 .trade-table .cf-conf { margin-left:4px; }
+.tr-avg { font-family:var(--font-read); font-size:.62rem; color:var(--sc-amber); border:1px solid var(--sc-amber); border-radius:2px; padding:0 3px; margin-left:5px; vertical-align:middle; opacity:.85; }
+.tr-select { background:rgba(0,0,0,.3); border:1px solid var(--border-panel); color:var(--text-bright); padding:6px 8px; font-family:var(--font-read); font-size:.82rem; clip-path:polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px)); }
+.tr-dq { opacity:.5; }
+.tr-dq:hover { opacity:.78; }
+.tr-divider td { background:rgba(0,0,0,.25); color:var(--text-dim); font-family:var(--font-read); font-size:.74rem; letter-spacing:.04em; text-align:center; padding:7px; border-top:1px solid var(--border-panel); border-bottom:1px solid var(--border-panel); }
+.tr-legend { display:flex; flex-wrap:wrap; gap:14px; align-items:center; justify-content:space-between; margin:10px 0 4px; font-family:var(--font-read); font-size:.78rem; color:var(--text-secondary); }
+.tr-legend-badges { display:flex; align-items:center; gap:4px; flex-wrap:wrap; }
 
 /* crafting supply-chain cost */
 .wb-cost { margin:9px 0 2px; display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; }
