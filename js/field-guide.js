@@ -45,6 +45,15 @@ const CONF = {
 };
 function confBadge(c) { const x = CONF[c] || CONF.unclear; return `<span class="cf-conf cf-${x.cls}" title="${esc(x.t)}">${x.l}</span>`; }
 
+// availability status (events are time-sensitive) — shown so nothing concluded/unreleased looks live
+const STATUS = {
+  live: { l: 'LIVE', cls: 'ok', t: 'Available in the current LIVE patch' },
+  seasonal: { l: 'SEASONAL', cls: 'teal', t: 'Recurring / time-limited event — runs on a schedule' },
+  ptu: { l: 'PTU · 4.9', cls: 'warn', t: 'In testing — not on the LIVE build yet' },
+  concluded: { l: 'CONCLUDED', cls: 'dim', t: 'One-time event that has ended' },
+};
+function statusBadge(s) { const x = STATUS[s]; return x ? `<span class="cf-conf cf-${x.cls}" title="${esc(x.t)}">${x.l}</span>` : ''; }
+
 // derive a provenance marker from a source URL, so the player sees where a fact came from
 function srcTag(s) {
   const u = (s.url || '').toLowerCase();
@@ -91,11 +100,13 @@ function sectionList(title, items, ordered) {
 function detail(e) {
   if (!e) return '<div class="empty-state"><h3>Pick an entry</h3><p>Select a facility or mission on the left to read its walkthrough, rewards, hazards and sources.</p></div>';
   const sources = (e.sources || []).map(s => { const t = srcTag(s); return `<a class="fg-src" href="${esc(s.url)}" target="_blank" rel="noopener"><span class="cf-conf cf-${t.cls}">${t.label}</span> ${esc(s.label)}</a>`; }).join('');
+  const companion = (e.companion && e.companion.url) ? `<a class="fg-companion" href="${esc(e.companion.url)}" target="_blank" rel="noopener">📖 Companion guide — <b>${esc(e.companion.label || 'community guide')}</b> ↗</a>` : '';
   return `<div class="panel">
     <div class="wb-head">
       <div><div class="wb-title">${esc(e.name)}</div><div class="ship-role">${esc(TYPE_LABEL[e.type] || e.type)}</div></div>
-      ${confBadge(e.confidence)}
+      <div class="fg-badges">${statusBadge(e.status)}${confBadge(e.confidence)}</div>
     </div>
+    ${companion}
     ${e.location ? `<div class="fg-meta"><span class="fg-meta-k">Location</span> ${esc(e.location)}</div>` : ''}
     ${e.access ? `<div class="fg-meta"><span class="fg-meta-k">Access</span> ${esc(e.access)}</div>` : ''}
     ${e.overview ? `<p class="craft-p">${esc(e.overview)}</p>` : ''}
@@ -118,7 +129,7 @@ function render() {
 
   const items = list.map(e => `<div class="ship-item fg-item${sel && sel.id === e.id ? ' active' : ''}" data-id="${esc(e.id)}">
       <span class="fg-item-name">${esc(e.name)}</span>
-      <span class="ship-role">${esc(TYPE_LABEL[e.type] || e.type)} ${confBadge(e.confidence)}</span>
+      <span class="ship-role">${esc(TYPE_LABEL[e.type] || e.type)} ${statusBadge(e.status)}${confBadge(e.confidence)}</span>
     </div>`).join('') || '<div class="empty-state"><p>No entries match.</p></div>';
 
   const legend = (DATA.legend || []).map(l => `<div class="fg-leg-row"><b>${esc(l.icon)}</b><span>${esc(l.meaning)}</span></div>`).join('');
@@ -145,6 +156,8 @@ function render() {
       </div>
       <div class="tac-analysis" id="fgDetail">${detail(sel)}</div>
     </div>
+
+    ${(DATA.moreGuides && DATA.moreGuides.length) ? `<div class="panel"><div class="panel-header">More companion guides <span class="pc-note">MrKraken one-pagers for events not yet detailed here — credit &amp; link, no images reproduced</span></div><div class="fg-more">${DATA.moreGuides.map(g => `<a class="fg-companion" href="${esc(g.url)}" target="_blank" rel="noopener">📖 ${esc(g.event)} ↗</a>`).join('')}</div></div>` : ''}
 
     <div class="panel fg-caveats"><div class="panel-header">Honesty &amp; caveats</div><ul class="guide-tips">${caveats}</ul></div>
     <div class="src-note">Built from publicly available community documentation (SC Wiki — CC BY-SA, RSI Spectrum/comm-links, community guides), summarised with attribution. No third-party guide images/maps are reproduced. Star Citizen data is volatile — confirm in-game. Unofficial — not affiliated with Cloud Imperium Games.</div>`;

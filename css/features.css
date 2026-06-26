@@ -436,3 +436,8 @@ body.tab-optimizer .btn-save { display:inline-flex; }
 .fg-leg-row { display:flex; gap:8px; font-family:var(--font-read); font-size:.8rem; color:var(--text-secondary); }
 .fg-leg-row b { color:var(--sc-teal); min-width:96px; font-family:var(--font-mono); font-size:.72rem; }
 .fg-caveats { margin-top:16px; }
+.fg-badges { display:flex; gap:5px; align-items:center; flex-shrink:0; }
+.fg-companion { display:inline-block; margin:8px 0 4px; padding:7px 12px; background:rgba(61,255,242,.06); border:1px solid var(--sc-teal); color:var(--sc-teal); font-family:var(--font-read); font-size:.84rem; text-decoration:none; clip-path:polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px)); }
+.fg-companion:hover { background:rgba(61,255,242,.14); color:var(--text-bright); }
+.fg-more { display:flex; flex-wrap:wrap; gap:8px; }
+.fg-more .fg-companion { margin:0; }
