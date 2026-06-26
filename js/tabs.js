@@ -9,8 +9,9 @@ import { initFleet } from './fleet.js';
 import { initCrafting } from './crafting.js';
 import { initTrade } from './trade.js';
 import { initWeapons } from './weapons.js';
+import { initFieldGuide } from './field-guide.js';
 
-const TABS = ['home', 'optimizer', 'earnings', 'patch', 'tactics', 'fleet', 'crafting', 'trade', 'weapons'];
+const TABS = ['home', 'optimizer', 'earnings', 'patch', 'tactics', 'fleet', 'crafting', 'trade', 'weapons', 'fieldguide'];
 const inited = {};
 
 function panelId(tab) { return 'tab' + tab.charAt(0).toUpperCase() + tab.slice(1); }
@@ -27,6 +28,7 @@ function renderHome() {
     { tab: 'crafting', ico: '⚒', img: 'assets/crafting.jpg', title: 'Crafting Guide', desc: 'Materials, blueprints, recipes and what’s worth making — every claim tagged live / PTU / community.' },
     { tab: 'trade', ico: '⇄', img: 'assets/trade.jpg', title: 'Trade Routes', desc: 'Best buy→sell commodity runs by profit per SCU — with a cargo calculator and legal / single-system filters.' },
     { tab: 'weapons', ico: '⌖', img: 'assets/armory.jpg', title: 'Armory', desc: 'Every personal weapon — damage, fire rate, range, rarity and which ones you can craft.' },
+    { tab: 'fieldguide', ico: '▤', img: 'assets/fieldguide.jpg', title: 'Field Guide', desc: 'Underground facilities, Onyx contracts & special missions — community-sourced walkthroughs with citations.' },
   ];
   root.innerHTML = `
     <div class="home-hero">
@@ -55,7 +57,7 @@ function show(tab) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
   const panel = document.getElementById(panelId(tab));
   if (panel) panel.classList.add('active');
-  document.body.classList.remove('tab-home', 'tab-optimizer', 'tab-earnings', 'tab-patch', 'tab-tactics', 'tab-fleet', 'tab-crafting', 'tab-trade', 'tab-weapons');
+  document.body.classList.remove('tab-home', 'tab-optimizer', 'tab-earnings', 'tab-patch', 'tab-tactics', 'tab-fleet', 'tab-crafting', 'tab-trade', 'tab-weapons', 'tab-fieldguide');
   document.body.classList.add('tab-' + tab);
   if (!(location.hash || '').startsWith('#squad=') && location.hash.slice(1) !== tab) {
     history.replaceState(null, '', '#' + tab);
@@ -69,6 +71,7 @@ function show(tab) {
   if (tab === 'crafting' && !inited.crafting) { inited.crafting = true; initCrafting(document.getElementById('craftingRoot')); }
   if (tab === 'trade' && !inited.trade) { inited.trade = true; initTrade(document.getElementById('tradeRoot')); }
   if (tab === 'weapons' && !inited.weapons) { inited.weapons = true; initWeapons(document.getElementById('weaponsRoot')); }
+  if (tab === 'fieldguide' && !inited.fieldguide) { inited.fieldguide = true; initFieldGuide(document.getElementById('fieldGuideRoot')); }
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
