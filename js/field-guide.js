@@ -101,12 +101,18 @@ function detail(e) {
   if (!e) return '<div class="empty-state"><h3>Pick an entry</h3><p>Select a facility or mission on the left to read its walkthrough, rewards, hazards and sources.</p></div>';
   const sources = (e.sources || []).map(s => { const t = srcTag(s); return `<a class="fg-src" href="${esc(s.url)}" target="_blank" rel="noopener"><span class="cf-conf cf-${t.cls}">${t.label}</span> ${esc(s.label)}</a>`; }).join('');
   const companion = (e.companion && e.companion.url) ? `<a class="fg-companion" href="${esc(e.companion.url)}" target="_blank" rel="noopener">📖 Companion guide — <b>${esc(e.companion.label || 'community guide')}</b> ↗</a>` : '';
+  const gallery = (e.guideImages && e.guideImages.length) ? `
+    <div class="fg-gallery">
+      <div class="wb-sub-h">Companion guide <span class="pc-note">by MrKraken — full one-pager, used with permission (credit kept intact); click to enlarge</span></div>
+      <div class="fg-gimgs">${e.guideImages.map(src => `<a class="fg-gimg" href="${esc(src)}" target="_blank" rel="noopener" title="Open full size"><img src="${esc(src)}" loading="lazy" alt="MrKraken companion guide — ${esc(e.name)}"></a>`).join('')}</div>
+    </div>` : '';
   return `<div class="panel">
     <div class="wb-head">
       <div><div class="wb-title">${esc(e.name)}</div><div class="ship-role">${esc(TYPE_LABEL[e.type] || e.type)}</div></div>
       <div class="fg-badges">${statusBadge(e.status)}${confBadge(e.confidence)}</div>
     </div>
     ${companion}
+    ${gallery}
     ${e.location ? `<div class="fg-meta"><span class="fg-meta-k">Location</span> ${esc(e.location)}</div>` : ''}
     ${e.access ? `<div class="fg-meta"><span class="fg-meta-k">Access</span> ${esc(e.access)}</div>` : ''}
     ${e.overview ? `<p class="craft-p">${esc(e.overview)}</p>` : ''}

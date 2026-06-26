@@ -441,3 +441,8 @@ body.tab-optimizer .btn-save { display:inline-flex; }
 .fg-companion:hover { background:rgba(61,255,242,.14); color:var(--text-bright); }
 .fg-more { display:flex; flex-wrap:wrap; gap:8px; }
 .fg-more .fg-companion { margin:0; }
+.fg-gallery { margin:12px 0 6px; }
+.fg-gimgs { display:flex; flex-direction:column; gap:10px; }
+.fg-gimg { display:block; border:1px solid var(--border-panel); line-height:0; clip-path:polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px)); transition:border-color .2s; }
+.fg-gimg img { width:100%; height:auto; display:block; }
+.fg-gimg:hover { border-color:var(--sc-teal); }
