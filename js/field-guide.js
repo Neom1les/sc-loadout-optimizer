@@ -53,7 +53,9 @@ function srcTag(s) {
   if (u.includes('/spectrum')) return { label: 'Spectrum', cls: 'warn' };
   if (u.includes('reddit.com')) return { label: 'Reddit', cls: 'warn' };
   if (u.includes('youtube.com') || u.includes('youtu.be')) return { label: 'Video', cls: 'dim' };
-  if (u.includes('robertsspaceindustries.com')) return { label: 'Official', cls: 'ok' };
+  if (u.includes('/community-hub')) return { label: 'Community', cls: 'dim' };   // RSI Community Hub = player-generated
+  if (u.includes('/galactapedia')) return { label: 'Lore', cls: 'dim' };          // in-fiction lore, not patch fact
+  if (u.includes('robertsspaceindustries.com')) return { label: 'Official', cls: 'ok' };  // comm-links / support KB
   return { label: 'Community', cls: 'dim' };
 }
 
