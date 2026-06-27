@@ -446,3 +446,12 @@ body.tab-optimizer .btn-save { display:inline-flex; }
 .fg-gimg { display:block; border:1px solid var(--border-panel); line-height:0; clip-path:polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px)); transition:border-color .2s; }
 .fg-gimg img { width:100%; height:auto; display:block; }
 .fg-gimg:hover { border-color:var(--sc-teal); }
+
+/* gear locker */
+.gl-legend { display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin:10px 0 14px; font-family:var(--font-read); font-size:.8rem; color:var(--text-secondary); }
+.gl-acq { display:flex; flex-direction:column; gap:8px; margin-top:4px; }
+.gl-acq-row { display:flex; gap:10px; align-items:flex-start; background:var(--bg-panel); border:1px solid var(--border-panel); border-left:3px solid var(--sc-teal); padding:8px 11px; }
+.gl-acq-row .cf-conf { flex-shrink:0; margin-top:1px; }
+.gl-acq-body { flex:1; }
+.gl-acq-where { font-family:var(--font-read); font-size:.88rem; color:var(--text-secondary); line-height:1.45; }
+.gl-acq-row .tr-loc { display:block; margin-top:3px; color:var(--sc-teal); font-size:.74rem; }
