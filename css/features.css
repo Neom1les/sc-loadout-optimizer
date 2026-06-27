@@ -455,3 +455,17 @@ body.tab-optimizer .btn-save { display:inline-flex; }
 .gl-acq-body { flex:1; }
 .gl-acq-where { font-family:var(--font-read); font-size:.88rem; color:var(--text-secondary); line-height:1.45; }
 .gl-acq-row .tr-loc { display:block; margin-top:3px; color:var(--sc-teal); font-size:.74rem; }
+
+/* weapon thumbnails in the Armory table */
+.wp-namecell { display:flex; align-items:center; gap:10px; }
+.wp-thumb { width:54px; height:40px; object-fit:contain; flex-shrink:0; background:rgba(0,0,0,.35); border:1px solid var(--border-panel); border-radius:2px; }
+.wp-thumb-none { display:flex; align-items:center; justify-content:center; color:var(--text-dim); font-size:1rem; }
+.wp-nametext { display:flex; flex-direction:column; }
+
+/* gear locker item images */
+.gl-item { display:flex; align-items:center; gap:10px; }
+.gl-item-txt { display:flex; flex-direction:column; min-width:0; }
+.gl-thumb { width:48px; height:48px; object-fit:contain; flex-shrink:0; background:rgba(0,0,0,.35); border:1px solid var(--border-panel); border-radius:2px; }
+.gl-thumb-none { display:flex; align-items:center; justify-content:center; color:var(--text-dim); font-size:1rem; }
+.gl-hero { margin:10px 0 4px; border:1px solid var(--border-panel); background:rgba(0,0,0,.3); text-align:center; clip-path:polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px)); }
+.gl-hero img { max-width:100%; max-height:360px; height:auto; display:inline-block; }

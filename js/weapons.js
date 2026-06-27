@@ -29,7 +29,7 @@ function typeTag(t) { return t ? `<span class="cf-conf cf-${DTYPE[t] || 'dim'}">
 
 const COLS = [
   {
-    k: 'name', l: 'Weapon', num: false, fmt: (v, w) => `${esc(v)}<span class="tr-loc">${esc(w.manufacturer || '')}${w.subType ? ' · ' + esc(w.subType) : ''}${w.skins > 1 ? ' · ' + w.skins + ' skins' : ''}${w.craftable ? ' · <span class="cf-conf cf-ok">craftable</span>' : ''}${(w.fireModes && w.fireModes.length) ? ' · ' + esc(w.fireModes.join('/')) : ''}</span>`,
+    k: 'name', l: 'Weapon', num: false, fmt: (v, w) => `<div class="wp-namecell">${w.img ? `<img class="wp-thumb" src="${esc(w.img)}" loading="lazy" alt="">` : '<span class="wp-thumb wp-thumb-none">⌖</span>'}<span class="wp-nametext">${esc(v)}<span class="tr-loc">${esc(w.manufacturer || '')}${w.subType ? ' · ' + esc(w.subType) : ''}${w.skins > 1 ? ' · ' + w.skins + ' skins' : ''}${w.craftable ? ' · <span class="cf-conf cf-ok">craftable</span>' : ''}${(w.fireModes && w.fireModes.length) ? ' · ' + esc(w.fireModes.join('/')) : ''}</span></span></div>`,
   },
   { k: 'class', l: 'Class', num: false },
   { k: 'alpha', l: 'Alpha', num: true, fmt: v => num(v) },

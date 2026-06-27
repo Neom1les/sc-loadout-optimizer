@@ -101,6 +101,7 @@ function detail(e) {
       <div><div class="wb-title">${esc(e.name)}</div><div class="ship-role">${esc(CAT_LABEL[e.category] || e.category)}${e.type ? ' · ' + esc(e.type) : ''}${e.manufacturer ? ' · ' + esc(e.manufacturer) : ''}</div></div>
       <div class="fg-badges">${rarityTag(e.rarity)}${badge(STATUS, e.status)}${badge(CONF, e.confidence)}</div>
     </div>
+    ${e.img ? `<div class="gl-hero"><img src="${esc(e.img)}" loading="lazy" alt="${esc(e.name)}"></div>` : ''}
     ${e.notableFor ? `<p class="craft-p">${esc(e.notableFor)}</p>` : ''}
     <div class="wb-sub-h">How to get it</div>
     <div class="gl-acq">${acq}</div>
@@ -116,9 +117,9 @@ function render() {
 
   const items = list.map(e => {
     const methods = [...new Set((e.acquisition || []).map(a => a.method))];
-    return `<div class="ship-item fg-item${sel && sel.id === e.id ? ' active' : ''}" data-id="${esc(e.id)}">
-      <span class="fg-item-name">${esc(e.name)}</span>
-      <span class="ship-role">${esc(CAT_LABEL[e.category] || e.category)} ${methods.map(m => badge(METHOD, m)).join('')}</span>
+    return `<div class="ship-item fg-item gl-item${sel && sel.id === e.id ? ' active' : ''}" data-id="${esc(e.id)}">
+      ${e.img ? `<img class="gl-thumb" src="${esc(e.img)}" loading="lazy" alt="">` : '<span class="gl-thumb gl-thumb-none">⬢</span>'}
+      <span class="gl-item-txt"><span class="fg-item-name">${esc(e.name)}</span><span class="ship-role">${esc(CAT_LABEL[e.category] || e.category)} ${methods.map(m => badge(METHOD, m)).join('')}</span></span>
     </div>`;
   }).join('') || '<div class="empty-state"><p>No items match.</p></div>';
   const caveats = (DATA.caveats || []).map(c => `<li>${esc(c)}</li>`).join('');
