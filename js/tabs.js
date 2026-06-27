@@ -20,26 +20,24 @@ function panelId(tab) { return 'tab' + tab.charAt(0).toUpperCase() + tab.slice(1
 function renderHome() {
   const root = document.getElementById('homeRoot');
   if (!root) return;
-  const tiles = [
-    { tab: 'optimizer', ico: '⬡', img: 'assets/bg2.webp', title: 'Loadout Optimizer', desc: 'Optimize weapons, shields & components for any combat ship — with damage matchups, TTK and shopping lists.' },
-    { tab: 'earnings', ico: '◎', img: 'assets/bg.jpg', title: 'Earnings Finder', desc: 'Find the fastest way to earn aUEC or grind a faction’s reputation — ranked by your goal, with full guides.' },
-    { tab: 'patch', ico: '❖', img: 'assets/bg3.webp', title: 'Patch Hub', desc: 'What’s new each patch with step-by-step guides — plus the upcoming Alpha 4.9 roadmap.' },
-    { tab: 'tactics', ico: '⊕', img: 'assets/tactics.jpg', title: 'Tactics', desc: 'Counter-pick any enemy ship, read its armor weakness, and see which ships hard-counter it.' },
-    { tab: 'fleet', ico: '⊟', img: 'assets/fleet.jpg', title: 'Fleet Ops', desc: 'Build squad comps, track your org’s fleet & crews, and share standard loadout presets.' },
-    { tab: 'crafting', ico: '⚒', img: 'assets/crafting.jpg', title: 'Crafting Guide', desc: 'Materials, blueprints, recipes and what’s worth making — every claim tagged live / PTU / community.' },
-    { tab: 'trade', ico: '⇄', img: 'assets/trade.jpg', title: 'Trade Routes', desc: 'Best buy→sell commodity runs by profit per SCU — with a cargo calculator and legal / single-system filters.' },
-    { tab: 'weapons', ico: '⌖', img: 'assets/armory.jpg', title: 'Armory', desc: 'Every personal weapon — damage, fire rate, range, rarity and which ones you can craft.' },
-    { tab: 'fieldguide', ico: '▤', img: 'assets/fieldguide.jpg', title: 'Field Guide', desc: 'Underground facilities, Onyx contracts & special missions — community-sourced walkthroughs with citations.' },
-    { tab: 'gear', ico: '⬢', img: 'assets/gear.jpg', title: 'Gear Locker', desc: 'Where to get special armor & gear — which shop, loot site or event, with locations and sources.' },
+  const T = {
+    optimizer: { tab: 'optimizer', ico: '⬡', img: 'assets/bg2.webp', title: 'Loadout Optimizer', desc: 'Optimize weapons, shields & components for any combat ship — with damage matchups, TTK and shopping lists.' },
+    tactics: { tab: 'tactics', ico: '⊕', img: 'assets/tactics.jpg', title: 'Tactics', desc: 'Counter-pick any enemy ship, read its armor weakness, and see which ships hard-counter it.' },
+    fleet: { tab: 'fleet', ico: '⊟', img: 'assets/fleet.jpg', title: 'Fleet Ops', desc: 'Build squad comps, track your org’s fleet & crews, and share standard loadout presets.' },
+    weapons: { tab: 'weapons', ico: '⌖', img: 'assets/armory.jpg', title: 'Armory', desc: 'Every personal weapon — damage, fire rate, range, rarity and which ones you can craft.' },
+    gear: { tab: 'gear', ico: '⬢', img: 'assets/gear.jpg', title: 'Gear Locker', desc: 'Where to get special armor & gear — which shop, loot site or event, with locations and sources.' },
+    fieldguide: { tab: 'fieldguide', ico: '▤', img: 'assets/fieldguide.jpg', title: 'Field Guide', desc: 'Underground facilities, Onyx contracts & special missions — community-sourced walkthroughs with citations.' },
+    trade: { tab: 'trade', ico: '⇄', img: 'assets/trade.jpg', title: 'Trade Routes', desc: 'Best buy→sell commodity runs by profit per SCU — with a cargo calculator and legal / single-system filters.' },
+    crafting: { tab: 'crafting', ico: '⚒', img: 'assets/crafting.jpg', title: 'Crafting Guide', desc: 'Materials, blueprints, recipes and what’s worth making — every claim tagged live / PTU / community.' },
+    earnings: { tab: 'earnings', ico: '◎', img: 'assets/bg.jpg', title: 'Earnings Finder', desc: 'Find the fastest way to earn aUEC or grind a faction’s reputation — ranked by your goal, with full guides.' },
+    patch: { tab: 'patch', ico: '❖', img: 'assets/bg3.webp', title: 'Patch Hub', desc: 'What’s new each patch with step-by-step guides — plus the upcoming Alpha 4.9 roadmap.' },
+  };
+  const sections = [
+    { title: 'Ship Operations', ico: '⬡', sub: 'Combat loadouts, matchups & your fleet', keys: ['optimizer', 'tactics', 'fleet'] },
+    { title: 'On Foot', ico: '⌖', sub: 'Personal weapons, armor & ground missions', keys: ['weapons', 'gear', 'fieldguide'] },
+    { title: 'Economy & Intel', ico: '⇄', sub: 'Earn, craft, trade & track every patch', keys: ['trade', 'crafting', 'earnings', 'patch'] },
   ];
-  root.innerHTML = `
-    <div class="home-hero">
-      <div class="hh-kicker">Star Citizen · Alpha 4.8.2-LIVE</div>
-      <h1 class="hh-title">Command Deck</h1>
-      <p class="hh-sub">Your toolkit for the ’verse — choose a station to begin.</p>
-    </div>
-    <div class="home-grid">
-      ${tiles.map(t => `<button class="home-tile" data-go="${t.tab}">
+  const tile = t => `<button class="home-tile" data-go="${t.tab}">
         <span class="ht-img" style="background-image:url('${t.img}')"></span>
         <span class="ht-shade"></span>
         <span class="ht-body">
@@ -48,8 +46,17 @@ function renderHome() {
           <span class="ht-desc">${t.desc}</span>
           <span class="ht-cta">Open ▸</span>
         </span>
-      </button>`).join('')}
-    </div>`;
+      </button>`;
+  root.innerHTML = `
+    <div class="home-hero">
+      <div class="hh-kicker">Star Citizen · Alpha 4.8.2-LIVE</div>
+      <h1 class="hh-title">Command Deck</h1>
+      <p class="hh-sub">Your toolkit for the ’verse — choose a station to begin.</p>
+    </div>
+    ${sections.map(s => `<section class="home-section">
+      <div class="hs-head"><span class="hs-ico">${s.ico}</span><span class="hs-title">${s.title}</span><span class="hs-rule"></span><span class="hs-sub">${s.sub}</span></div>
+      <div class="home-grid">${s.keys.map(k => tile(T[k])).join('')}</div>
+    </section>`).join('')}`;
   root.querySelectorAll('[data-go]').forEach(b => b.onclick = () => show(b.dataset.go));
 }
 
