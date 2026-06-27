@@ -35,7 +35,7 @@ function renderHome() {
   const sections = [
     { title: 'Ship Operations', ico: '⬡', sub: 'Combat loadouts, matchups & your fleet', keys: ['optimizer', 'tactics', 'fleet'] },
     { title: 'On Foot', ico: '⌖', sub: 'Personal weapons, armor & ground missions', keys: ['weapons', 'gear', 'fieldguide'] },
-    { title: 'Economy & Intel', ico: '⇄', sub: 'Earn, craft, trade & track every patch', keys: ['trade', 'crafting', 'earnings', 'patch'] },
+    { title: 'Economy & Career', ico: '⇄', sub: 'Earn aUEC, craft and run trade routes', keys: ['trade', 'crafting', 'earnings'] },
   ];
   const tile = t => `<button class="home-tile" data-go="${t.tab}">
         <span class="ht-img" style="background-image:url('${t.img}')"></span>
@@ -47,14 +47,25 @@ function renderHome() {
           <span class="ht-cta">Open ▸</span>
         </span>
       </button>`;
+  const p = T.patch;
   root.innerHTML = `
     <div class="home-hero">
       <div class="hh-kicker">Star Citizen · Alpha 4.8.2-LIVE</div>
       <h1 class="hh-title">Command Deck</h1>
       <p class="hh-sub">Your toolkit for the ’verse — choose a station to begin.</p>
     </div>
-    ${sections.map(s => `<section class="home-section">
-      <div class="hs-head"><span class="hs-ico">${s.ico}</span><span class="hs-title">${s.title}</span><span class="hs-rule"></span><span class="hs-sub">${s.sub}</span></div>
+    <button class="patch-banner" data-go="patch">
+      <span class="pb-img" style="background-image:url('${p.img}')"></span>
+      <span class="pb-shade"></span>
+      <span class="pb-body">
+        <span class="pb-kicker"><span class="pb-dot"></span>${p.ico} Latest patch · Alpha 4.8.2-LIVE</span>
+        <span class="pb-title">${p.title}</span>
+        <span class="pb-desc">${p.desc}</span>
+      </span>
+      <span class="pb-cta">Open ▸</span>
+    </button>
+    ${sections.map((s, i) => `<section class="home-section">
+      <div class="hs-head"><span class="hs-num">0${i + 1}</span><span class="hs-ico">${s.ico}</span><span class="hs-title">${s.title}</span><span class="hs-rule"></span><span class="hs-sub">${s.sub}</span></div>
       <div class="home-grid">${s.keys.map(k => tile(T[k])).join('')}</div>
     </section>`).join('')}`;
   root.querySelectorAll('[data-go]').forEach(b => b.onclick = () => show(b.dataset.go));
