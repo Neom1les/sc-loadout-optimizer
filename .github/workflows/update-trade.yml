@@ -1,8 +1,8 @@
-name: Update Trade Data
+name: Update UEX Data
 
-# Refresh commodity trade routes from the public UEX Corp API every 8 hours.
-# UEX needs no token, so no secrets are required. Prices are a snapshot — the
-# app shows the snapshot time and a staleness note.
+# Refresh commodity trade routes AND in-game ship-buy prices from the public UEX
+# Corp API every 8 hours. UEX needs no token, so no secrets are required. Prices
+# are a snapshot — the app shows the snapshot time and a staleness note.
 
 on:
   schedule:
@@ -24,18 +24,19 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Run trade ingest
+      - name: Run UEX ingests
         run: |
           export RUN_DATE="$(date -u +'%Y-%m-%d %H:%M UTC')"
           python scripts/ingest-trade.py
+          python scripts/ingest-ships.py
       - name: Commit changes
         run: |
           git config user.name "trade-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/trade-routes.json data/commodity-buy.json
+          git add data/trade-routes.json data/commodity-buy.json data/ship-buy.json
           if git diff --cached --quiet; then
-            echo "No trade-data changes this run."
+            echo "No UEX-data changes this run."
           else
-            git commit -m "chore: trade snapshot $(date -u +%Y-%m-%dT%H:%MZ)"
+            git commit -m "chore: UEX snapshot $(date -u +%Y-%m-%dT%H:%MZ)"
             git push
           fi

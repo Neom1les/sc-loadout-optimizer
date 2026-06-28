@@ -11,8 +11,9 @@ import { initTrade } from './trade.js';
 import { initWeapons } from './weapons.js';
 import { initFieldGuide } from './field-guide.js';
 import { initGear } from './gear.js';
+import { initShipsBuy } from './ships-buy.js';
 
-const TABS = ['home', 'optimizer', 'earnings', 'patch', 'tactics', 'fleet', 'crafting', 'trade', 'weapons', 'fieldguide', 'gear'];
+const TABS = ['home', 'optimizer', 'earnings', 'patch', 'tactics', 'fleet', 'crafting', 'trade', 'weapons', 'fieldguide', 'gear', 'shipbuy'];
 const inited = {};
 
 function panelId(tab) { return 'tab' + tab.charAt(0).toUpperCase() + tab.slice(1); }
@@ -24,6 +25,7 @@ function renderHome() {
     optimizer: { tab: 'optimizer', ico: '⬡', img: 'assets/bg2.webp', title: 'Loadout Optimizer', desc: 'Optimize weapons, shields & components for any combat ship — with damage matchups, TTK and shopping lists.' },
     tactics: { tab: 'tactics', ico: '⊕', img: 'assets/tactics.jpg', title: 'Tactics', desc: 'Counter-pick any enemy ship, read its armor weakness, and see which ships hard-counter it.' },
     fleet: { tab: 'fleet', ico: '⊟', img: 'assets/fleet.jpg', title: 'Fleet Ops', desc: 'Build squad comps, track your org’s fleet & crews, and share standard loadout presets.' },
+    shipbuy: { tab: 'shipbuy', ico: '◈', img: 'assets/shipdealer.jpg', title: 'Ship Dealer', desc: 'Which ships you can buy in-game for aUEC — at which dealer / showroom and for how much.' },
     weapons: { tab: 'weapons', ico: '⌖', img: 'assets/armory.jpg', title: 'Armory', desc: 'Every personal weapon — damage, fire rate, range, rarity and which ones you can craft.' },
     gear: { tab: 'gear', ico: '⬢', img: 'assets/gear.jpg', title: 'Gear Locker', desc: 'Where to get special armor & gear — which shop, loot site or event, with locations and sources.' },
     fieldguide: { tab: 'fieldguide', ico: '▤', img: 'assets/fieldguide.jpg', title: 'Field Guide', desc: 'Underground facilities, Onyx contracts & special missions — community-sourced walkthroughs with citations.' },
@@ -33,7 +35,7 @@ function renderHome() {
     patch: { tab: 'patch', ico: '❖', img: 'assets/bg3.webp', title: 'Patch Hub', desc: 'What’s new each patch with step-by-step guides — plus the upcoming Alpha 4.9 roadmap.' },
   };
   const sections = [
-    { title: 'Ship Operations', ico: '⬡', sub: 'Combat loadouts, matchups & your fleet', keys: ['optimizer', 'tactics', 'fleet'] },
+    { title: 'Ship Operations', ico: '⬡', sub: 'Buy, fit, fight & fleet — everything ships', keys: ['shipbuy', 'optimizer', 'tactics', 'fleet'] },
     { title: 'On Foot', ico: '⌖', sub: 'Personal weapons, armor & ground missions', keys: ['weapons', 'gear', 'fieldguide'] },
     { title: 'Economy & Career', ico: '⇄', sub: 'Earn aUEC, craft and run trade routes', keys: ['trade', 'crafting', 'earnings'] },
   ];
@@ -77,7 +79,7 @@ function show(tab) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
   const panel = document.getElementById(panelId(tab));
   if (panel) panel.classList.add('active');
-  document.body.classList.remove('tab-home', 'tab-optimizer', 'tab-earnings', 'tab-patch', 'tab-tactics', 'tab-fleet', 'tab-crafting', 'tab-trade', 'tab-weapons', 'tab-fieldguide', 'tab-gear');
+  document.body.classList.remove('tab-home', 'tab-optimizer', 'tab-earnings', 'tab-patch', 'tab-tactics', 'tab-fleet', 'tab-crafting', 'tab-trade', 'tab-weapons', 'tab-fieldguide', 'tab-gear', 'tab-shipbuy');
   document.body.classList.add('tab-' + tab);
   if (!(location.hash || '').startsWith('#squad=') && location.hash.slice(1) !== tab) {
     history.replaceState(null, '', '#' + tab);
@@ -93,6 +95,7 @@ function show(tab) {
   if (tab === 'weapons' && !inited.weapons) { inited.weapons = true; initWeapons(document.getElementById('weaponsRoot')); }
   if (tab === 'fieldguide' && !inited.fieldguide) { inited.fieldguide = true; initFieldGuide(document.getElementById('fieldGuideRoot')); }
   if (tab === 'gear' && !inited.gear) { inited.gear = true; initGear(document.getElementById('gearRoot')); }
+  if (tab === 'shipbuy' && !inited.shipbuy) { inited.shipbuy = true; initShipsBuy(document.getElementById('shipBuyRoot')); }
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
