@@ -99,7 +99,15 @@
     font-size: 0.7rem;
     color: var(--text-dim);
     margin-left: auto;
+    padding-left: 8px;
+    flex-shrink: 0;
 }
+.ship-item .ship-cat { font-size: 0.78rem; width: 15px; text-align: center; flex-shrink: 0; }
+.ship-item-name { flex: 1 1 auto; min-width: 0; }
+.ship-cat-combat { color: var(--sc-teal); }
+.ship-cat-mining { color: var(--sc-amber); }
+.ship-cat-hauling { color: #6fa8ff; }
+.ship-cat-utility { color: var(--text-secondary); }
 
 .ship-preview {
     display: grid;

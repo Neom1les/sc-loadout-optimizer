@@ -3,25 +3,53 @@ import { loadShipIndex } from './data-loader.js';
 let shipIndex = [];
 let onSelectCallback = null;
 let activeUuid = null;
+let activeCat = 'all';
+let listContainer = null;
+let searchEl = null;
+
+// Loadout categories — drives the per-row badge + the filter chips.
+const CATS = [
+    { k: 'all', l: 'All' },
+    { k: 'combat', l: 'Combat' },
+    { k: 'mining', l: 'Mining' },
+    { k: 'hauling', l: 'Hauling' },
+    { k: 'utility', l: 'Other' },
+];
+const CAT_ICO = { combat: '◈', mining: '⛏', hauling: '⇄', utility: '⬡' };
 
 export async function initShipSelector(containerId, searchId, onSelect) {
     onSelectCallback = onSelect;
     shipIndex = await loadShipIndex();
-    const container = document.getElementById(containerId);
-    const searchInput = document.getElementById(searchId);
+    listContainer = document.getElementById(containerId);
+    searchEl = document.getElementById(searchId);
 
-    renderShipList(container, shipIndex);
+    renderCatFilter();
+    applyFilter();
 
-    searchInput.addEventListener('input', () => {
-        const q = searchInput.value.toLowerCase().trim();
-        const filtered = q
-            ? shipIndex.filter(s =>
-                s.name.toLowerCase().includes(q) ||
-                s.manufacturer.toLowerCase().includes(q) ||
-                s.role.toLowerCase().includes(q))
-            : shipIndex;
-        renderShipList(container, filtered);
-    });
+    searchEl.addEventListener('input', applyFilter);
+}
+
+function renderCatFilter() {
+    const el = document.getElementById('shipCatFilter');
+    if (!el) return;
+    const counts = {};
+    for (const s of shipIndex) counts[s.category] = (counts[s.category] || 0) + 1;
+    el.innerHTML = CATS.map(c => {
+        const n = c.k === 'all' ? shipIndex.length : (counts[c.k] || 0);
+        return `<button class="fl-chip${activeCat === c.k ? ' active' : ''}" data-shipcat="${c.k}">${c.k !== 'all' ? CAT_ICO[c.k] + ' ' : ''}${c.l} · ${n}</button>`;
+    }).join('');
+    el.querySelectorAll('[data-shipcat]').forEach(b => b.onclick = () => { activeCat = b.dataset.shipcat; renderCatFilter(); applyFilter(); });
+}
+
+function applyFilter() {
+    const q = (searchEl?.value || '').toLowerCase().trim();
+    let list = shipIndex;
+    if (activeCat !== 'all') list = list.filter(s => s.category === activeCat);
+    if (q) list = list.filter(s =>
+        s.name.toLowerCase().includes(q) ||
+        s.manufacturer.toLowerCase().includes(q) ||
+        s.role.toLowerCase().includes(q));
+    renderShipList(listContainer, list);
 }
 
 function renderShipList(container, ships) {
@@ -38,7 +66,8 @@ function renderShipList(container, ships) {
         for (const s of list) {
             const active = s.uuid === activeUuid ? ' active' : '';
             html += `<div class="ship-item${active}" data-uuid="${s.uuid}">
-                <span>${s.name}</span>
+                <span class="ship-cat ship-cat-${s.category}" title="${s.category}">${CAT_ICO[s.category] || '⬡'}</span>
+                <span class="ship-item-name">${s.name}</span>
                 <span class="ship-role">${s.role}</span>
             </div>`;
         }
@@ -62,7 +91,7 @@ function renderShipList(container, ships) {
 
 export function renderShipPreview(container, ship) {
     if (!ship) {
-        container.innerHTML = '<div class="empty-state"><h3>Select a ship</h3><p>Choose a combat ship from the list.</p></div>';
+        container.innerHTML = '<div class="empty-state"><h3>Select a ship</h3><p>Choose a ship from the list.</p></div>';
         return;
     }
 
@@ -76,6 +105,7 @@ export function renderShipPreview(container, ship) {
     const agility = ship.agility || {};
     const emission = ship.emission || {};
     const weaponry = ship.weaponry || {};
+    const cargo = ship.cargo_capacity || 0;
 
     container.innerHTML = `
         <div class="ship-preview">
@@ -94,13 +124,12 @@ export function renderShipPreview(container, ship) {
                     <div class="stat-row"><span class="stat-label">Max Speed</span><span class="stat-value">${fmt(speed.max)} m/s</span></div>
                     <div class="stat-row"><span class="stat-label">Pitch / Yaw</span><span class="stat-value">${fmt(agility.pitch)} / ${fmt(agility.yaw)} d/s</span></div>
                     <div class="stat-row"><span class="stat-label">Roll</span><span class="stat-value">${fmt(agility.roll)} d/s</span></div>
+                    ${cargo ? `<div class="stat-row"><span class="stat-label">Cargo</span><span class="stat-value">${fmt(cargo)} SCU</span></div>` : ''}
                     <div class="stat-row"><span class="stat-label">Phys Mult</span><span class="stat-value">${armor.physical ?? 'N/A'}x</span></div>
                     <div class="stat-row"><span class="stat-label">Energy Mult</span><span class="stat-value">${armor.energy ?? 'N/A'}x</span></div>
                     <div class="stat-row"><span class="stat-label">Pilot DPS</span><span class="stat-value dps-number">${fmt(weaponry.pilot_dps)}</span></div>
                     <div class="stat-row"><span class="stat-label">Pilot Alpha</span><span class="stat-value">${fmt(weaponry.pilot_alpha)}</span></div>
                     <div class="stat-row"><span class="stat-label">EM Idle</span><span class="stat-value">${fmt(emission.em_idle)}</span></div>
-                    <div class="stat-row"><span class="stat-label">IR</span><span class="stat-value">${fmt(emission.ir)}</span></div>
-                    <div class="stat-row"><span class="stat-label">Mass</span><span class="stat-value">${fmt(ship.mass?.total)} kg</span></div>
                     <div class="stat-row"><span class="stat-label">Crew</span><span class="stat-value">${ship.crew?.min || 1}-${ship.crew?.max || 1}</span></div>
                 </div>
             </div>

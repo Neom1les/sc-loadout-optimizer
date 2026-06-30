@@ -55,6 +55,40 @@ export async function initMining(root) {
   render();
 }
 
+/* Map a ships.json ship name to a mining-fits.json ship id. */
+function shipToFitId(name) {
+  const n = (name || '').toLowerCase();
+  if (n.includes('prospector')) return 'prospector';
+  if (/\bmole\b/.test(n)) return 'mole';
+  if (n.includes('golem')) return 'golem';
+  if (n.includes('roc')) return 'roc';
+  if (n.includes('atls')) return 'atls';
+  return null;
+}
+
+/* Embedded view: render one mining ship's recommended fits into `container`
+   (reused by the Loadout hub when a mining ship is selected). */
+export async function renderShipFits(container, shipName, onOpenFull) {
+  if (!GEAR) { try { GEAR = await loadJSON('mining-gear.json'); } catch (e) { container.innerHTML = `<div class="empty-state" style="color:var(--status-crit)"><p>Mining gear failed to load.</p></div>`; return; } }
+  if (!FITS) { try { FITS = await loadJSON('mining-fits.json'); } catch { FITS = null; } }
+  if (!Object.keys(gearById).length) for (const g of ['heads', 'modules', 'gadgets']) for (const it of (GEAR[g] || [])) gearById[it.id] = { ...it, _group: g };
+
+  const id = shipToFitId(shipName);
+  const ship = id && FITS && (FITS.ships || []).find(s => s.id === id);
+  if (!ship) {
+    container.innerHTML = `<div class="empty-state"><h3>No preset mining fits</h3><p>No recommended fits are catalogued for this ship yet — open the Mining tab for the full gear catalog and guide.</p><button class="co-link" data-openfull>Open Mining Fits ▸</button></div>`;
+    container.querySelectorAll('[data-openfull]').forEach(b => b.onclick = () => onOpenFull && onOpenFull());
+    return;
+  }
+  container.innerHTML = `
+    <div class="ph-head" style="margin-bottom:10px;"><h2 style="font-size:1.15rem;">⛏ Mining fits — ${esc(ship.name)}</h2>
+      <div class="ef-sub">Recommended laser-head + module fits for your goal. Prices are a UEX snapshot.</div></div>
+    <div class="mn-fits">${(ship.fits || []).map(f => fitCard(f, ship)).join('')}</div>
+    <div style="margin-top:14px;"><button class="co-link" data-openfull>Open full Mining tab — gear catalog &amp; guide ▸</button></div>`;
+  container.querySelectorAll('.co-link[data-tab]').forEach(b => b.onclick = () => { if (window.scOpenTab) window.scOpenTab(b.dataset.tab); });
+  container.querySelectorAll('[data-openfull]').forEach(b => b.onclick = () => onOpenFull && onOpenFull());
+}
+
 /* ── gear bits ─────────────────────────────────────────────── */
 function gearImg(it, cls) {
   return it && it.img

@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEMESIS Command Deck — Star Citizen Toolkit</title>
-    <link rel="stylesheet" href="css/terminal.css?v=59">
-    <link rel="stylesheet" href="css/layout.css?v=59">
-    <link rel="stylesheet" href="css/components.css?v=59">
-    <link rel="stylesheet" href="css/features.css?v=59">
+    <link rel="stylesheet" href="css/terminal.css?v=60">
+    <link rel="stylesheet" href="css/layout.css?v=60">
+    <link rel="stylesheet" href="css/components.css?v=60">
+    <link rel="stylesheet" href="css/features.css?v=60">
 </head>
 <body class="tab-home">
 
@@ -64,12 +64,13 @@
                 <div class="panel" id="shipSelectPanel">
                     <div class="panel-header">Ship Selection</div>
                     <input type="text" class="search-input" id="shipSearch" placeholder="Search ships...">
+                    <div class="fleet-filters" id="shipCatFilter" style="margin:8px 0;"></div>
                     <div class="ship-list" id="shipList">
                         <div class="empty-state"><p>Loading ships...</p></div>
                     </div>
                 </div>
 
-                <div class="panel">
+                <div class="panel" id="combatProfile">
                     <div class="panel-header">Combat Profile</div>
                     <div class="combat-profile">
                         <div class="checkbox-group">
@@ -87,12 +88,16 @@
             <div class="panel" id="shipPreviewPanel">
                 <div class="panel-header">Ship Overview</div>
                 <div id="shipPreview">
-                    <div class="empty-state"><h3>Select a ship</h3><p>Choose a combat ship from the list to view its stats and optimize its loadout.</p></div>
+                    <div class="empty-state"><h3>Select a ship</h3><p>Pick any ship — combat ships get a weapon loadout, miners get mining fits, haulers &amp; industrials get a survivability build.</p></div>
                 </div>
             </div>
         </section>
 
+        <!-- role-aware view for mining / hauling / utility ships -->
+        <section class="panel" id="roleView" style="display:none;margin-top:16px;"></section>
+
         <section class="results-section" id="resultsSection" style="display:none;">
+            <div id="roleBanner" style="display:none;"></div>
             <div id="budgetSummary" style="display:none;"></div>
             <div class="panel fade-in" id="weaponsPanel"><div class="panel-header">Weapons Loadout</div><div id="weaponsResult"></div></div>
             <div class="two-col">
@@ -195,17 +200,17 @@
 
 </div>
 
-<script type="module" src="js/data-loader.js?v=59"></script>
-<script type="module" src="js/ship-selector.js?v=59"></script>
-<script type="module" src="js/optimizer.js?v=59"></script>
-<script type="module" src="js/stats-calculator.js?v=59"></script>
-<script type="module" src="js/shop-finder.js?v=59"></script>
-<script type="module" src="js/loadout-renderer.js?v=59"></script>
-<script type="module" src="js/storage.js?v=59"></script>
-<script type="module" src="js/matchup.js?v=59"></script>
-<script type="module" src="js/app.js?v=59"></script>
-<script type="module" src="js/earnings-finder.js?v=59"></script>
-<script type="module" src="js/patch-hub.js?v=59"></script>
-<script type="module" src="js/tabs.js?v=59"></script>
+<script type="module" src="js/data-loader.js?v=60"></script>
+<script type="module" src="js/ship-selector.js?v=60"></script>
+<script type="module" src="js/optimizer.js?v=60"></script>
+<script type="module" src="js/stats-calculator.js?v=60"></script>
+<script type="module" src="js/shop-finder.js?v=60"></script>
+<script type="module" src="js/loadout-renderer.js?v=60"></script>
+<script type="module" src="js/storage.js?v=60"></script>
+<script type="module" src="js/matchup.js?v=60"></script>
+<script type="module" src="js/app.js?v=60"></script>
+<script type="module" src="js/earnings-finder.js?v=60"></script>
+<script type="module" src="js/patch-hub.js?v=60"></script>
+<script type="module" src="js/tabs.js?v=60"></script>
 </body>
 </html>

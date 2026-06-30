@@ -601,3 +601,11 @@ body.tab-optimizer .btn-save { display:inline-flex; }
 .mn-better { color:var(--sc-teal); }
 .mn-metarow { font-family:var(--font-read); font-size:.94rem; line-height:1.5; color:var(--text-primary); margin-bottom:8px; padding-left:11px; border-left:2px solid rgba(61,255,242,.35); }
 .mn-fit .craft-p, .mn-card .craft-p { font-size:1.05rem; line-height:1.6; }
+
+/* role build banner (hauling / utility ships in the loadout hub) */
+.role-banner { border:1px solid rgba(111,168,255,.35); background:rgba(111,168,255,.06); padding:14px 16px; }
+.rb-head { display:flex; gap:12px; align-items:flex-start; }
+.rb-ico { font-size:1.5rem; color:#6fa8ff; flex-shrink:0; line-height:1.2; }
+.rb-title { font-family:var(--font-heading); font-size:1.12rem; font-weight:700; color:var(--text-bright); }
+.rb-sub { font-family:var(--font-read); font-size:.98rem; line-height:1.55; color:var(--text-primary); margin-top:4px; max-width:90ch; }
+.rb-links { display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }

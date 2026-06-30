@@ -1,10 +1,14 @@
-import { getPatchInfo, getShip, loadShipIndex } from './data-loader.js';
+import { getPatchInfo, getShip, loadShipIndex, shipCategory } from './data-loader.js';
 import { initShipSelector, renderShipPreview } from './ship-selector.js';
 import { optimizeLoadout, getProfile } from './optimizer.js';
 import { renderLoadout, setSlotChangeCallback, clearShoppingChecks } from './loadout-renderer.js';
 import { getSavedLoadouts, saveLoadout, deleteLoadout } from './storage.js';
 import { calculateMatchup, renderMatchup } from './matchup.js';
 import { applyBudgetMode } from './budget.js';
+import { renderShipFits } from './mining.js';
+
+const esc = (s) => (s == null ? '' : String(s)).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const setDisplay = (id, show) => { const el = document.getElementById(id); if (el) el.style.display = show ? '' : 'none'; };
 
 let currentShip = null;
 let currentLoadout = null;
@@ -69,6 +73,7 @@ function renderTargetList(container, ships) {
         return;
     }
 
+    ships = ships.filter(s => s.category === 'combat');   // only fight combat ships
     const grouped = {};
     for (const s of ships) {
         const mfr = s.manufacturer;
@@ -114,14 +119,75 @@ async function onTargetSelected(uuid) {
 async function onShipSelected(uuid) {
     currentShip = await getShip(uuid);
     renderShipPreview(document.getElementById('shipPreview'), currentShip);
-    document.getElementById('btnOptimize').disabled = false;
-    document.getElementById('resultsSection').style.display = 'none';
     currentLoadout = null;
     activeTargetUuid = null;
     document.getElementById('btnSaveLoadout').disabled = true;
-    document.getElementById('matchupResult').innerHTML =
-        '<div class="empty-state"><h3>Select a target</h3><p>Choose an enemy ship to see damage calculations, TTK, and armor effectiveness.</p></div>';
-    renderTargetList(document.getElementById('targetList'), targetShipIndex);
+
+    const cat = shipCategory(currentShip);
+    const roleView = document.getElementById('roleView');
+
+    // reset all role-dependent views
+    setDisplay('resultsSection', false);
+    roleView.style.display = 'none';
+    setDisplay('roleBanner', false);
+
+    if (cat === 'mining') {
+        setDisplay('combatProfile', false);
+        setDisplay('matchupSection', false);
+        roleView.style.display = '';
+        roleView.innerHTML = '<div class="empty-state"><p>Loading mining fits…</p></div>';
+        await renderShipFits(roleView, currentShip.name, () => window.scOpenTab && window.scOpenTab('mining'));
+    } else if (cat === 'hauling' || cat === 'utility') {
+        setDisplay('combatProfile', false);
+        setDisplay('matchupSection', false);
+        await renderRoleBuild(currentShip, cat);
+    } else {
+        // combat — the original flow (manual Optimize)
+        setDisplay('combatProfile', true);
+        setDisplay('matchupSection', true);
+        setDisplay('weaponsPanel', true);
+        document.getElementById('btnOptimize').disabled = false;
+        document.getElementById('matchupResult').innerHTML =
+            '<div class="empty-state"><h3>Select a target</h3><p>Choose an enemy ship to see damage calculations, TTK, and armor effectiveness.</p></div>';
+        renderTargetList(document.getElementById('targetList'), targetShipIndex);
+    }
+}
+
+// Hauling / utility ships: no weapon optimization — show the survivability
+// build (best shield / power plant / cooler / quantum drive) + cargo + links.
+async function renderRoleBuild(ship, cat) {
+    const resultsEl = document.getElementById('resultsSection');
+    const banner = document.getElementById('roleBanner');
+    banner.innerHTML = '<div class="empty-state"><p>Building defensive loadout…</p></div>';
+    banner.style.display = '';
+    setDisplay('weaponsPanel', false);
+    resultsEl.style.display = '';
+
+    try {
+        clearShoppingChecks();
+        currentLoadout = await optimizeLoadout(ship, getProfile(true, false));
+
+        const cargo = ship.cargo_capacity || 0;
+        const title = cat === 'hauling' ? 'Hauling build' : 'Support / industrial build';
+        banner.innerHTML = `<div class="role-banner">
+            <div class="rb-head"><span class="rb-ico">${cat === 'hauling' ? '⇄' : '⬡'}</span>
+                <div><div class="rb-title">${title} — ${esc(ship.name)}</div>
+                <div class="rb-sub">This ship isn't a gunship — so instead of a weapon meta, here's the <b>survivability fit</b>: the best shield, power plant, cooler and quantum drive it can run.${cargo ? ` Hold: <b>${cargo.toLocaleString('en-US')} SCU</b>.` : ''}</div></div>
+            </div>
+            <div class="rb-links">${cargo ? '<button class="co-link" data-tab="trade">Best cargo runs → Trade Routes ▸</button>' : ''}<button class="co-link" data-tab="shipbuy">Where to buy → Ship Dealer ▸</button></div>
+        </div>`;
+        banner.querySelectorAll('[data-tab]').forEach(b => b.onclick = () => { if (window.scOpenTab) window.scOpenTab(b.dataset.tab); });
+
+        renderLoadout(ship, currentLoadout, {
+            weapons: document.getElementById('weaponsResult'),
+            components: document.getElementById('componentsResult'),
+            stats: document.getElementById('statsResult'),
+            shopping: document.getElementById('shoppingResult')
+        });
+    } catch (err) {
+        console.error('Role build error:', err);
+        banner.innerHTML = `<div class="empty-state" style="color:var(--status-crit)"><p>Error building loadout: ${esc(err.message)}</p></div>`;
+    }
 }
 
 async function onOptimize() {
@@ -141,6 +207,8 @@ async function onOptimize() {
     const btn = document.getElementById('btnOptimize');
     btn.textContent = '>>> CALCULATING... <<<';
     btn.disabled = true;
+    setDisplay('roleBanner', false);
+    setDisplay('weaponsPanel', true);
 
     try {
         clearShoppingChecks();

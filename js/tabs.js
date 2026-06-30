@@ -24,7 +24,7 @@ function renderHome() {
   const root = document.getElementById('homeRoot');
   if (!root) return;
   const T = {
-    optimizer: { tab: 'optimizer', ico: '⬡', img: 'assets/bg2.webp', title: 'Loadout Optimizer', desc: 'Optimize weapons, shields & components for any combat ship — with damage matchups, TTK and shopping lists.' },
+    optimizer: { tab: 'optimizer', ico: '⬡', img: 'assets/bg2.webp', title: 'Loadout Optimizer', desc: 'Pick any ship — combat ships get an optimized weapon/component loadout, miners get mining fits, haulers get a survivability build.' },
     tactics: { tab: 'tactics', ico: '⊕', img: 'assets/tactics.jpg', title: 'Tactics', desc: 'Counter-pick any enemy ship, read its armor weakness, and see which ships hard-counter it.' },
     fleet: { tab: 'fleet', ico: '⊟', img: 'assets/fleet.jpg', title: 'Fleet Ops', desc: 'Build squad comps, track your org’s fleet & crews, and share standard loadout presets.' },
     shipbuy: { tab: 'shipbuy', ico: '◈', img: 'assets/shipdealer.jpg', title: 'Ship Dealer', desc: 'Which ships you can buy in-game for aUEC — at which dealer / showroom and for how much.' },
