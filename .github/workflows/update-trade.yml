@@ -29,11 +29,12 @@ jobs:
           export RUN_DATE="$(date -u +'%Y-%m-%d %H:%M UTC')"
           python scripts/ingest-trade.py
           python scripts/ingest-ships.py
+          python scripts/ingest-mining.py
       - name: Commit changes
         run: |
           git config user.name "trade-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/trade-routes.json data/commodity-buy.json data/ship-buy.json
+          git add data/trade-routes.json data/commodity-buy.json data/ship-buy.json data/mining-gear.json
           if git diff --cached --quiet; then
             echo "No UEX-data changes this run."
           else

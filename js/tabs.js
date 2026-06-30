@@ -13,8 +13,9 @@ import { initFieldGuide } from './field-guide.js';
 import { initGear } from './gear.js';
 import { initShipsBuy } from './ships-buy.js';
 import { initCrewOps } from './crew-ops.js';
+import { initMining } from './mining.js';
 
-const TABS = ['home', 'optimizer', 'earnings', 'patch', 'tactics', 'fleet', 'crafting', 'trade', 'weapons', 'fieldguide', 'gear', 'shipbuy', 'crew'];
+const TABS = ['home', 'optimizer', 'earnings', 'patch', 'tactics', 'fleet', 'crafting', 'trade', 'weapons', 'fieldguide', 'gear', 'shipbuy', 'mining', 'crew'];
 const inited = {};
 
 function panelId(tab) { return 'tab' + tab.charAt(0).toUpperCase() + tab.slice(1); }
@@ -27,6 +28,7 @@ function renderHome() {
     tactics: { tab: 'tactics', ico: '⊕', img: 'assets/tactics.jpg', title: 'Tactics', desc: 'Counter-pick any enemy ship, read its armor weakness, and see which ships hard-counter it.' },
     fleet: { tab: 'fleet', ico: '⊟', img: 'assets/fleet.jpg', title: 'Fleet Ops', desc: 'Build squad comps, track your org’s fleet & crews, and share standard loadout presets.' },
     shipbuy: { tab: 'shipbuy', ico: '◈', img: 'assets/shipdealer.jpg', title: 'Ship Dealer', desc: 'Which ships you can buy in-game for aUEC — at which dealer / showroom and for how much.' },
+    mining: { tab: 'mining', ico: '⛏', img: 'assets/mining.jpg', title: 'Mining Fits', desc: 'Recommended laser-head & module fits for every mining ship, a full gear catalog with prices, and how the mining minigame works.' },
     weapons: { tab: 'weapons', ico: '⌖', img: 'assets/armory.jpg', title: 'Armory', desc: 'Every personal weapon — damage, fire rate, range, rarity and which ones you can craft.' },
     gear: { tab: 'gear', ico: '⬢', img: 'assets/gear.jpg', title: 'Gear Locker', desc: 'Where to get special armor & gear — which shop, loot site or event, with locations and sources.' },
     fieldguide: { tab: 'fieldguide', ico: '▤', img: 'assets/fieldguide.jpg', title: 'Field Guide', desc: 'Underground facilities, Onyx contracts & special missions — community-sourced walkthroughs with citations.' },
@@ -37,7 +39,7 @@ function renderHome() {
     crew: { tab: 'crew', ico: '✦', img: 'assets/crewops.jpg', title: 'Crew Ops', desc: 'Online with friends? Pick your crew size and vibe — get co-op op ideas with a role split for each player.' },
   };
   const sections = [
-    { title: 'Ship Operations', ico: '⬡', sub: 'Buy, fit, fight & fleet — everything ships', keys: ['shipbuy', 'optimizer', 'tactics', 'fleet'] },
+    { title: 'Ship Operations', ico: '⬡', sub: 'Buy, fit, fight & fleet — everything ships', keys: ['shipbuy', 'optimizer', 'mining', 'tactics', 'fleet'] },
     { title: 'On Foot', ico: '⌖', sub: 'Personal weapons, armor & ground missions', keys: ['weapons', 'gear', 'fieldguide'] },
     { title: 'Economy & Career', ico: '⇄', sub: 'Earn aUEC, craft and run trade routes', keys: ['trade', 'crafting', 'earnings'] },
   ];
@@ -92,7 +94,7 @@ function show(tab) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
   const panel = document.getElementById(panelId(tab));
   if (panel) panel.classList.add('active');
-  document.body.classList.remove('tab-home', 'tab-optimizer', 'tab-earnings', 'tab-patch', 'tab-tactics', 'tab-fleet', 'tab-crafting', 'tab-trade', 'tab-weapons', 'tab-fieldguide', 'tab-gear', 'tab-shipbuy', 'tab-crew');
+  document.body.classList.remove('tab-home', 'tab-optimizer', 'tab-earnings', 'tab-patch', 'tab-tactics', 'tab-fleet', 'tab-crafting', 'tab-trade', 'tab-weapons', 'tab-fieldguide', 'tab-gear', 'tab-shipbuy', 'tab-mining', 'tab-crew');
   document.body.classList.add('tab-' + tab);
   if (!(location.hash || '').startsWith('#squad=') && location.hash.slice(1) !== tab) {
     history.replaceState(null, '', '#' + tab);
@@ -109,6 +111,7 @@ function show(tab) {
   if (tab === 'fieldguide' && !inited.fieldguide) { inited.fieldguide = true; initFieldGuide(document.getElementById('fieldGuideRoot')); }
   if (tab === 'gear' && !inited.gear) { inited.gear = true; initGear(document.getElementById('gearRoot')); }
   if (tab === 'shipbuy' && !inited.shipbuy) { inited.shipbuy = true; initShipsBuy(document.getElementById('shipBuyRoot')); }
+  if (tab === 'mining' && !inited.mining) { inited.mining = true; initMining(document.getElementById('miningRoot')); }
   if (tab === 'crew' && !inited.crew) { inited.crew = true; initCrewOps(document.getElementById('crewRoot')); }
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
