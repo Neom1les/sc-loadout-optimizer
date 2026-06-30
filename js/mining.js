@@ -93,7 +93,7 @@ function fitCard(fit, ship) {
       <div class="mn-mods">${modChips(m.modifiers)}</div>
     </div>`).join('')}</div>` : '';
   const gadgetBlock = gadget ? `<div class="mn-fit-sec"><div class="mn-fit-lbl">Gadget</div>
-      <div class="mn-fit-mod"><span class="mn-fit-modname">${esc(gadget.name)}</span> <span class="cf-conf cf-dim">GADGET</span><div class="src-note">${esc(gadget.desc)}</div></div></div>` : '';
+      <div class="mn-fit-mod"><span class="mn-fit-modname">${esc(gadget.name)}</span> <span class="cf-conf cf-dim">GADGET</span><div class="mn-gdesc">${esc(gadget.desc)}</div></div></div>` : '';
 
   return `<div class="panel mn-fit">
     <div class="mn-fit-top">
