@@ -12,8 +12,9 @@ import { initWeapons } from './weapons.js';
 import { initFieldGuide } from './field-guide.js';
 import { initGear } from './gear.js';
 import { initShipsBuy } from './ships-buy.js';
+import { initCrewOps } from './crew-ops.js';
 
-const TABS = ['home', 'optimizer', 'earnings', 'patch', 'tactics', 'fleet', 'crafting', 'trade', 'weapons', 'fieldguide', 'gear', 'shipbuy'];
+const TABS = ['home', 'optimizer', 'earnings', 'patch', 'tactics', 'fleet', 'crafting', 'trade', 'weapons', 'fieldguide', 'gear', 'shipbuy', 'crew'];
 const inited = {};
 
 function panelId(tab) { return 'tab' + tab.charAt(0).toUpperCase() + tab.slice(1); }
@@ -33,6 +34,7 @@ function renderHome() {
     crafting: { tab: 'crafting', ico: '⚒', img: 'assets/crafting.jpg', title: 'Crafting Guide', desc: 'Materials, blueprints, recipes and what’s worth making — every claim tagged live / PTU / community.' },
     earnings: { tab: 'earnings', ico: '◎', img: 'assets/bg.jpg', title: 'Earnings Finder', desc: 'Find the fastest way to earn aUEC or grind a faction’s reputation — ranked by your goal, with full guides.' },
     patch: { tab: 'patch', ico: '❖', img: 'assets/bg3.webp', title: 'Patch Hub', desc: 'What’s new each patch with step-by-step guides — plus the upcoming Alpha 4.9 roadmap.' },
+    crew: { tab: 'crew', ico: '✦', img: 'assets/crewops.jpg', title: 'Crew Ops', desc: 'Online with friends? Pick your crew size and vibe — get co-op op ideas with a role split for each player.' },
   };
   const sections = [
     { title: 'Ship Operations', ico: '⬡', sub: 'Buy, fit, fight & fleet — everything ships', keys: ['shipbuy', 'optimizer', 'tactics', 'fleet'] },
@@ -50,12 +52,23 @@ function renderHome() {
         </span>
       </button>`;
   const p = T.patch;
+  const c = T.crew;
   root.innerHTML = `
     <div class="home-hero">
       <div class="hh-kicker">Star Citizen · Alpha 4.8.2-LIVE</div>
       <h1 class="hh-title">Command Deck</h1>
       <p class="hh-sub">Your toolkit for the ’verse — choose a station to begin.</p>
     </div>
+    <button class="patch-banner crew-banner" data-go="crew">
+      <span class="pb-img" style="background-image:url('${c.img}')"></span>
+      <span class="pb-shade"></span>
+      <span class="pb-body">
+        <span class="pb-kicker"><span class="pb-dot"></span>${c.ico} Playing with friends?</span>
+        <span class="pb-title">${c.title}</span>
+        <span class="pb-desc">${c.desc}</span>
+      </span>
+      <span class="pb-cta">Plan it ▸</span>
+    </button>
     <button class="patch-banner" data-go="patch">
       <span class="pb-img" style="background-image:url('${p.img}')"></span>
       <span class="pb-shade"></span>
@@ -79,7 +92,7 @@ function show(tab) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
   const panel = document.getElementById(panelId(tab));
   if (panel) panel.classList.add('active');
-  document.body.classList.remove('tab-home', 'tab-optimizer', 'tab-earnings', 'tab-patch', 'tab-tactics', 'tab-fleet', 'tab-crafting', 'tab-trade', 'tab-weapons', 'tab-fieldguide', 'tab-gear', 'tab-shipbuy');
+  document.body.classList.remove('tab-home', 'tab-optimizer', 'tab-earnings', 'tab-patch', 'tab-tactics', 'tab-fleet', 'tab-crafting', 'tab-trade', 'tab-weapons', 'tab-fieldguide', 'tab-gear', 'tab-shipbuy', 'tab-crew');
   document.body.classList.add('tab-' + tab);
   if (!(location.hash || '').startsWith('#squad=') && location.hash.slice(1) !== tab) {
     history.replaceState(null, '', '#' + tab);
@@ -96,6 +109,7 @@ function show(tab) {
   if (tab === 'fieldguide' && !inited.fieldguide) { inited.fieldguide = true; initFieldGuide(document.getElementById('fieldGuideRoot')); }
   if (tab === 'gear' && !inited.gear) { inited.gear = true; initGear(document.getElementById('gearRoot')); }
   if (tab === 'shipbuy' && !inited.shipbuy) { inited.shipbuy = true; initShipsBuy(document.getElementById('shipBuyRoot')); }
+  if (tab === 'crew' && !inited.crew) { inited.crew = true; initCrewOps(document.getElementById('crewRoot')); }
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 

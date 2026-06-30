@@ -500,3 +500,43 @@ body.tab-optimizer .btn-save { display:inline-flex; }
 .sd-loc { margin-bottom:5px; }
 .sd-loc:last-child { margin-bottom:0; }
 .sd-loc b { font-family:var(--font-read); font-size:.84rem; color:var(--text-secondary); font-weight:600; }
+
+/* ============ crew ops ============ */
+/* amber variant of the patch banner (overrides the teal glow) */
+.crew-banner { border-color:rgba(245,166,35,.5); animation:cbGlow 3.6s ease-in-out infinite; }
+.crew-banner:hover { border-color:var(--sc-amber); box-shadow:0 0 38px rgba(245,166,35,.34), inset 0 0 60px rgba(245,166,35,.07); }
+@keyframes cbGlow {
+  0%,100% { box-shadow:0 0 16px rgba(245,166,35,.12), inset 0 0 60px rgba(245,166,35,.04); }
+  50%     { box-shadow:0 0 30px rgba(245,166,35,.26), inset 0 0 60px rgba(245,166,35,.07); }
+}
+.crew-banner .pb-kicker { color:var(--sc-amber); }
+.crew-banner .pb-dot { background:var(--sc-amber); box-shadow:0 0 8px var(--sc-amber); }
+.crew-banner .pb-cta { color:#0a0703; background:var(--sc-amber); border-color:var(--sc-amber); }
+.crew-banner:hover .pb-cta { box-shadow:0 0 16px rgba(245,166,35,.55); }
+
+.co-controls { display:flex; flex-direction:column; gap:12px; margin-bottom:16px; }
+.co-ctl { display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+.co-ctl-l { font-family:var(--font-heading); font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--text-dim); min-width:78px; }
+.co-roll { border-color:rgba(245,166,35,.5)!important; color:var(--sc-amber)!important; }
+.co-roll:hover { background:rgba(245,166,35,.12)!important; border-color:var(--sc-amber)!important; }
+
+.co-results { display:flex; flex-direction:column; gap:14px; margin-bottom:16px; }
+.co-card { position:relative; overflow:hidden; }
+.co-featured { border-color:var(--sc-teal); box-shadow:0 0 22px rgba(61,255,242,.14); }
+.co-ribbon { position:absolute; top:0; right:0; background:var(--sc-teal); color:#04140f; font-family:var(--font-heading); font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; padding:4px 14px; clip-path:polygon(12px 0,100% 0,100% 100%,0 100%); }
+.co-head { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap; margin-bottom:8px; }
+.co-name { font-family:var(--font-heading); font-size:1.18rem; font-weight:700; color:var(--text-bright); line-height:1.2; }
+.co-badges { display:flex; gap:6px; align-items:center; flex-wrap:wrap; }
+.co-crew { font-family:var(--font-mono); font-size:.74rem; color:var(--sc-teal); border:1px solid var(--border-panel); padding:2px 8px; white-space:nowrap; }
+.co-vibes { display:flex; gap:5px; flex-wrap:wrap; margin:0 0 10px; }
+.co-vibe { font-family:var(--font-read); font-size:.68rem; letter-spacing:.04em; text-transform:uppercase; color:var(--text-secondary); background:rgba(61,255,242,.06); border:1px solid var(--border-panel); padding:2px 8px; }
+.co-roles { display:flex; flex-direction:column; gap:5px; margin:4px 0 6px; }
+.co-role { font-family:var(--font-read); font-size:.92rem; color:var(--text-secondary); }
+.co-pn { display:inline-block; min-width:30px; font-family:var(--font-mono); font-weight:700; color:var(--sc-amber); }
+.co-ships { display:flex; flex-wrap:wrap; gap:6px; margin-top:4px; }
+.co-ship { font-family:var(--font-read); font-size:.8rem; color:var(--text-secondary); background:rgba(0,0,0,.28); border:1px solid var(--border-panel); padding:3px 9px; }
+.co-meta { margin:12px 0 10px; }
+.co-metarow { font-family:var(--font-read); font-size:.88rem; color:var(--text-secondary); margin-bottom:6px; padding-left:9px; border-left:2px solid rgba(61,255,242,.3); }
+.co-mk { font-family:var(--font-heading); font-size:.66rem; letter-spacing:.07em; text-transform:uppercase; color:var(--sc-teal); margin-right:7px; }
+.co-link { font-family:var(--font-heading); font-size:.76rem; letter-spacing:.06em; text-transform:uppercase; color:#04140f; background:var(--sc-teal); border:none; padding:8px 18px; cursor:pointer; clip-path:polygon(0 0, calc(100% - 9px) 0, 100% 9px, 100% 100%, 9px 100%, 0 calc(100% - 9px)); transition:box-shadow .2s; }
+.co-link:hover { box-shadow:0 0 16px rgba(61,255,242,.45); }

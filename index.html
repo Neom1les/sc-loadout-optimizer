@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEMESIS Command Deck — Star Citizen Toolkit</title>
-    <link rel="stylesheet" href="css/terminal.css?v=54">
-    <link rel="stylesheet" href="css/layout.css?v=54">
-    <link rel="stylesheet" href="css/components.css?v=54">
-    <link rel="stylesheet" href="css/features.css?v=54">
+    <link rel="stylesheet" href="css/terminal.css?v=55">
+    <link rel="stylesheet" href="css/layout.css?v=55">
+    <link rel="stylesheet" href="css/components.css?v=55">
+    <link rel="stylesheet" href="css/features.css?v=55">
 </head>
 <body class="tab-home">
 
@@ -44,6 +44,7 @@
             <button class="tab-btn" data-tab="fieldguide"><span class="ti">▤</span> Field Guide</button>
             <button class="tab-btn" data-tab="gear"><span class="ti">⬢</span> Gear Locker</button>
             <button class="tab-btn" data-tab="shipbuy"><span class="ti">◈</span> Ship Dealer</button>
+            <button class="tab-btn" data-tab="crew"><span class="ti">✦</span> Crew Ops</button>
         </nav>
 
         <div style="display:flex;gap:10px;align-items:center;">
@@ -168,6 +169,11 @@
         <div id="shipBuyRoot"><div class="empty-state"><p>Loading ship dealer…</p></div></div>
     </div>
 
+    <!-- ============ TAB 12 · CREW OPS (new) ============ -->
+    <div class="tab-panel" id="tabCrew">
+        <div id="crewRoot"><div class="empty-state"><p>Loading crew ops…</p></div></div>
+    </div>
+
     <a href="https://robertsspaceindustries.com/en/orgs/N3M3S1S" target="_blank" class="nemesis-banner">
         <img src="assets/nemesis-logo.webp" alt="NEMESIS">
         <div>
@@ -183,17 +189,17 @@
 
 </div>
 
-<script type="module" src="js/data-loader.js?v=54"></script>
-<script type="module" src="js/ship-selector.js?v=54"></script>
-<script type="module" src="js/optimizer.js?v=54"></script>
-<script type="module" src="js/stats-calculator.js?v=54"></script>
-<script type="module" src="js/shop-finder.js?v=54"></script>
-<script type="module" src="js/loadout-renderer.js?v=54"></script>
-<script type="module" src="js/storage.js?v=54"></script>
-<script type="module" src="js/matchup.js?v=54"></script>
-<script type="module" src="js/app.js?v=54"></script>
-<script type="module" src="js/earnings-finder.js?v=54"></script>
-<script type="module" src="js/patch-hub.js?v=54"></script>
-<script type="module" src="js/tabs.js?v=54"></script>
+<script type="module" src="js/data-loader.js?v=55"></script>
+<script type="module" src="js/ship-selector.js?v=55"></script>
+<script type="module" src="js/optimizer.js?v=55"></script>
+<script type="module" src="js/stats-calculator.js?v=55"></script>
+<script type="module" src="js/shop-finder.js?v=55"></script>
+<script type="module" src="js/loadout-renderer.js?v=55"></script>
+<script type="module" src="js/storage.js?v=55"></script>
+<script type="module" src="js/matchup.js?v=55"></script>
+<script type="module" src="js/app.js?v=55"></script>
+<script type="module" src="js/earnings-finder.js?v=55"></script>
+<script type="module" src="js/patch-hub.js?v=55"></script>
+<script type="module" src="js/tabs.js?v=55"></script>
 </body>
 </html>
