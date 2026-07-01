@@ -152,7 +152,11 @@ function renderSlots(category, slots, container, statsFn, ppSlots, coolerSlots, 
         html += renderSlotGroup('Shields', 'shields', slots, formatShieldStats);
         html += renderSlotGroup('Power Plants', 'powerplants', ppSlots, formatPPStats);
         html += renderSlotGroup('Coolers', 'coolers', coolerSlots, formatCoolerStats);
-        if (qdSlot) html += renderSlotGroup('Quantum Drive', 'quantumDrive', [qdSlot], formatQDStats);
+        if (qdSlot && qdSlot.selected) html += renderSlotGroup('Quantum Drive', 'quantumDrive', [qdSlot], formatQDStats);
+        if (!html) {
+            html = `<div class="empty-state" style="font-size:0.82rem;color:var(--text-secondary);text-align:left;padding:6px 2px;">
+                No individually-swappable shield / power / cooler slots are exposed for this ship in the game data — common for capital &amp; sub-capital ships, whose components are fixed or crew-managed. Weapon &amp; turret loadout above still applies.</div>`;
+        }
     } else {
         for (let i = 0; i < slots.length; i++) {
             html += renderSingleSlot(category, i, slots[i], statsFn);
@@ -172,6 +176,7 @@ function renderSlots(category, slots, container, statsFn, ppSlots, coolerSlots, 
 }
 
 function renderSlotGroup(label, category, slots, statsFn) {
+    if (!slots || !slots.length) return '';   // skip empty groups (e.g. capital ships expose no swappable component slots)
     let html = `<div style="margin-bottom:16px;">
         <div style="font-family:var(--font-heading);font-size:0.7rem;letter-spacing:0.15em;color:var(--text-dim);margin-bottom:6px;">${label.toUpperCase()}</div>`;
     for (let i = 0; i < slots.length; i++) {
@@ -258,6 +263,8 @@ function renderStats(ship, loadout, container) {
             <div class="stat-row"><span class="stat-label">Burst DPS</span><span class="stat-value dps-number">${formatNumber(stats.totalBurstDps)}</span></div>
             <div class="stat-row"><span class="stat-label">Sustained DPS</span><span class="stat-value">${formatNumber(stats.totalSustainedDps)}</span></div>
             <div class="stat-row"><span class="stat-label">Total Alpha</span><span class="stat-value">${formatNumber(stats.totalAlpha)}</span></div>
+            ${stats.turretBurstDps > 0 ? `<div class="stat-row"><span class="stat-label">Turret DPS <span style="color:var(--sc-amber);font-size:0.85em;">(crewed)</span></span><span class="stat-value dps-number">${formatNumber(stats.turretBurstDps)}</span></div>
+            <div class="stat-row"><span class="stat-label">Turret Alpha</span><span class="stat-value">${formatNumber(stats.turretAlpha)}</span></div>` : ''}
             <div class="stat-row"><span class="stat-label">Shield HP</span><span class="stat-value">${formatNumber(stats.shieldHp)}</span></div>
             <div class="stat-row"><span class="stat-label">Shield Regen</span><span class="stat-value">${formatNumber(stats.shieldRegen)}/s</span></div>
             <div class="stat-row"><span class="stat-label">Hull HP</span><span class="stat-value">${formatNumber(stats.hullHp)}</span></div>

@@ -5,6 +5,9 @@ export function calculateLoadoutStats(ship, loadout) {
         totalBurstDps: 0,
         totalSustainedDps: 0,
         totalAlpha: 0,
+        turretBurstDps: 0,
+        turretSustainedDps: 0,
+        turretAlpha: 0,
         shieldHp: ship.shield?.shield_hp || 0,
         shieldRegen: ship.shield?.details?.regeneration || 0,
         hullHp: ship.hull_health || 0,
@@ -63,6 +66,19 @@ export function calculateLoadoutStats(ship, loadout) {
             damageType: getDamageType(w),
             ammo: w.ammo?.capacity || null
         });
+    }
+
+    // Turret / crew-operated weapons — tracked separately from pilot guns
+    // (a solo pilot can't fire these, so they don't fold into the pilot DPS,
+    // but a capital/multicrew ship is NOT "0 DPS" — surface the crewed total).
+    for (const tr of loadout.turretWeapons || []) {
+        const w = tr.selected;
+        if (!w) continue;
+        const { sustained60 } = calcEffectiveDps(w, shipCapPool);
+        stats.turretBurstDps += w.damage?.burst_dps || 0;
+        stats.turretSustainedDps += sustained60;
+        stats.turretAlpha += w.damage?.alpha_total || 0;
+        stats.powerUsed += w.power?.draw_max || 0;
     }
 
     for (const sr of loadout.shields) {
