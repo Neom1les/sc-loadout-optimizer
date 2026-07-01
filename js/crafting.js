@@ -28,7 +28,7 @@ function esc(s) { return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').
 function fmtQty(q) { return Number.isInteger(q) ? '' + q : (Math.round(q * 100) / 100).toString(); }
 
 const CONF = {
-  'confirmed-live': { l: 'LIVE 4.8.2', cls: 'ok' },
+  'confirmed-live': { l: 'LIVE 4.8.3', cls: 'ok' },
   'ptu-4.9': { l: 'PTU / 4.9', cls: 'teal' },
   'planned': { l: 'PLANNED', cls: 'warn' },
   'community-estimate': { l: 'COMMUNITY', cls: 'dim' },

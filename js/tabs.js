@@ -57,7 +57,7 @@ function renderHome() {
   const c = T.crew;
   root.innerHTML = `
     <div class="home-hero">
-      <div class="hh-kicker">Star Citizen · Alpha 4.8.2-LIVE</div>
+      <div class="hh-kicker">Star Citizen · Alpha 4.8.3-LIVE</div>
       <h1 class="hh-title">Command Deck</h1>
       <p class="hh-sub">Your toolkit for the ’verse — choose a station to begin.</p>
     </div>
@@ -75,7 +75,7 @@ function renderHome() {
       <span class="pb-img" style="background-image:url('${p.img}')"></span>
       <span class="pb-shade"></span>
       <span class="pb-body">
-        <span class="pb-kicker"><span class="pb-dot"></span>${p.ico} Latest patch · Alpha 4.8.2-LIVE</span>
+        <span class="pb-kicker"><span class="pb-dot"></span>${p.ico} Latest patch · Alpha 4.8.3-LIVE</span>
         <span class="pb-title">${p.title}</span>
         <span class="pb-desc">${p.desc}</span>
       </span>

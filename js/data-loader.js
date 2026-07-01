@@ -68,5 +68,5 @@ export async function getMissiles() { return loadJSON('missiles.json'); }
 export async function getPatchInfo() {
     try {
         return await loadJSON('patch-info.json');
-    } catch { return { patch_version: '4.8.0-LIVE' }; }
+    } catch { return { patch_version: '4.8.3-LIVE' }; }
 }

@@ -232,7 +232,7 @@ def main():
     gadgets.sort(key=lambda g: g["name"])
 
     out = {
-        "patch": "4.8.2-LIVE",
+        "patch": "4.8.3-LIVE",
         "updated": RUN_DATE,
         "source": "UEX Corp API (prices/shops) + Star Citizen Wiki API (mining specs/images)",
         "attribution": "Unofficial — not affiliated with Cloud Imperium Games. Prices are a community snapshot, not live. Data: UEX Corp + Star Citizen Wiki (CC-BY-SA).",
